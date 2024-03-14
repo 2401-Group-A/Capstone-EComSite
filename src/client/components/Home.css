@@ -69,6 +69,20 @@
     .content-area {
       padding-top: 0; /* Remove extra padding at the top of content area when stacked */
     }
+
+
+
+
+     /* Adjustments for the filter items to make them fit better in the grid */
+  .filter-section h3, 
+  .filter-section div {
+    margin: 0; 
+  }
+
+  .filter-section input[type="range"] {
+    width: 100%; 
+  }
+
   }
   
   
