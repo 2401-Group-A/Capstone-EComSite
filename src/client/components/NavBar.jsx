@@ -8,7 +8,7 @@ export default function NavBar() {
     return (
         <header>
             <section>
-        <h1><img id='logo-image' src={bookLogo}/>Seeds Logo</h1>
+        <h1>LOGO</h1>
             </section>
         <nav>
             <Link to='/seeds'>Home</Link>
