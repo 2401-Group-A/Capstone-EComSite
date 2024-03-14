@@ -6,7 +6,7 @@ function App() {
     <>
       <NavBar/>
       <Routes>
-       
+
       </Routes>
       <div className="App">
         <h1>Boilerplate</h1>
