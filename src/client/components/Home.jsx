@@ -31,7 +31,7 @@ function Home() {
 
         <div>
           <input type="checkbox" id="fruit" name="fruit" />
-          <label htmlFor="fruit">Fruit</label>
+          <label htmlFor="fruit">Herb</label>
         </div>
 
          {/* Seed Size Checkboxes */}
