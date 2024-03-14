@@ -1,0 +1,74 @@
+/* Temp Styles for Navbard Placeholder */
+.navbar-placeholder {
+    text-align: center;
+    background-color: green;
+}
+
+
+/* Styles for the entire home container */
+.home-container {
+    display: flex;
+    background-color: rgba(128, 128, 128, 0.344);
+  }
+  
+  /* Styles for the filter Sidebar */
+  .filter-section {
+    width: 200px; 
+    flex-shrink: 0; /* Stops filter column from shrinking*/
+    border-right: 1px solid #2e2c2c; /* Adds light border to divide from main body */
+    padding: 20px; 
+  }
+  
+  /* Styles for the main content area (Seed Cards Area) */
+  .content-area {
+    flex-grow: 1; /* Allow the content area to take up the remaining space */
+    padding: 20px;
+  }
+
+  /* Centers "Our Seeds" H1 Header */
+  .seed-title {
+    text-align: center;
+  }
+
+/* Style for Seed Container */
+  .seed-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px; 
+  }
+
+  /* Styles for individual seed cards */
+  .seed-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px; 
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .home-container {
+      flex-direction: column; /* Stack the filter and content sections on smaller screens */
+    }
+  
+    .filter-section,
+    .content-area {
+      width: auto; /* Allow sections to fill the width on smaller screens */
+      border-right: none; /* Remove the vertical border */
+      padding: 20px;
+    }
+  
+    .filter-section {
+      border-bottom: 1px solid #ddd; /* Add a border to the bottom for the filter section */
+
+      display: grid;
+      gap: 20px; /* Adjust the gap between grid items if needed */
+
+    }
+  
+    .content-area {
+      padding-top: 0; /* Remove extra padding at the top of content area when stacked */
+    }
+  }
+  
+  
