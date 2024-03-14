@@ -28,38 +28,57 @@ const users = [
     password: 'password123',
   },
   // Add more user objects as needed
-];  
+];
 
 const dropTables = async () => {
-    try {
-        await db.query(`
+  try {
+    await db.query(`
         DROP TABLE IF EXISTS users;
         `)
-    }
-    catch(err) {
-        throw err;
-    }
-}
+    await db.query(`
+        DROP TABLE IF EXISTS products;
+        `)
+    await db.query(`
+        DROP TABLE IF EXISTS orders;
+        `)
+    await db.query(`
+        DROP TABLE IF EXISTS order_products;
+        `)
+        ;
+  } catch (err) {
+    throw err;
+  }
+};
 
 const createTables = async () => {
-    try{
-        await db.query(`
+  try {
+    await db.query(`
         CREATE TABLE users(
             id SERIAL PRIMARY KEY,
-            name VARCHAR(255) DEFAULT 'name',
+            firstName VARCHAR(50) DEFAULT 'firstname',
+            lastName VARCHAR(50) DEFAULT 'lastname',
             email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL
-        )`)
-    }
-    catch(err) {
-        throw err;
-    }
-}
+            password VARCHAR(255) NOT NULL,
+            address TEXT NOT NULL,
+            city VARCHAR(255) NOT NULL,
+            state VARCHAR(50) NOT NULL,
+            zipcode VARCHAR(5) NOT NULL,
+            userCart TEXT,
+            pastOrders TEXT
+        )`);
+  } catch (err) {
+    throw err;
+  }
+};
 
 const insertUsers = async () => {
   try {
     for (const user of users) {
-      await createUser({name: user.name, email: user.email, password: user.password});
+      await createUser({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      });
     }
     console.log('Seed data inserted successfully.');
   } catch (error) {
@@ -68,18 +87,16 @@ const insertUsers = async () => {
 };
 
 const seedDatabse = async () => {
-    try {
-        db.connect();
-        await dropTables();
-        await createTables();
-        await insertUsers();
-    }
-    catch (err) {
-        throw err;
-    }
-    finally {
-        db.end()
-    }
-}
+  try {
+    db.connect();
+    await dropTables();
+    await createTables();
+    await insertUsers();
+  } catch (err) {
+    throw err;
+  } finally {
+    db.end();
+  }
+};
 
-seedDatabse()
+seedDatabse();
