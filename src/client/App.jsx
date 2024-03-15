@@ -10,6 +10,8 @@ import Checkout from './components/Checkout'
 import Register from './components/Register'
 import Home from './components/Home'
 // import SingleSeed from './components/SingleSeed'
+import { Routes, Route } from 'react-router-dom';
+import NavBar from "./components/Navbar";
 
 
 
@@ -32,8 +34,6 @@ function App() {
         <Route path='login' element={<Login/>}/>
         <Route path='userOrders' element={<UserOrder/>}/>
       </Routes>
-
-    
     </>
 
   );
