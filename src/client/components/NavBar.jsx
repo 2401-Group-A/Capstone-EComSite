@@ -12,7 +12,6 @@ export default function NavBar() {
         <nav>
             <Link to='/seeds'>Home</Link>
             <Link to='/account'>Account</Link>
-            <Link to='/login'>Login</Link>
             <Link to='/cart'>Cart</Link>
         </nav>
         </header>
