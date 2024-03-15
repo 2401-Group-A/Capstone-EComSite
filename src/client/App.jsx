@@ -1,5 +1,13 @@
 import { useState } from "react";
 import Login from "./components/Login";
+import Inventory from './components/admin/Inventory'
+import UserData from './components/admin/UserData'
+import UserOrder from './components/admin/UserOrders'
+import Accounts from './components/Account'
+import Cart from './components/Cart'
+import Checkout from './components/Checkout'
+import Register from './components/Register'
+
 
 function App() {
   const [token, useToken] = useState(null)
@@ -7,22 +15,18 @@ function App() {
     <>
       <NavBar/>
       <Routes>
-        <Route path='./components/admin/Inventory'></Route>
-        <Route path='./components/admin/UserData'></Route>
-        <Route path='./components/admin/UserOrders'></Route>
-        <Route path='./components/Account'></Route>
-        <Route path='./components/Cart'></Route>
-        <Route path='./components/Checkout'></Route>
-        <Route path='./components/Login'></Route>
-        <Route path='./components/Register'></Route>
+        <Route path='/seeds' element={<Login />}/>
+        <Route path='/account' element={<Accounts/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/checkout' element={<Checkout/>}/>
+        <Route path='inventory' element={<Inventory/>}/>
+        <Route path='userdata' element={<UserData/>}/>
+        <Route path='register' element={<Register/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='userOrders' element={<UserOrder/>}/>
       </Routes>
 
-      <div className="App">
-        <h1>Boilerplate</h1>
-        <img id="comp-img" src="./computer.png"></img>
-        <p>Replace the starter code in this template with something cool</p>
-        <Login />
-      </div>
+    
     </>
   );
 }
