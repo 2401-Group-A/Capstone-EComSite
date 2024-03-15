@@ -65,6 +65,7 @@ const createTables = async () => {
             userCart TEXT,
             pastOrders TEXT
         )`);
+        
   } catch (err) {
     throw err;
   }
@@ -76,6 +77,7 @@ const insertUsers = async () => {
     INSERT INTO users(firstName, lastName, email, password, address, city, state, zipcode)
       VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'mytemppassword','Some Place', 'Dallas', 'Texas', '75287')
       `);
+      // Is this were we would have await createUser({name: user.name, email: user.email, password: user.password});
     console.log('Seed data inserted successfully.');
   } catch (error) {
     console.error('Error inserting seed data:', error);
