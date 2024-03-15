@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Login from "./components/Login";
 import Inventory from './components/admin/Inventory'
@@ -11,9 +12,12 @@ import Home from './components/Home'
 // import SingleSeed from './components/SingleSeed'
 
 
+
+
 function App() {
   const [token, useToken] = useState(null)
   return (
+
     <>
       <NavBar/>
       <Routes>
@@ -31,6 +35,7 @@ function App() {
 
     
     </>
+
   );
 }
 
