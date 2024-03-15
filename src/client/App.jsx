@@ -11,7 +11,7 @@ import Register from './components/Register'
 import Home from './components/Home'
 // import SingleSeed from './components/SingleSeed'
 import { Routes, Route } from 'react-router-dom';
-import NavBar from "./components/Navbar";
+import NavBar from "./components/NavBar";
 
 
 
