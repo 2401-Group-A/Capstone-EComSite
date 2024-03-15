@@ -33,16 +33,16 @@ const { createUser } = require('./users');
 const dropTables = async () => {
   try {
     await db.query(`
+        DROP TABLE IF EXISTS order_products;
+        `);
+        await db.query(`
+            DROP TABLE IF EXISTS orders;
+            `);
+    await db.query(`
         DROP TABLE IF EXISTS users;
         `);
     await db.query(`
         DROP TABLE IF EXISTS products;
-        `);
-    await db.query(`
-        DROP TABLE IF EXISTS orders;
-        `);
-    await db.query(`
-        DROP TABLE IF EXISTS order_products;
         `);
   } catch (err) {
     throw err;
@@ -84,12 +84,22 @@ const createTables = async () => {
           plantDescription VARCHAR(255),
           plantingInstructions VARCHAR(255)
 )`);
-  } catch (err) {
-    throw err;
-  }
-};
-
-const insertUsers = async () => {
+    await db.query(`
+        CREATE TABLE orders(
+          id SERIAL PRIMARY KEY,
+          user_id INT NOT NULL,
+          FOREIGN KEY (user_id) REFERENCES users(id),
+          orderDate VARCHAR(50),
+          shippingAddress VARCHAR(50),
+          cart BIT default '1'
+          )`);
+        } catch (err) {
+          throw err;
+        }
+      };
+      // id INT NOT NULL,
+      
+      const insertUsers = async () => {
   try {
     await db.query(`
     INSERT INTO users(firstName, lastName, email, password, address, city, state, zipcode)
