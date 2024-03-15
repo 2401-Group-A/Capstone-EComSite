@@ -7,6 +7,8 @@ import Accounts from './components/Account'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import Register from './components/Register'
+import Home from './components/Home'
+// import SingleSeed from './components/SingleSeed'
 
 
 function App() {
@@ -15,7 +17,8 @@ function App() {
     <>
       <NavBar/>
       <Routes>
-        <Route path='/seeds' element={<Login />}/>
+        <Route path='/seeds' element={<Home />}/>
+        {/* <Route path='/seeds:id' element={<singleSeed/>}/> */}
         <Route path='/account' element={<Accounts/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
