@@ -5,10 +5,6 @@ import './Home.css';
 function Home() {
   return (
     <>
-  
-    <div className='navbar-placeholder'>
-      <h1>Navbar</h1>
-    </div>
     
     <div className='home-container'>
 
