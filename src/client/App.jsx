@@ -2,7 +2,7 @@ import { useState } from "react";
 import Login from "./components/Login";
 
 function App() {
-  const [toke, useToken] = useState(null)
+  const [token, useToken] = useState(null)
   return (
     <>
       <NavBar/>
@@ -16,7 +16,7 @@ function App() {
         <Route path='./components/Login'></Route>
         <Route path='./components/Register'></Route>
       </Routes>
-      
+
       <div className="App">
         <h1>Boilerplate</h1>
         <img id="comp-img" src="./computer.png"></img>
