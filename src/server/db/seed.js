@@ -70,29 +70,27 @@ const createTables = async () => {
   }
 };
 
-// Commented out insertUsers to test createTables
-
-// const insertUsers = async () => {
-//   try {
-//     for (const user of users) {
-//       await createUser({
-//         name: user.name,
-//         email: user.email,
-//         password: user.password,
-//       });
-//     }
-//     console.log('Seed data inserted successfully.');
-//   } catch (error) {
-//     console.error('Error inserting seed data:', error);
-//   }
-// };
+const insertUsers = async () => {
+  try {
+    await db.query(`
+    INSERT INTO users(firstName, lastName, email, password, address, city, state, zipcode)
+      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'mytemppassword','Some Place', 'Dallas', 'Texas', '75287')
+      `);
+    console.log('Seed data inserted successfully.');
+  } catch (error) {
+    console.error('Error inserting seed data:', error);
+  }
+};
 
 const seedDatabse = async () => {
   try {
     db.connect();
+    console.log('Running seed');
     await dropTables();
+    console.log('Dropped Tables');
     await createTables();
-    // await insertUsers();
+    console.log('Created Tables');
+    await insertUsers();
   } catch (err) {
     throw err;
   } finally {
