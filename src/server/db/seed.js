@@ -65,7 +65,15 @@ const createTables = async () => {
             userCart TEXT,
             pastOrders TEXT
         )`);
-        
+//         await db.query(`
+//         CREATE TABLE products(
+//           id SERIAL PRIMARY KEY,
+// plantType ,
+// plantVariety ,
+// produceType ,
+
+//         )
+//         `)
   } catch (err) {
     throw err;
   }
@@ -75,7 +83,10 @@ const insertUsers = async () => {
   try {
     await db.query(`
     INSERT INTO users(firstName, lastName, email, password, address, city, state, zipcode)
-      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'mytemppassword','Some Place', 'Dallas', 'Texas', '75287')
+      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'mytemppassword','Some Place', 'Dallas', 'Texas', '75287'),
+      ('Brittany', 'Dugger', 'brittany.young2017@outlook.com', 'brittany123','This House', 'Oklahoma City ', 'Oklahoma', '73128'),
+      ('Michael', 'Jaroszynski', 'michaeljaroszynski@gmail.com', 'michael12345','The Sticks', 'Romeo', 'Michigan', '48065'),
+      ('Raquel', 'Martin','raquel@blacklab.net','raquel123', 'Beach', 'STA', 'Florida', '32092')
       `);
       // Is this were we would have await createUser({name: user.name, email: user.email, password: user.password});
     console.log('Seed data inserted successfully.');
