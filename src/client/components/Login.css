@@ -1,0 +1,63 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .login-container h2 {
+    margin-bottom: 1rem; /* Adjust as needed */
+  }
+  
+  .login-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Adjust width as needed */
+    max-width: 320px; /* Adjust max-width as needed */
+  }
+  
+  .login-container label {
+    margin-bottom: 0.5rem;
+  }
+  
+  .login-container input {
+    margin-bottom: 1rem; /* Spacing between inputs */
+    padding: 0.5rem;
+    width: 100%; /* Full width of the form */
+  }
+  
+  .login-container button {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem; /* Same as input spacing for visual consistency */
+  }
+  
+  .login-container .form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* This applies to the link around the sign-up button, removing text decoration */
+  .login-container .register-route {
+    text-decoration: none; /* Removes link underline */
+  }
+  
+  /* New styles for the sign-up button */
+  button {
+    background-color: #f0f0f0; /* Light grey background, adjust as needed */
+    border: 1px solid #dcdcdc; /* Light grey border, adjust as needed */
+    color: #333; /* Dark grey text color, adjust for contrast */
+    cursor: pointer;
+    margin-right: 10px; /* Adjust the spacing between buttons as needed */
+  }
+  
+  button:hover {
+    background-color: #e9e9e9; /* Slightly darker background on hover */
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
