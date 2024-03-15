@@ -1,34 +1,34 @@
 const db = require('./client');
 const { createUser } = require('./users');
 
-// const users = [
-//   {
-//     name: 'Emily Johnson',
-//     email: 'emily@example.com',
-//     password: 'securepass',
-//   },
-//   {
-//     name: 'Liu Wei',
-//     email: 'liu@example.com',
-//     password: 'strongpass',
-//   },
-//   {
-//     name: 'Isabella García',
-//     email: 'bella@example.com',
-//     password: 'pass1234',
-//   },
-//   {
-//     name: 'Mohammed Ahmed',
-//     email: 'mohammed@example.com',
-//     password: 'mysecretpassword',
-//   },
-//   {
-//     name: 'John Smith',
-//     email: 'john@example.com',
-//     password: 'password123',
-//   },
-//   // Add more user objects as needed
-// ];
+const users = [
+  {
+    name: 'Emily Johnson',
+    email: 'emily@example.com',
+    password: 'securepass',
+  },
+  {
+    name: 'Liu Wei',
+    email: 'liu@example.com',
+    password: 'strongpass',
+  },
+  {
+    name: 'Isabella García',
+    email: 'bella@example.com',
+    password: 'pass1234',
+  },
+  {
+    name: 'Mohammed Ahmed',
+    email: 'mohammed@example.com',
+    password: 'mysecretpassword',
+  },
+  {
+    name: 'John Smith',
+    email: 'john@example.com',
+    password: 'password123',
+  },
+  // Add more user objects as needed
+];
 
 const dropTables = async () => {
   try {
@@ -84,6 +84,8 @@ const createTables = async () => {
           plantDescription VARCHAR(255),
           plantingInstructions VARCHAR(255)
 )`);
+
+// Foreign key for the 'orders' table is the id (Primary Key) from the 'users' table.
     await db.query(`
         CREATE TABLE orders(
           id SERIAL PRIMARY KEY,
@@ -91,13 +93,12 @@ const createTables = async () => {
           FOREIGN KEY (user_id) REFERENCES users(id),
           orderDate VARCHAR(50),
           shippingAddress VARCHAR(50),
-          cart BIT default '1'
+          cart BOOLEAN default 'TRUE'
           )`);
         } catch (err) {
           throw err;
         }
       };
-      // id INT NOT NULL,
       
       const insertUsers = async () => {
   try {
@@ -108,7 +109,8 @@ const createTables = async () => {
       ('Michael', 'Jaroszynski', 'michaeljaroszynski@gmail.com', 'michael12345','The Sticks', 'Romeo', 'Michigan', '48065'),
       ('Raquel', 'Martin','raquel@blacklab.net','raquel123', 'Beach', 'STA', 'Florida', '32092')
       `);
-    // Is this were we would have await createUser({name: user.name, email: user.email, password: user.password});
+      // This line is connected to the createUsers function
+    // await createUser({name: user.name, email: user.email, password: user.password});
     console.log('User seed data inserted successfully.');
   } catch (error) {
     console.error('Error inserting seed data:', error);
