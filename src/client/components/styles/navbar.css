@@ -19,3 +19,33 @@ header nav > a {
 .nav-logo{
   margin-left:1rem;
 }
+
+
+
+.hamburger{
+  width:2rem;
+  height: 1.3rem;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column nowrap;
+  z-index: 10;
+  margin-left: .5rem;
+}
+
+.burger{
+  width: 2rem;
+  height: 0.2rem;
+  border-radius: 10px;
+  background-color: black;
+  transform-origin: 1px;
+  transition: all 0.3s linear
+}
+
+/* .hamburger-menu{
+  display:inline;
+  background-color: aqua;
+  height: 50vh;
+  width: 50vw;
+  margin-top: 50px;
+  position:absolute;
+} */
