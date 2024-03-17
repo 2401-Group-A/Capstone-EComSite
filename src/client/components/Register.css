@@ -1,0 +1,95 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .register-container h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .register-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .register-container label {
+    margin-bottom: 0.5rem;
+  }
+  
+  .register-container input {
+    margin-bottom: 1rem;
+    padding: 9px; /* Padding to match the button height */
+    width: 100%;
+    box-sizing: border-box; 
+  }
+  
+  .register-container .form-footer {
+    display: flex;
+    justify-content: flex-end; /* Aligns the buttons to the right */
+    align-items: center;
+  }
+  
+  /* Styles for buttons */
+  button {
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    color: #333;
+    cursor: pointer;
+    margin-right: 0px; /*spacing between buttons */
+    width: 100px; 
+    height: 40px;
+    box-sizing: border-box; 
+  }
+
+  
+  /* Set up the link to not affect the button size */
+  .register-container .register-route {
+    margin-right: auto; /* Pushes the sign-up button to the left */
+    text-decoration: none; 
+  }
+  
+  button:hover {
+    background-color: #e9e9e9;
+  }
+  
+  /* Media Q's for Responsive Design */
+@media (max-width: 768px) {
+  .register-container {
+    padding: 20px; 
+    align-items: flex-start; /
+  }
+
+  .register-container form {
+    width: auto; /* Allow form to fill the width on smaller screens */
+    margin: 0; /* Remove any default margins */
+  }
+
+  .register-container input,
+  .register-container button {
+    width: 100%; 
+    margin-bottom: 20px; 
+  }
+
+  .register-container .form-footer {
+    flex-direction: column; /* Stack the buttons vertically on smaller screens */
+    align-items: stretch; /* Align buttons to stretch to container width */
+    padding-right: 0; /* Reset any padding on the right */
+  }
+
+  .register-container .register-route button,
+  .register-container button[type='submit'] {
+    width: auto; /* Reset width to auto for buttons */
+    margin-right: 0; /* Reset margin between buttons */
+    margin-bottom: 0; /* Remove bottom margin to allow for stacking */
+  }
+
+  .register-container .register-route button {
+    margin-bottom: 10px; /* Add some space below the sign-up button */
+  }
+}
+
