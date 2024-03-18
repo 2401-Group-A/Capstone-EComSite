@@ -77,21 +77,7 @@ function Home() {
 
 
         <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
+      
 
         </div>
 
