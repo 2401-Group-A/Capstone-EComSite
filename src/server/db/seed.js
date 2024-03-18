@@ -119,7 +119,7 @@ const createTables = async () => {
       ('Raquel', 'Martin','raquel@blacklab.net','raquel123', 'Beach', 'STA', 'Florida', '32092')
       `);
       // This line is connected to the createUsers function
-    // await createUser({name: user.name, email: user.email, password: user.password});
+    // await createUser({firstname: user.firstname, lastname: user.lasstname, email: user.email, password: user.password,address: user.address,city: user.city});
     console.log('User seed data inserted successfully.');
   } catch (error) {
     console.error('Error inserting seed data:', error);
