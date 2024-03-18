@@ -16,3 +16,11 @@
 }
 
 /* Add more styling for other elements if needed */
+
+:root{
+  --forrestGreen: #3d6a30;
+  --soil: #BC8B6D;
+  --paleGreen: #DCF1D6;
+  --terracotta: #D25B35;
+  --brightGreen: #81D144;
+}

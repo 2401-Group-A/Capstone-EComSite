@@ -1,8 +1,13 @@
+
+
 .navbar-container {
   display: flex;
-  justify-content: space-between;
-  background-color: #81D144;
-  /* box-shadow: 0px 5px 5px black; */
+  /* width: 100%;
+  height: 2em; */
+  background-color: var(--paleGreen);
+  justify-content:space-between;
+  /* padding:1em; */
+  
 }
 
 header nav {
@@ -17,35 +22,64 @@ header nav > a {
 }
 
 .nav-logo{
-  margin-left:1rem;
+  align-items: center;
 }
 
-
-
-.hamburger{
-  width:2rem;
-  height: 1.3rem;
+.burger-container{
   display: flex;
-  justify-content: space-around;
-  flex-flow: column nowrap;
-  z-index: 10;
-  margin-left: .5rem;
+  align-items: center;
+  margin-left: 12px;
 }
 
-.burger{
+.nav-logo{
+  display: flex;
+  align-items: center;
+  color: var(--terracotta)
+}
+
+.burger-menu{
+  height: 1.1rem;
+  width: 4rem;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  justify-content: space-between;
+  cursor: pointer;
+
+}
+
+/* This makes the menu lines */
+.burger-bar {
   width: 2rem;
   height: 0.2rem;
-  border-radius: 10px;
+  border-radius: 0.5em;
   background-color: black;
-  transform-origin: 1px;
-  transition: all 0.3s linear
+}
+/* This is the drop down menu */
+.menu {
+  display:inline;
+  background-color: var(--terracotta);
+  height: 30vh;
+  width: 25vw;
+  margin-top: 31px;
+  position:absolute;
 }
 
-/* .hamburger-menu{
-  display:inline;
-  background-color: aqua;
-  height: 50vh;
-  width: 50vw;
-  margin-top: 50px;
-  position:absolute;
-} */
+/* -------- Sliding Menu ---------*/
+.hidden {
+  display: none;
+}
+
+.visible{
+  display: inherit;
+}
+
+
+
+
+
+
+
+
+
+

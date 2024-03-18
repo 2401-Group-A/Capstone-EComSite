@@ -6,20 +6,17 @@ import {useState} from 'react'
 // import logo??
 
 export default function NavBar() {
-  // const [hamburgerOpen, setHamburgerOpen] = useState(false)
-  // const toggleHamburger = () => {
-  //   setHamburgerOpen(!hamburgerOpen)
-  // }
+  
   return (
     <header className="navbar-container">
-      <section>
+      <section className="burger-container">
         <Hamburger/>
-         <h1 className="nav-logo">LOGO</h1>
       </section>
 
+      <h1 className="nav-logo">LOGO</h1>
       <nav>
         <Link to="/seeds">Home</Link>
-        <Link to="/account">Account</Link>
+        {/* <Link to="/account">Account</Link> */}
         <Link to="/cart">Cart</Link>
       </nav>
     </header>
