@@ -13,6 +13,11 @@ productRouter.get('/', async (req, res, next) => {
     }
 });
 
+
+// Get SingleProduct
+
+
+
 // POST a new product
 productRouter.post('/', async (req, res, next) => {
     try {
