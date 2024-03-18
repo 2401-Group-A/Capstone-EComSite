@@ -1,6 +1,7 @@
 // Database Products 
 const db = require('./client');
 
+// AllProducts 
 const getAllProducts = async () => {
     try {
         const { rows } = await db.query(`
@@ -13,6 +14,10 @@ const getAllProducts = async () => {
     }
 }
 
+// SingleProduct 
+
+
+// AddProduct
 const addProduct = async (productData) => {
     try {
         const { planttype, plantvariety, producetype, matureheight, maturewidth, plantspacing, plantingdepth, maturationtime, lightrequirements, imgurl, seedcount, price, plantdescription, plantinginstructions } = productData;
