@@ -3,29 +3,54 @@ const { createUser } = require('./users');
 
 const users = [
   {
-    name: 'Emily Johnson',
+    firstname: 'Josh',
+    lastname: 'Mace',
+    email: 'joshuamace@gmail.com',
+    password: 'josh123',
+    address: 'Some Place',
+    city: 'Dallas',
+    state: 'Texas',
+    zipcode: '75287',
+  },
+  {
+    firstname: 'Brittany',
+    lastname: 'Dugger',
+    email: 'brittany.young2017@outlook.com',
+    password: 'brittany123',
+    address: 'This House',
+    city: 'Oklahoma City',
+    state: 'Oklahoma',
+    zipcode: '73128',
+  },
+  {
+    firstname: 'Michael',
+    lastname: 'Jaroszynski',
+    email: 'michaeljaroszynski@gmail.com',
+    password: 'michael12345',
+    address: 'The Sticks',
+    city: 'Romeo',
+    state: 'Michigan',
+    zipcode: '48065',
+  },
+  {
+    firstname: 'Raquel',
+    lastname: 'Martin',
+    email: 'raquel@blacklab.net',
+    password: 'raquel123',
+    address: 'Beach',
+    city: 'STA',
+    state: 'Florida',
+    zipcode: '32092',
+  },
+  {
+    firstname: 'Emily',
+    lastname: 'Johnson',
     email: 'emily@example.com',
     password: 'securepass',
-  },
-  {
-    name: 'Liu Wei',
-    email: 'liu@example.com',
-    password: 'strongpass',
-  },
-  {
-    name: 'Isabella García',
-    email: 'bella@example.com',
-    password: 'pass1234',
-  },
-  {
-    name: 'Mohammed Ahmed',
-    email: 'mohammed@example.com',
-    password: 'mysecretpassword',
-  },
-  {
-    name: 'John Smith',
-    email: 'john@example.com',
-    password: 'password123',
+    address: '123 Home',
+    city: 'Detroit',
+    state: 'Michigan',
+    zipcode: '12345',
   },
   // Add more user objects as needed
 ];
@@ -35,7 +60,7 @@ const dropTables = async () => {
     await db.query(`
         DROP TABLE IF EXISTS order_products;
         `);
-        await db.query(`
+    await db.query(`
             DROP TABLE IF EXISTS orders;
             `);
     await db.query(`
@@ -85,7 +110,7 @@ const createTables = async () => {
           plantingInstructions VARCHAR(255)
 )`);
 
-// Foreign key for the 'orders' table is the id (Primary Key) from the 'users' table.
+    // Foreign key for the 'orders' table is the id (Primary Key) from the 'users' table.
     await db.query(`
         CREATE TABLE orders(
           id SERIAL PRIMARY KEY,
@@ -104,23 +129,26 @@ const createTables = async () => {
           FOREIGN KEY (order_id) REFERENCES orders(id),
           FOREIGN KEY (product_id) REFERENCES products(id)
           )`);
-        } catch (err) {
-          throw err;
-        }
-      };
-      
-      const insertUsers = async () => {
+  } catch (err) {
+    throw err;
+  }
+};
+
+const insertUsers = async () => {
   try {
-    await db.query(`
-    INSERT INTO users(firstName, lastName, email, password, address, city, state, zipcode)
-      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'josh123','Some Place', 'Dallas', 'Texas', '75287'),
-      ('Brittany', 'Dugger', 'brittany.young2017@outlook.com', 'brittany123','This House', 'Oklahoma City ', 'Oklahoma', '73128'),
-      ('Michael', 'Jaroszynski', 'michaeljaroszynski@gmail.com', 'michael12345','The Sticks', 'Romeo', 'Michigan', '48065'),
-      ('Raquel', 'Martin','raquel@blacklab.net','raquel123', 'Beach', 'STA', 'Florida', '32092')
-      `);
-      // This line is connected to the createUsers function
-    // await createUser({name: user.name, email: user.email, password: user.password});
-    console.log('User seed data inserted successfully.');
+    for (const user of users) {
+      await createUser({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        password: user.password,
+        address: user.address,
+        city: user.city,
+        state: user.state,
+        zipcode: user.zipcode,
+      });
+      console.log('User seed data inserted successfully.');
+    }
   } catch (error) {
     console.error('Error inserting seed data:', error);
   }
@@ -166,7 +194,6 @@ async function addSeeds() {
   ('Bean', 'Green Bean (Bush - Blue Lake)', 'Legume', '18-24 inches (bush)', '12-18 inches', '18-24 inches', '1-2 inches', '50-60 days', 'Full Sun', 'src/client/assets/plants/green_bean.jpg', NULL, NULL, NULL, 'Sow seeds directly outdoors after danger of frost.'),
   ('Carrot', 'Danvers Half-Long', 'Root Vegetable', '12-18 inches', '2-3 inches', '2-3 inches (rows), 4-6 inches (between rows)', '½ inch', '60-70 days', 'Full Sun', 'src/client/assets/plants/carrot.jpg', NULL, NULL, NULL, 'Sow seeds directly outdoors in early spring or fall. Prefers loose, well-drained soil. Thin seedlings to allow for proper root development.')
   ;`);
-  
 }
 
 const seedDatabse = async () => {
