@@ -1,48 +1,48 @@
 const db = require('./client');
 const { createUser } = require('./users');
 
-// const users = [
-//   {
-//     name: 'Emily Johnson',
-//     email: 'emily@example.com',
-//     password: 'securepass',
-//   },
-//   {
-//     name: 'Liu Wei',
-//     email: 'liu@example.com',
-//     password: 'strongpass',
-//   },
-//   {
-//     name: 'Isabella García',
-//     email: 'bella@example.com',
-//     password: 'pass1234',
-//   },
-//   {
-//     name: 'Mohammed Ahmed',
-//     email: 'mohammed@example.com',
-//     password: 'mysecretpassword',
-//   },
-//   {
-//     name: 'John Smith',
-//     email: 'john@example.com',
-//     password: 'password123',
-//   },
-//   // Add more user objects as needed
-// ];
+const users = [
+  {
+    name: 'Emily Johnson',
+    email: 'emily@example.com',
+    password: 'securepass',
+  },
+  {
+    name: 'Liu Wei',
+    email: 'liu@example.com',
+    password: 'strongpass',
+  },
+  {
+    name: 'Isabella García',
+    email: 'bella@example.com',
+    password: 'pass1234',
+  },
+  {
+    name: 'Mohammed Ahmed',
+    email: 'mohammed@example.com',
+    password: 'mysecretpassword',
+  },
+  {
+    name: 'John Smith',
+    email: 'john@example.com',
+    password: 'password123',
+  },
+  // Add more user objects as needed
+];
 
 const dropTables = async () => {
   try {
+    await db.query(`
+        DROP TABLE IF EXISTS order_products;
+        `);
+        await db.query(`
+            DROP TABLE IF EXISTS orders;
+            `);
     await db.query(`
         DROP TABLE IF EXISTS users;
         `);
     await db.query(`
         DROP TABLE IF EXISTS products;
-        `);
-    await db.query(`
-        DROP TABLE IF EXISTS orders;
-        `);
-    await db.query(`
-        DROP TABLE IF EXISTS order_products;
         `);
   } catch (err) {
     throw err;
@@ -84,21 +84,42 @@ const createTables = async () => {
           plantDescription VARCHAR(255),
           plantingInstructions VARCHAR(255)
 )`);
-  } catch (err) {
-    throw err;
-  }
-};
 
-const insertUsers = async () => {
+// Foreign key for the 'orders' table is the id (Primary Key) from the 'users' table.
+    await db.query(`
+        CREATE TABLE orders(
+          id SERIAL PRIMARY KEY,
+          user_id INT NOT NULL,
+          FOREIGN KEY (user_id) REFERENCES users(id),
+          orderDate VARCHAR(50),
+          shippingAddress VARCHAR(50),
+          cart BOOLEAN default 'TRUE'
+          )`);
+    await db.query(`
+        CREATE TABLE order_products(
+          order_id INT NOT NULL,
+          product_id INT NOT NULL,
+          quantity INT NOT NULL,
+          PRIMARY KEY (order_id, product_id),
+          FOREIGN KEY (order_id) REFERENCES orders(id),
+          FOREIGN KEY (product_id) REFERENCES products(id)
+          )`);
+        } catch (err) {
+          throw err;
+        }
+      };
+      
+      const insertUsers = async () => {
   try {
     await db.query(`
     INSERT INTO users(firstName, lastName, email, password, address, city, state, zipcode)
-      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'mytemppassword','Some Place', 'Dallas', 'Texas', '75287'),
+      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'josh123','Some Place', 'Dallas', 'Texas', '75287'),
       ('Brittany', 'Dugger', 'brittany.young2017@outlook.com', 'brittany123','This House', 'Oklahoma City ', 'Oklahoma', '73128'),
       ('Michael', 'Jaroszynski', 'michaeljaroszynski@gmail.com', 'michael12345','The Sticks', 'Romeo', 'Michigan', '48065'),
       ('Raquel', 'Martin','raquel@blacklab.net','raquel123', 'Beach', 'STA', 'Florida', '32092')
       `);
-    // Is this were we would have await createUser({name: user.name, email: user.email, password: user.password});
+      // This line is connected to the createUsers function
+    // await createUser({name: user.name, email: user.email, password: user.password});
     console.log('User seed data inserted successfully.');
   } catch (error) {
     console.error('Error inserting seed data:', error);
