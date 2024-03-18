@@ -95,6 +95,15 @@ const createTables = async () => {
           shippingAddress VARCHAR(50),
           cart BOOLEAN default 'TRUE'
           )`);
+    await db.query(`
+        CREATE TABLE order_products(
+          order_id INT NOT NULL,
+          product_id INT NOT NULL,
+          quantity INT NOT NULL,
+          PRIMARY KEY (order_id, product_id),
+          FOREIGN KEY (order_id) REFERENCES orders(id),
+          FOREIGN KEY (product_id) REFERENCES products(id)
+          )`);
         } catch (err) {
           throw err;
         }
@@ -104,7 +113,7 @@ const createTables = async () => {
   try {
     await db.query(`
     INSERT INTO users(firstName, lastName, email, password, address, city, state, zipcode)
-      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'mytemppassword','Some Place', 'Dallas', 'Texas', '75287'),
+      VALUES('Josh', 'Mace', 'joshuamace@gmail.com', 'josh123','Some Place', 'Dallas', 'Texas', '75287'),
       ('Brittany', 'Dugger', 'brittany.young2017@outlook.com', 'brittany123','This House', 'Oklahoma City ', 'Oklahoma', '73128'),
       ('Michael', 'Jaroszynski', 'michaeljaroszynski@gmail.com', 'michael12345','The Sticks', 'Romeo', 'Michigan', '48065'),
       ('Raquel', 'Martin','raquel@blacklab.net','raquel123', 'Beach', 'STA', 'Florida', '32092')
