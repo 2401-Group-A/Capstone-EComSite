@@ -32,11 +32,20 @@ apiRouter.use(async (req, res, next) => {
   }
 });
 
+// Users
 const usersRouter = require('./users');
 apiRouter.use('/users', usersRouter);
+
+// Products 
+const productRouter = require('./products');
+apiRouter.use('/products', productRouter);
 
 apiRouter.use((err, req, res, next) => {
     res.status(500).send(err)
   })
+
+
+
+
 
 module.exports = apiRouter;
