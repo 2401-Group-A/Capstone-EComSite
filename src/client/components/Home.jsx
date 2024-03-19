@@ -4,6 +4,12 @@ import "./styles/Home.css";
 const Home = () => {
   const [products, setProducts] = useState([]);
 
+// Const for Search Bar
+const [searchQuery, setSearchQuery] = useState("");
+
+
+// Use Effect Start
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -27,16 +33,35 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+// Filter Function 
+const filteredProducts = products.filter(product =>
+  product.planttype.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+
+// Return Start
   return (
     <>
       <div className="home-container">
         <aside className="filter-section">
+          {/* Search Bar */}
+
+          <form className="search-bar" onSubmit={e => e.preventDefault()}> {/* Prevents form submission */}
+            <input
+              type="text"
+              className="search-bar-input"
+              placeholder="Search Products . . . "
+              value={searchQuery} 
+              onChange={(e) => setSearchQuery(e.target.value)} // Updates searchQuery based on user input
+            />
+          </form>
+
           {/* Price Scale Slider */}
           <h3>Price</h3>
           <input type="range" min="0" max="100" />
 
           {/* Seed Type Checkboxes */}
-          <h3>Seed Type</h3>
+          <h3>Produce Type</h3>
 
           <div>
             <input type="checkbox" id="vegetable" name="vegetable" />
@@ -44,12 +69,12 @@ const Home = () => {
           </div>
 
           <div>
-            <input type="checkbox" id="fruit" name="fruit" />
+            <input type="checkbox" id="herb" name="herb" />
             <label htmlFor="fruit">Herb</label>
           </div>
 
           {/* Seed Size Checkboxes */}
-          <h3>Seed Size</h3>
+          <h3>Other Type</h3>
 
           <div>
             <input type="checkbox" />
@@ -90,7 +115,7 @@ const Home = () => {
           <h1 className="seed-title">Our Seeds!</h1>
 
           <div className="seed-container">
-            {products.map((product) => (
+          {filteredProducts.map((product) => ( // Renders filtered products by name only 
               <article key={product.id}>
                 <div className="seed-card">
                   <img
@@ -100,6 +125,8 @@ const Home = () => {
                   />
                   <h2>{product.planttype}</h2>
                   <p>{product.producetype}</p>
+                  {/* <p>{product.price}</p> */}
+                  <button>Add to Cart</button>
                 </div>
               </article>
             ))}
