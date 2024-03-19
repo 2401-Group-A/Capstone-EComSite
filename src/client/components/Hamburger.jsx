@@ -1,9 +1,24 @@
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 export default function Hamburger() {
   const [burgerClass, setBurgerClass] = useState('burger-bar unclicked')
   const [menuClass, setMenuClass] = useState('menu hidden')
   const [isMenuClicked, setIsMenuClicked] = useState(false)
+
+  // ------ onClick navigate to login -----------
+  let navigate = useNavigate();
+    const routeLogin = () => {
+      let path = 'login';
+      navigate(path)
+    }
+
+    // ------ onClick navigate to register -----------
+    const routeRegister = () => {
+      let path = 'register';
+      navigate(path)
+    }
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -16,6 +31,8 @@ export default function Hamburger() {
 
     setIsMenuClicked(!isMenuClicked)
 
+    
+    
   }
   return (
     <>
@@ -26,9 +43,9 @@ export default function Hamburger() {
         <div className={burgerClass}></div>
       </div>
       <div className={menuClass}>
-        <button> Login </button>
-        <button>Register </button>
-        <ul>
+        <button onClick={routeLogin}> Login </button>
+        <button onClick={routeRegister}>Register </button>
+        <ul className='burger-menu-items'>
           <li> <Link to="/account">Account</Link> </li>
           <li> Calendar Page</li>
 
