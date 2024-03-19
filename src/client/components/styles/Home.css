@@ -38,6 +38,14 @@
     padding: 10px;
     margin-bottom: 10px; 
   }
+
+
+  .product-img {
+    width: 100%; /* Makes the image take the full width of the card */
+    height: 100%; /* Makes the image take the full height of the card */
+    object-fit: cover; /* Ensures the image covers the space without distorting aspect ratio */
+    object-position: center; /* Centers the image within the card */
+  }
   
   /* Responsive Design */
   @media (max-width: 768px) {
