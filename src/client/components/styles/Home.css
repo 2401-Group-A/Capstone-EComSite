@@ -34,6 +34,7 @@
   /* Styles for individual seed cards */
   .seed-card {
     border: 1px solid #ccc;
+    background-color: #3d6a30;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px; 
@@ -41,10 +42,20 @@
 
 
   .product-img {
-    width: 100%; /* Makes the image take the full width of the card */
-    height: 100%; /* Makes the image take the full height of the card */
-    object-fit: cover; /* Ensures the image covers the space without distorting aspect ratio */
-    object-position: center; /* Centers the image within the card */
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center; 
+    border-radius: 8px;
+  }
+
+  .seed-card > button {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .seed-card:hover {
+    cursor: pointer;
   }
   
   /* Responsive Design */
