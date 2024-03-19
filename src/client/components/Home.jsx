@@ -4,6 +4,12 @@ import "./styles/Home.css";
 const Home = () => {
   const [products, setProducts] = useState([]);
 
+// Const for Search Bar
+const [searchQuery, setSearchQuery] = useState("");
+
+
+// Use Effect Start
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -27,19 +33,28 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+// Filter Function 
+const filteredProducts = products.filter(product =>
+  product.planttype.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+
+// Return Start
   return (
     <>
       <div className="home-container">
         <aside className="filter-section">
           {/* Search Bar */}
 
-          <from className="search-bar">
+          <form className="search-bar" onSubmit={e => e.preventDefault()}> {/* Prevents form submission */}
             <input
-            type="text"
-            className="search-bar-input"
-            placeholder="Search Products . . . "
-          />
-          </from>
+              type="text"
+              className="search-bar-input"
+              placeholder="Search Products . . . "
+              value={searchQuery} 
+              onChange={(e) => setSearchQuery(e.target.value)} // Updates searchQuery based on user input
+            />
+          </form>
 
           {/* Price Scale Slider */}
           <h3>Price</h3>
@@ -59,7 +74,7 @@ const Home = () => {
           </div>
 
           {/* Seed Size Checkboxes */}
-          <h3>Produce Type</h3>
+          <h3>Other Type</h3>
 
           <div>
             <input type="checkbox" />
@@ -100,7 +115,7 @@ const Home = () => {
           <h1 className="seed-title">Our Seeds!</h1>
 
           <div className="seed-container">
-            {products.map((product) => (
+          {filteredProducts.map((product) => ( // Renders filtered products by name only 
               <article key={product.id}>
                 <div className="seed-card">
                   <img
