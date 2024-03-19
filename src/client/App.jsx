@@ -17,7 +17,7 @@ import NavBar from "./components/NavBar";
 
 
 function App() {
-  const [token, useToken] = useState(null)
+  const [token, setToken] = useState(null)
   return (
 
     <>
@@ -25,14 +25,14 @@ function App() {
       <Routes>
         <Route path='/seeds' element={<Home />}/>
         {/* <Route path='/seeds:id' element={<singleSeed/>}/> */}
-        <Route path='/account' element={<Accounts/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/checkout' element={<Checkout/>}/>
-        <Route path='inventory' element={<Inventory/>}/>
-        <Route path='userdata' element={<UserData/>}/>
-        <Route path='register' element={<Register/>}/>
-        <Route path='login' element={<Login/>}/>
-        <Route path='userOrders' element={<UserOrder/>}/>
+        <Route path='/account' element={<Accounts token={token}/>}/>
+        <Route path='/cart' element={<Cart token={token}/>}/>
+        <Route path='/checkout' element={<Checkout token={token}/>}/>
+        <Route path='inventory' element={<Inventory token={token}/>}/>
+        <Route path='userdata' element={<UserData token={token}/>}/>
+        <Route path='register' element={<Register setToken={setToken}/>}/>
+        <Route path='login' element={<Login setToken={setToken}/>}/>
+        <Route path='userOrders' element={<UserOrder token={token}/>}/>
       </Routes>
     </>
 
