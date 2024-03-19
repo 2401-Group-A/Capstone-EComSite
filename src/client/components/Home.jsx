@@ -31,7 +31,7 @@ const Home = () => {
     <>
       <div className="home-container">
         <aside className="filter-section">
-          {/* Start: Placehodler content for filter options */}
+         
 
           {/* Price Scale Slider */}
           <h3>Price</h3>
