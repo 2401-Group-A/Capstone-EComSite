@@ -100,6 +100,8 @@ const Home = () => {
                   />
                   <h2>{product.planttype}</h2>
                   <p>{product.producetype}</p>
+                  {/* <p>{product.price}</p> */}
+                  <button>Add to Cart</button>
                 </div>
               </article>
             ))}
