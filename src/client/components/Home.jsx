@@ -13,24 +13,24 @@ const Home = () => {
             "Content-Type": "application/json",
           },
         });
-        if (response.ok) { // Ensure the request was successful
+        if (response.ok) {
           const result = await response.json();
-          setProducts(result.products); // Adjusted to match the API response structure
+          setProducts(result.products);
         } else {
-          console.error("Error fetching products: ", response.statusText); // More descriptive error logging
+          console.error("Error fetching products: ", response.statusText);
         }
       } catch (err) {
         console.error("Error loading seeds: ", err);
       }
     };
-  
-    fetchProducts(); // Call the function to fetch products
+
+    fetchProducts();
   }, []);
 
   return (
     <>
       <div className="home-container">
-      <aside className="filter-section">
+        <aside className="filter-section">
           {/* Start: Placehodler content for filter options */}
 
           {/* Price Scale Slider */}
@@ -92,13 +92,16 @@ const Home = () => {
           <h1 className="seed-title">Our Seeds!</h1>
 
           <div className="seed-container">
-            {products.map((product) => ( 
+            {products.map((product) => (
               <article key={product.id}>
                 <div className="seed-card">
-                  
-                  <img className="product-img" src={product.imgurl} alt={product.planttype} />
+                  <img
+                    className="product-img"
+                    src={product.imgurl}
+                    alt={product.planttype}
+                  />
                   <h2>{product.planttype}</h2>
-                  <p>Description: {product.plantdescription}</p>
+                  <p>{product.producetype}</p>
                   
                 </div>
               </article>
