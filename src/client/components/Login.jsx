@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './styles/Login.css'; 
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -43,8 +46,10 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='login-container'>
+      {/* Form Title */}
       <h2>Login</h2>
+      {/* Email Input */}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor='email'>Email:</label>
@@ -56,6 +61,7 @@ const Login = () => {
             required
           />
         </div>
+        {/* Password Input */}
         <div>
           <label htmlFor='password'>Password:</label>
           <input
@@ -66,7 +72,13 @@ const Login = () => {
             required
           />
         </div>
-        <button type='submit'>Login</button>
+        {/* Buttons */}
+        <div className="form-footer">
+          <Link to="/register" className='register-route'>
+            <button type='button'>Sign-up</button>
+          </Link>
+            <button type='submit'>Login</button>
+        </div>
       </form>
       <p>{message}</p>
     </div>

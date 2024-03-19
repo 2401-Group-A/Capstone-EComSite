@@ -1,0 +1,85 @@
+
+
+.navbar-container {
+  display: flex;
+  /* width: 100%;
+  height: 2em; */
+  background-color: var(--paleGreen);
+  justify-content:space-between;
+  /* padding:1em; */
+  
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+header nav > a {
+  margin: 5px;
+  font-size: 1.2em;
+}
+
+.nav-logo{
+  align-items: center;
+}
+
+.burger-container{
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+}
+
+.nav-logo{
+  display: flex;
+  align-items: center;
+  color: var(--terracotta)
+}
+
+.burger-menu{
+  height: 1.1rem;
+  width: 4rem;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  justify-content: space-between;
+  cursor: pointer;
+
+}
+
+/* This makes the menu lines */
+.burger-bar {
+  width: 2rem;
+  height: 0.2rem;
+  border-radius: 0.5em;
+  background-color: black;
+}
+/* This is the drop down menu */
+.menu {
+  display:inline;
+  background-color: var(--terracotta);
+  height: 30vh;
+  width: 25vw;
+  margin-top: 31px;
+  position:absolute;
+}
+
+/* -------- Sliding Menu ---------*/
+.hidden {
+  display: none;
+}
+
+.visible{
+  display: inherit;
+}
+
+
+
+
+
+
+
+
+
+

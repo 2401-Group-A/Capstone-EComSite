@@ -1,14 +1,10 @@
 import React from 'react';
 
-import './Home.css'; 
+import './styles/Home.css'; 
 
 function Home() {
   return (
     <>
-  
-    <div className='navbar-placeholder'>
-      <h1>Navbar</h1>
-    </div>
     
     <div className='home-container'>
 
@@ -81,21 +77,7 @@ function Home() {
 
 
         <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
-        <div className="seed-card">Seed card</div>
+      
 
         </div>
 
