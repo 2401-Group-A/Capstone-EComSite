@@ -5,38 +5,32 @@ const Home = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-
-    async function fetchProducts() {
+    const fetchProducts = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/products", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            planttype,
-            producetype,
-            imgurl,
-            price,
-          }),
         });
-        // const result = await response.json();
-  
-        // setProducts(result);
-        
+        if (response.ok) { // Ensure the request was successful
+          const result = await response.json();
+          setProducts(result.products); // Adjusted to match the API response structure
+        } else {
+          console.error("Error fetching products: ", response.statusText); // More descriptive error logging
+        }
       } catch (err) {
-        console.log("Error loading seeds");
-      };
-      Home();
-    })
-  };
-
+        console.error("Error loading seeds: ", err);
+      }
+    };
+  
+    fetchProducts(); // Call the function to fetch products
+  }, []);
 
   return (
     <>
       <div className="home-container">
-        {/* Filter section on left side of screen */}
-        <aside className="filter-section">
+      <aside className="filter-section">
           {/* Start: Placehodler content for filter options */}
 
           {/* Price Scale Slider */}
@@ -93,35 +87,23 @@ const Home = () => {
           </div>
         </aside>
 
-        {/* Main Content where seed cards are shown */}
+        {/* Main Content where product cards are shown */}
         <section className="content-area">
           <h1 className="seed-title">Our Seeds!</h1>
-          {/* Start of Old container */}
-          {/* <div className='seed-container'>
-        <div className="seed-card">Seed card</div>
-  
 
-        </div> */}
-          {/* End of old container */}
-
-          {/* Seed Card API Container Practice */}
-          <div className="product-container">
-            {products.map((products) => {
-              return (
-                <article key={products.id}>
-                  <div className="product-card">
-                    <img className="product-img" src={productss.imgurl} />
-                    <h2>{products.planttype}</h2>
-                    <p>Description: {products.plantdescription}</p>
-                    {/* <button onClick={() => navigate(/books/${books.id})}> See Details</button> */}
-                    {/* <Reserve token={token} books={books}/> */}
-                  </div>
-                </article>
-              );
-            })}
+          <div className="seed-container">
+            {products.map((product) => ( 
+              <article key={product.id}>
+                <div className="seed-card">
+                  
+                  <img className="product-img" src={product.imgurl} alt={product.planttype} />
+                  <h2>{product.planttype}</h2>
+                  <p>Description: {product.plantdescription}</p>
+                  
+                </div>
+              </article>
+            ))}
           </div>
-
-          {/* End Card API Container Practice  */}
         </section>
       </div>
     </>
