@@ -31,8 +31,6 @@ const Home = () => {
     <>
       <div className="home-container">
         <aside className="filter-section">
-         
-
           {/* Price Scale Slider */}
           <h3>Price</h3>
           <input type="range" min="0" max="100" />
@@ -102,7 +100,6 @@ const Home = () => {
                   />
                   <h2>{product.planttype}</h2>
                   <p>{product.producetype}</p>
-                  
                 </div>
               </article>
             ))}
