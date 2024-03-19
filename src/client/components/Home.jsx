@@ -31,12 +31,22 @@ const Home = () => {
     <>
       <div className="home-container">
         <aside className="filter-section">
+          {/* Search Bar */}
+
+          <from className="search-bar">
+            <input
+            type="text"
+            className="search-bar-input"
+            placeholder="Search Products . . . "
+          />
+          </from>
+
           {/* Price Scale Slider */}
           <h3>Price</h3>
           <input type="range" min="0" max="100" />
 
           {/* Seed Type Checkboxes */}
-          <h3>Seed Type</h3>
+          <h3>Produce Type</h3>
 
           <div>
             <input type="checkbox" id="vegetable" name="vegetable" />
@@ -44,12 +54,12 @@ const Home = () => {
           </div>
 
           <div>
-            <input type="checkbox" id="fruit" name="fruit" />
+            <input type="checkbox" id="herb" name="herb" />
             <label htmlFor="fruit">Herb</label>
           </div>
 
           {/* Seed Size Checkboxes */}
-          <h3>Seed Size</h3>
+          <h3>Produce Type</h3>
 
           <div>
             <input type="checkbox" />
