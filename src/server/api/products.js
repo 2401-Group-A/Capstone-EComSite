@@ -18,6 +18,7 @@ productRouter.get('/', async (req, res, next) => {
 
 
 
+
 // POST a new product
 productRouter.post('/', async (req, res, next) => {
     try {

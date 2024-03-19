@@ -15,6 +15,16 @@ const getAllProducts = async () => {
 }
 
 // SingleProduct 
+const getSingleProduct = async (productId) => {
+    try {
+        const { rows } = await db.query(`
+        SELECT * 
+        FROM products
+        WHERE id = $1;
+        `, [productId]);
+        if (rows.length === 0) 
+    }
+}
 
 
 // AddProduct
