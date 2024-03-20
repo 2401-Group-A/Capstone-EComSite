@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { getUserById } = require('..users.js');
+const { getUserById } = require('../db/users');
 
 const requireToken = async (req, res, next) => {
   try {
@@ -9,6 +9,7 @@ const requireToken = async (req, res, next) => {
       req.user = user;
       next();
     }
+    res.status(401).send('Invalid login session or session has expired.')
   } catch (err) {
     next(err);
   }

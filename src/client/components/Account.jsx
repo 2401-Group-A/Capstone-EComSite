@@ -10,6 +10,7 @@ const Account = ({ token }) => {
   useEffect(() => {
     const loadProfile = async () => {
       try {
+        // Added this if statement to redirect to login if not logged in.
         if (!token) {
           setTimeout(function () {
             navigate('/login');
@@ -28,7 +29,7 @@ const Account = ({ token }) => {
           console.log('profile', profile);
           if (accountResponse.ok) {
             const result = await accountResponse.json();
-            setProfile(result); // instead of `const { data } =`
+            setProfile(result); 
           } else {
             console.error(
               'Error fetching user profile: ',
