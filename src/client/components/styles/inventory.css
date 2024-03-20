@@ -20,13 +20,6 @@
     padding: 8px;
   }
 
-  /* .cell > .edit-button, 
-.cell > .delete-button {
-  display: block; 
-  width: 100%; 
-  text-align: center; 
-} */
-
   .edit-button, .delete-button {
     border-radius: 8px;
     /* background-color: red; */
