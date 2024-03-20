@@ -11,12 +11,11 @@ export default function NavBar() {
       <section className="burger-container">
         <Hamburger />
       </section>
-
       <h1 className="nav-logo">LOGO</h1>
       <nav>
         <Link to="/">Home</Link>
         {/* <Link to="/account">Account</Link> */}
-        <Link to="/cart">Cart</Link>
+        <Link to="/cart" className="material-symbols-outlined">garden_cart</Link>
       </nav>
     </header>
   );

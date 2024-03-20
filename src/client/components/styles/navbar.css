@@ -78,7 +78,12 @@ header nav > a {
   list-style-type: none;
 }
 
-
+/* Cart Icon Style */
+.material-symbols-outlined {
+  
+  font-size: 24px; 
+  color: black; 
+}
 
 
 
