@@ -4,6 +4,28 @@ import "./styles/Home.css";
 const Home = () => {
   const [products, setProducts] = useState([]);
 
+  // Const for Search Bar
+  const [searchQuery, setSearchQuery] = useState("");
+  // Product Type Checkboxes
+  const [filterHerb, setFilterHerb] = useState(false);
+  const [filterVegetable, setFilterVegetable] = useState(false);
+  // Light requirement filters
+  const [filterFullSun, setFilterFullSun] = useState(false);
+  const [filterFullToPartSun, setFilterFullToPartSun] = useState(false);
+  const [filterFullSunToPartShade, setFilterFullSunToPartShade] =
+    useState(false);
+
+  // Reset Filters
+  const resetFilters = () => {
+    setSearchQuery("");
+    setFilterHerb(false);
+    setFilterVegetable(false);
+    setFilterFullSun(false);
+    setFilterFullToPartSun(false);
+    setFilterFullSunToPartShade(false);
+  };
+
+  // Use Effect Start
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -27,61 +49,108 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+  // Filter Function
+  const filteredProducts = products.filter((product) => {
+    const matchesType =
+      (filterHerb && product.producetype.toLowerCase() === "herb") ||
+      (filterVegetable && product.producetype.toLowerCase() === "vegetable") ||
+      (!filterHerb && !filterVegetable); // If no checkboxes are selected, show all products
+
+    const matchesLightRequirements =
+      (filterFullSun && product.lightrequirements.includes("Full Sun")) ||
+      (filterFullToPartSun &&
+        product.lightrequirements.includes("Full to Part Sun")) ||
+      (filterFullSunToPartShade &&
+        product.lightrequirements.includes("Full Sun to Part Shade")) ||
+      (!filterFullSun && !filterFullToPartSun && !filterFullSunToPartShade); // If no light requirement filters are selected
+
+    const matchesSearch =
+      searchQuery.toLowerCase() === "" || //For empty search bar
+      product.planttype.toLowerCase().includes(searchQuery.toLowerCase()) || //For Plant Type
+      product.plantvariety.toLowerCase().includes(searchQuery.toLowerCase()); // For Plant Variety
+
+    return matchesType && matchesSearch && matchesLightRequirements;
+  });
+
+  // Return Start
   return (
     <>
       <div className="home-container">
         <aside className="filter-section">
+          {/* Search Bar */}
+
+          <form className="search-bar" onSubmit={(e) => e.preventDefault()}>
+            {" "}
+            {/* Prevents form submission */}
+            <input
+              type="text"
+              className="search-bar-input"
+              placeholder="Search Products . . . "
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} // Updates searchQuery based on user input
+            />
+          </form>
+
           {/* Price Scale Slider */}
           <h3>Price</h3>
           <input type="range" min="0" max="100" />
 
-          {/* Seed Type Checkboxes */}
-          <h3>Seed Type</h3>
-
+          {/* Produce Type Checkboxes */}
+          <h3>Produce Type</h3>
           <div>
-            <input type="checkbox" id="vegetable" name="vegetable" />
+            <input
+              type="checkbox"
+              id="vegetable"
+              name="vegetable"
+              checked={filterVegetable}
+              onChange={() => setFilterVegetable(!filterVegetable)}
+            />
             <label htmlFor="vegetable">Vegetable</label>
           </div>
 
           <div>
-            <input type="checkbox" id="fruit" name="fruit" />
-            <label htmlFor="fruit">Herb</label>
+            <input
+              type="checkbox"
+              id="herb"
+              name="herb"
+              checked={filterHerb}
+              onChange={() => setFilterHerb(!filterHerb)}
+            />
+            <label htmlFor="herb">Herb</label>
           </div>
 
-          {/* Seed Size Checkboxes */}
-          <h3>Seed Size</h3>
-
+          {/* Seed Light Requirments Checkboxes */}
+          <h3>Light Requirements</h3>
           <div>
-            <input type="checkbox" />
-            <label htmlFor="vegetable">Type</label>
-          </div>
-
-          <div>
-            <input type="checkbox" />
-            <label htmlFor="fruit">Type</label>
-          </div>
-
-          {/* Seed Exposure Checkboxes */}
-          <h3>Seed Exposure</h3>
-
-          <div>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={filterFullSun}
+              onChange={() => setFilterFullSun(!filterFullSun)}
+            />
             <label>Full Sun</label>
           </div>
-
           <div>
-            <input type="checkbox" />
-            <label>Part Sun</label>
+            <input
+              type="checkbox"
+              checked={filterFullToPartSun}
+              onChange={() => setFilterFullToPartSun(!filterFullToPartSun)}
+            />
+            <label>Full to Part Sun</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              checked={filterFullSunToPartShade}
+              onChange={() =>
+                setFilterFullSunToPartShade(!filterFullSunToPartShade)
+              }
+            />
+            <label>Full Sun to Part Shade</label>
           </div>
 
-          <div>
-            <input type="checkbox" />
-            <label>Sun or Shade</label>
-          </div>
-
-          <div>
-            <input type="checkbox" />
-            <label>Full Shade</label>
+              {/* Reset Button */}
+          <div className="reset-container">
+            <button onClick={resetFilters}>Clear All</button>
           </div>
         </aside>
 
@@ -90,19 +159,26 @@ const Home = () => {
           <h1 className="seed-title">Our Seeds!</h1>
 
           <div className="seed-container">
-            {products.map((product) => (
-              <article key={product.id}>
-                <div className="seed-card">
-                  <img
-                    className="product-img"
-                    src={product.imgurl}
-                    alt={product.planttype}
-                  />
-                  <h2>{product.planttype}</h2>
-                  <p>{product.producetype}</p>
-                </div>
-              </article>
-            ))}
+            {filteredProducts.map(
+              (
+                product // Renders filtered products by name only
+              ) => (
+                <article key={product.id}>
+                  <div className="seed-card">
+                    <img
+                      className="product-img"
+                      src={product.imgurl}
+                      alt={product.planttype}
+                    />
+                    <h1 className="plant-type">{product.planttype}</h1>
+                    <h1 className="plant-variety">{product.plantvariety}</h1>
+                    <p className="produce-type">{product.producetype}</p>
+                    {/* <p>{product.price}</p> */}
+                    <button>Add to Cart</button>
+                  </div>
+                </article>
+              )
+            )}
           </div>
         </section>
       </div>

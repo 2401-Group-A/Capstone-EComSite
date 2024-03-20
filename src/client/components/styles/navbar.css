@@ -74,9 +74,16 @@ header nav > a {
   display: inherit;
 }
 
+.burger-menu-items{
+  list-style-type: none;
+}
 
-
-
+/* Cart Icon Style */
+.material-symbols-outlined {
+  
+  font-size: 24px; 
+  color: black; 
+}
 
 
 

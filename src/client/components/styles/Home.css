@@ -12,6 +12,15 @@
     border-right: 1px solid #2e2c2c; /* Adds light border to divide from main body */
     padding: 20px; 
   }
+
+  .reset-container {
+    /* Reset button container */
+    margin-top: 10px;
+  }
+
+  .reset-container > button {
+    border-radius: 8px;
+  }
   
   /* Styles for the main content area (Seed Cards Area) */
   .content-area {
@@ -27,25 +36,49 @@
 /* Style for Seed Container */
   .seed-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, auto));
     gap: 20px; 
   }
 
   /* Styles for individual seed cards */
   .seed-card {
     border: 1px solid #ccc;
+    background-color: #3d6a30;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px; 
+    margin: auto;
   }
 
 
   .product-img {
-    width: 100%; /* Makes the image take the full width of the card */
-    height: 100%; /* Makes the image take the full height of the card */
-    object-fit: cover; /* Ensures the image covers the space without distorting aspect ratio */
-    object-position: center; /* Centers the image within the card */
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center; 
+    border-radius: 8px;
   }
+
+  .seed-card > button {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .seed-card:hover {
+    cursor: pointer;
+  }
+
+.plant-variety {
+  font-size: small;
+}
+
+.plant-type {
+  font-size: x-large;
+}
+
+.produce-type {
+  font-size: small;
+}
   
   /* Responsive Design */
   @media (max-width: 768px) {

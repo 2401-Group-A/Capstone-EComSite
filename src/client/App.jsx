@@ -23,7 +23,7 @@ function App() {
     <>
       <NavBar/>
       <Routes>
-        <Route path='/seeds' element={<Home />}/>
+        <Route path='/' element={<Home />}/>
         {/* <Route path='/seeds:id' element={<singleSeed/>}/> */}
         <Route path='/account' element={<Accounts/>}/>
         <Route path='/cart' element={<Cart/>}/>
