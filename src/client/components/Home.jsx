@@ -6,9 +6,11 @@ const Home = () => {
 
   // Const for Search Bar
   const [searchQuery, setSearchQuery] = useState("");
+  // Product Type Checkboxes 
+  const [filterHerb, setFilterHerb] = useState(false);
+  const [filterVegetable, setFilterVegetable] = useState(false);
 
   // Use Effect Start
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -33,9 +35,18 @@ const Home = () => {
   }, []);
 
   // Filter Function
-  const filteredProducts = products.filter((product) =>
-    product.planttype.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+const filteredProducts = products.filter((product) => {
+  const matchesType = 
+    (filterHerb && product.producetype.toLowerCase() === "herb") ||
+    (filterVegetable && product.producetype.toLowerCase() === "vegetable") ||
+    (!filterHerb && !filterVegetable); // If no checkboxes are selected, show all products
+
+  const matchesSearch = searchQuery.toLowerCase() === "" || //For empty search bar
+    product.planttype.toLowerCase().includes(searchQuery.toLowerCase()) || //For Plant Type
+    product.plantvariety.toLowerCase().includes(searchQuery.toLowerCase()); // For Plant Variety
+
+  return matchesType && matchesSearch;
+});
 
   // Return Start
   return (
@@ -60,17 +71,28 @@ const Home = () => {
           <h3>Price</h3>
           <input type="range" min="0" max="100" />
 
-          {/* Seed Type Checkboxes */}
+          {/* Produce Type Checkboxes */}
           <h3>Produce Type</h3>
-
           <div>
-            <input type="checkbox" id="vegetable" name="vegetable" />
+            <input
+              type="checkbox"
+              id="vegetable"
+              name="vegetable"
+              checked={filterVegetable}
+              onChange={() => setFilterVegetable(!filterVegetable)}
+            />
             <label htmlFor="vegetable">Vegetable</label>
           </div>
 
           <div>
-            <input type="checkbox" id="herb" name="herb" />
-            <label htmlFor="fruit">Herb</label>
+            <input
+              type="checkbox"
+              id="herb"
+              name="herb"
+              checked={filterHerb}
+              onChange={() => setFilterHerb(!filterHerb)}
+            />
+            <label htmlFor="herb">Herb</label>
           </div>
 
           {/* Seed Size Checkboxes */}
@@ -126,8 +148,9 @@ const Home = () => {
                       src={product.imgurl}
                       alt={product.planttype}
                     />
-                    <h2>{product.planttype}</h2>
-                    <p>{product.producetype}</p>
+                    <h1 className="plant-type">{product.planttype}</h1>
+                    <h1 className="plant-variety">{product.plantvariety}</h1>
+                    <p className="produce-type">{product.producetype}</p>
                     {/* <p>{product.price}</p> */}
                     <button>Add to Cart</button>
                   </div>
