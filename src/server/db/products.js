@@ -6,7 +6,7 @@ const getAllProducts = async () => {
     try {
         const { rows } = await db.query(`
             SELECT *
-            // FROM products;
+            FROM products;
         `);
         return rows;
     } catch (err) {
