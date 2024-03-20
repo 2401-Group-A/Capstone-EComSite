@@ -15,6 +15,16 @@ const Home = () => {
   const [filterFullSunToPartShade, setFilterFullSunToPartShade] =
     useState(false);
 
+  // Reset Filters
+  const resetFilters = () => {
+    setSearchQuery("");
+    setFilterHerb(false);
+    setFilterVegetable(false);
+    setFilterFullSun(false);
+    setFilterFullToPartSun(false);
+    setFilterFullSunToPartShade(false);
+  };
+
   // Use Effect Start
   useEffect(() => {
     const fetchProducts = async () => {
@@ -109,19 +119,6 @@ const Home = () => {
             <label htmlFor="herb">Herb</label>
           </div>
 
-          {/* Seed Size Checkboxes */}
-          <h3>Other Type</h3>
-
-          <div>
-            <input type="checkbox" />
-            <label htmlFor="vegetable">Type</label>
-          </div>
-
-          <div>
-            <input type="checkbox" />
-            <label htmlFor="fruit">Type</label>
-          </div>
-
           {/* Seed Light Requirments Checkboxes */}
           <h3>Light Requirements</h3>
           <div>
@@ -149,6 +146,11 @@ const Home = () => {
               }
             />
             <label>Full Sun to Part Shade</label>
+          </div>
+
+              {/* Reset Button */}
+          <div className="reset-container">
+            <button onClick={resetFilters}>Clear All</button>
           </div>
         </aside>
 

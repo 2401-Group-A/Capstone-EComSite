@@ -12,6 +12,15 @@
     border-right: 1px solid #2e2c2c; /* Adds light border to divide from main body */
     padding: 20px; 
   }
+
+  .reset-container {
+    /* Reset button container */
+    margin-top: 10px;
+  }
+
+  .reset-container > button {
+    border-radius: 8px;
+  }
   
   /* Styles for the main content area (Seed Cards Area) */
   .content-area {
@@ -27,8 +36,7 @@
 /* Style for Seed Container */
   .seed-container {
     display: grid;
-    /* grid-template-columns: repeat(auto-fill, minmax(180px, auto)); */
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, auto));
     gap: 20px; 
   }
 
