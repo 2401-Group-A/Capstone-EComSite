@@ -23,16 +23,16 @@ function App() {
     <>
       <NavBar/>
       <Routes>
-        <Route path='/seeds' element={<Home />}/>
+        <Route path='/' element={<Home />}/>
         {/* <Route path='/seeds:id' element={<singleSeed/>}/> */}
         <Route path='/account' element={<Accounts token={token}/>}/>
         <Route path='/cart' element={<Cart token={token}/>}/>
         <Route path='/checkout' element={<Checkout token={token}/>}/>
-        <Route path='inventory' element={<Inventory token={token}/>}/>
-        <Route path='userdata' element={<UserData token={token}/>}/>
-        <Route path='register' element={<Register setToken={setToken}/>}/>
-        <Route path='login' element={<Login setToken={setToken}/>}/>
-        <Route path='userOrders' element={<UserOrder token={token}/>}/>
+        <Route path='/inventory' element={<Inventory token={token}/>}/>
+        <Route path='/userdata' element={<UserData token={token}/>}/>
+        <Route path='/register' element={<Register setToken={setToken}/>}/>
+        <Route path='/login' element={<Login setToken={setToken}/>}/>
+        <Route path='/userOrders' element={<UserOrder token={token}/>}/>
       </Routes>
     </>
 

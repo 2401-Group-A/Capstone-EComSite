@@ -15,7 +15,7 @@ export default function NavBar() {
 
       <h1 className="nav-logo">LOGO</h1>
       <nav>
-        <Link to="/seeds">Home</Link>
+        <Link to="/">Home</Link>
         {/* <Link to="/account">Account</Link> */}
         <Link to="/cart">Cart</Link>
       </nav>
