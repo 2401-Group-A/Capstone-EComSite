@@ -82,7 +82,7 @@ const getUserById = async (id) => {
   try {
     const { rows } = await db.query(
       `
-    SELET * FROM users
+    SELECT * FROM users
     WHERE id = $1;`,
       [id]
     );

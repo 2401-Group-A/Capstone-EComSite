@@ -19,15 +19,15 @@ usersRouter.get('/', async (req, res, next) => {
 });
 
 // -----GET Single User-----
-// usersRouter.get('/me', requireToken, async (req, res, next) => {
-//   try {
-//     const user = await getUserById(req.user.id);
-//     console.log("user", user);
-//     res.send({ user });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+usersRouter.get('/me', requireToken, async (req, res, next) => {
+  try {
+    const user = await getUserById(req.user.id);
+    console.log("user", user);
+    res.send({ user });
+  } catch (err) {
+    next(err);
+  }
+});
 
 // -----POST Login-----
 usersRouter.post('/login', async (req, res, next) => {
