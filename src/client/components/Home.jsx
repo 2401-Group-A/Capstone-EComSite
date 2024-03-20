@@ -4,11 +4,10 @@ import "./styles/Home.css";
 const Home = () => {
   const [products, setProducts] = useState([]);
 
-// Const for Search Bar
-const [searchQuery, setSearchQuery] = useState("");
+  // Const for Search Bar
+  const [searchQuery, setSearchQuery] = useState("");
 
-
-// Use Effect Start
+  // Use Effect Start
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,25 +32,26 @@ const [searchQuery, setSearchQuery] = useState("");
     fetchProducts();
   }, []);
 
-// Filter Function 
-const filteredProducts = products.filter(product =>
-  product.planttype.toLowerCase().includes(searchQuery.toLowerCase())
-);
+  // Filter Function
+  const filteredProducts = products.filter((product) =>
+    product.planttype.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-
-// Return Start
+  // Return Start
   return (
     <>
       <div className="home-container">
         <aside className="filter-section">
           {/* Search Bar */}
 
-          <form className="search-bar" onSubmit={e => e.preventDefault()}> {/* Prevents form submission */}
+          <form className="search-bar" onSubmit={(e) => e.preventDefault()}>
+            {" "}
+            {/* Prevents form submission */}
             <input
               type="text"
               className="search-bar-input"
               placeholder="Search Products . . . "
-              value={searchQuery} 
+              value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)} // Updates searchQuery based on user input
             />
           </form>
@@ -115,21 +115,25 @@ const filteredProducts = products.filter(product =>
           <h1 className="seed-title">Our Seeds!</h1>
 
           <div className="seed-container">
-          {filteredProducts.map((product) => ( // Renders filtered products by name only 
-              <article key={product.id}>
-                <div className="seed-card">
-                  <img
-                    className="product-img"
-                    src={product.imgurl}
-                    alt={product.planttype}
-                  />
-                  <h2>{product.planttype}</h2>
-                  <p>{product.producetype}</p>
-                  {/* <p>{product.price}</p> */}
-                  <button>Add to Cart</button>
-                </div>
-              </article>
-            ))}
+            {filteredProducts.map(
+              (
+                product // Renders filtered products by name only
+              ) => (
+                <article key={product.id}>
+                  <div className="seed-card">
+                    <img
+                      className="product-img"
+                      src={product.imgurl}
+                      alt={product.planttype}
+                    />
+                    <h2>{product.planttype}</h2>
+                    <p>{product.producetype}</p>
+                    {/* <p>{product.price}</p> */}
+                    <button>Add to Cart</button>
+                  </div>
+                </article>
+              )
+            )}
           </div>
         </section>
       </div>
