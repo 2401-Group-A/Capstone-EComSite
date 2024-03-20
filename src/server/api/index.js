@@ -40,9 +40,10 @@ apiRouter.use('/users', usersRouter);
 const productRouter = require('./products');
 apiRouter.use('/products', productRouter);
 
-apiRouter.use((err, req, res, next) => {
-    res.status(500).send(err)
-  })
+// apiRouter.use((err, req, res, next) => {
+//     console.log(err)
+//     res.status(500).send(err)
+//   })
 
 
 

@@ -18,6 +18,7 @@ import NavBar from "./components/NavBar";
 
 function App() {
   const [token, useToken] = useState(null)
+  
   return (
 
     <>
