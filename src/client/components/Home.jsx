@@ -6,9 +6,14 @@ const Home = () => {
 
   // Const for Search Bar
   const [searchQuery, setSearchQuery] = useState("");
-  // Product Type Checkboxes 
+  // Product Type Checkboxes
   const [filterHerb, setFilterHerb] = useState(false);
   const [filterVegetable, setFilterVegetable] = useState(false);
+  // Light requirement filters
+  const [filterFullSun, setFilterFullSun] = useState(false);
+  const [filterFullToPartSun, setFilterFullToPartSun] = useState(false);
+  const [filterFullSunToPartShade, setFilterFullSunToPartShade] =
+    useState(false);
 
   // Use Effect Start
   useEffect(() => {
@@ -35,18 +40,27 @@ const Home = () => {
   }, []);
 
   // Filter Function
-const filteredProducts = products.filter((product) => {
-  const matchesType = 
-    (filterHerb && product.producetype.toLowerCase() === "herb") ||
-    (filterVegetable && product.producetype.toLowerCase() === "vegetable") ||
-    (!filterHerb && !filterVegetable); // If no checkboxes are selected, show all products
+  const filteredProducts = products.filter((product) => {
+    const matchesType =
+      (filterHerb && product.producetype.toLowerCase() === "herb") ||
+      (filterVegetable && product.producetype.toLowerCase() === "vegetable") ||
+      (!filterHerb && !filterVegetable); // If no checkboxes are selected, show all products
 
-  const matchesSearch = searchQuery.toLowerCase() === "" || //For empty search bar
-    product.planttype.toLowerCase().includes(searchQuery.toLowerCase()) || //For Plant Type
-    product.plantvariety.toLowerCase().includes(searchQuery.toLowerCase()); // For Plant Variety
+    const matchesLightRequirements =
+      (filterFullSun && product.lightrequirements.includes("Full Sun")) ||
+      (filterFullToPartSun &&
+        product.lightrequirements.includes("Full to Part Sun")) ||
+      (filterFullSunToPartShade &&
+        product.lightrequirements.includes("Full Sun to Part Shade")) ||
+      (!filterFullSun && !filterFullToPartSun && !filterFullSunToPartShade); // If no light requirement filters are selected
 
-  return matchesType && matchesSearch;
-});
+    const matchesSearch =
+      searchQuery.toLowerCase() === "" || //For empty search bar
+      product.planttype.toLowerCase().includes(searchQuery.toLowerCase()) || //For Plant Type
+      product.plantvariety.toLowerCase().includes(searchQuery.toLowerCase()); // For Plant Variety
+
+    return matchesType && matchesSearch && matchesLightRequirements;
+  });
 
   // Return Start
   return (
@@ -108,27 +122,33 @@ const filteredProducts = products.filter((product) => {
             <label htmlFor="fruit">Type</label>
           </div>
 
-          {/* Seed Exposure Checkboxes */}
-          <h3>Seed Exposure</h3>
-
+          {/* Seed Light Requirments Checkboxes */}
+          <h3>Light Requirements</h3>
           <div>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={filterFullSun}
+              onChange={() => setFilterFullSun(!filterFullSun)}
+            />
             <label>Full Sun</label>
           </div>
-
           <div>
-            <input type="checkbox" />
-            <label>Part Sun</label>
+            <input
+              type="checkbox"
+              checked={filterFullToPartSun}
+              onChange={() => setFilterFullToPartSun(!filterFullToPartSun)}
+            />
+            <label>Full to Part Sun</label>
           </div>
-
           <div>
-            <input type="checkbox" />
-            <label>Sun or Shade</label>
-          </div>
-
-          <div>
-            <input type="checkbox" />
-            <label>Full Shade</label>
+            <input
+              type="checkbox"
+              checked={filterFullSunToPartShade}
+              onChange={() =>
+                setFilterFullSunToPartShade(!filterFullSunToPartShade)
+              }
+            />
+            <label>Full Sun to Part Shade</label>
           </div>
         </aside>
 
