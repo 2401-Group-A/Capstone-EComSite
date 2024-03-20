@@ -6,7 +6,7 @@ const getAllProducts = async () => {
     try {
         const { rows } = await db.query(`
             SELECT *
-            FROM products;
+            // FROM products;
         `);
         return rows;
     } catch (err) {
@@ -22,9 +22,14 @@ const getSingleProduct = async (productId) => {
         FROM products
         WHERE id = $1;
         `, [productId]);
-        if (rows.length === 0) 
+        if (rows.length === 0) {
+            throw new Error('Product not found');
+        }
+        return rows[0];
+    } catch (err) {
+        throw err;
     }
-}
+ }
 
 
 // AddProduct
@@ -43,5 +48,6 @@ const addProduct = async (productData) => {
 
 module.exports = {
     getAllProducts,
-    addProduct
+    addProduct,
+    getSingleProduct,
 };

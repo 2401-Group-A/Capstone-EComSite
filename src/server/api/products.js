@@ -1,7 +1,7 @@
 // API Products
 const express = require('express');
 const productRouter = express.Router();
-const {getAllProducts} = require('../db/products');
+const {getAllProducts, getSingleProduct} = require('../db/products');
 
 // GET all products
 productRouter.get('/', async (req, res, next) => {
@@ -15,7 +15,15 @@ productRouter.get('/', async (req, res, next) => {
 
 
 // Get SingleProduct
-
+productRouter.get('/:productId', async (req, res, next) => {
+    try {
+        const productId = req.params.productId;
+        const product = await getSingleProduct(productId);
+        res.send({ product });
+    } catch (err) {
+        next(err) 
+    }
+});
 
 
 
