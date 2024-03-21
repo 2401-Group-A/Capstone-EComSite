@@ -18,15 +18,35 @@ import NavBar from "./components/NavBar";
 
 function App() {
   const [token, useToken] = useState(null)
+  
+  // show and cart are part of add to cart function
+  const [show, setShow] = useState(true)
+  const [cart, setCart] = useState([])
+  
+
+
+
+  // add to cart handle click 
+  const handleClick =(item) => {
+    let isPresent = false;
+    cart.forEach((product) => {
+      if (item.id === product.id)
+        isPresent = true;
+    })
+    if (isPresent)
+    return;
+    setCart([...cart, item])
+  }
   return (
 
     <>
-      <NavBar/>
+      <NavBar size={cart.length} />
       <Routes>
-        <Route path='/' element={<Home />}/>
+        <Route path='/' element={<Home handleClick={handleClick}/>}/>
+       
         {/* <Route path='/products:id' element={<singleSeed/>}/> */}
         <Route path='/account' element={<Accounts/>}/>
-        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/cart' element={<Cart cart={cart} setCart={setCart}/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='inventory' element={<Inventory/>}/>
         <Route path='userdata' element={<UserData/>}/>
