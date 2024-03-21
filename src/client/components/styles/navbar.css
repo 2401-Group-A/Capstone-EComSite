@@ -1,8 +1,13 @@
-/* Navbar General Style */
+
+
 .navbar-container {
   display: flex;
+  /* width: 100%;
+  height: 2em; */
   background-color: var(--paleGreen);
-  justify-content: space-between;
+  justify-content:space-between;
+  /* padding:1em; */
+  
 }
 
 header nav {
@@ -16,88 +21,72 @@ header nav > a {
   font-size: 1.2em;
 }
 
-/* Logo Style */
-.nav-logo {
-  display: flex;
+.nav-logo{
   align-items: center;
-  color: var(--terracotta);
 }
 
-/* Hamburger Menu Styles */
-.burger-container {
+.burger-container{
   display: flex;
   align-items: center;
   margin-left: 12px;
 }
 
-.burger-menu {
+.nav-logo{
+  display: flex;
+  align-items: center;
+  color: var(--terracotta)
+}
+
+.burger-menu{
   height: 1.1rem;
   width: 4rem;
   display: flex;
   flex-direction: column;
+  /* align-items: flex-start; */
   justify-content: space-between;
   cursor: pointer;
+
 }
 
+/* This makes the menu lines */
 .burger-bar {
   width: 2rem;
   height: 0.2rem;
   border-radius: 0.5em;
-  background-color: #D25B35;
+  background-color: black;
 }
-
-/* Dropdown Menu Styles */
+/* This is the drop down menu */
 .menu {
-  display: none;
-  background-color: #DCF1D6;
-  margin-top: 32px;
-  margin-left: 7.8px;
-  position: absolute;
-  top: 55px;
-  left: 0;
-  width: auto;
-  z-index: 100;
+  display:inline;
+  background-color: var(--terracotta);
+  height: 30vh;
+  width: 25vw;
+  margin-top: 31px;
+  position:absolute;
 }
 
-.menu button {
-  width: 100%;
-  padding: 5px 5px;
-  text-align: center;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #D25B35;
-}
-
-.menu button:hover {
-  background-color: #3d6a304d;
-}
-
-.menu button:last-child {
-  border-bottom: none;
-}
-
-/* Visibility Classes */
+/* -------- Sliding Menu ---------*/
 .hidden {
   display: none;
 }
 
-.visible {
-  display: block; 
+.visible{
+  display: inherit;
 }
 
-/* Icon Styles General*/
+.burger-menu-items{
+  list-style-type: none;
+}
+
+/* Cart Icon Style */
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  text-decoration: none; /* Removes underline */
+  
   font-size: 24px; 
+  color: black; 
 }
 
-/* Home icon */
-.home-icon {
-  color: #D25B35;
-}
 
-/* Cart icon */
-.cart-icon {
-  color: #D25B35;
-}
+
+
+
+
