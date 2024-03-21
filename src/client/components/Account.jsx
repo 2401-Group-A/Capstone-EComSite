@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
-
+import "./styles/Account.css"
 const Account = ({ token }) => {
   const [profile, setProfile] = useState({});
   const [orders, setOrders] = useState([]);
@@ -18,7 +17,6 @@ const Account = ({ token }) => {
             navigate('/login');
           }, 3000);
         } else {
-            console.log("token ", token)
           const accountResponse = await fetch(
             `http://localhost:3000/api/users/me`,
             {
@@ -29,11 +27,9 @@ const Account = ({ token }) => {
               },
             }
           );
-          console.log('account response: ', accountResponse)
           if (accountResponse.ok) {
-              const result = await accountResponse.json();
-              setProfile(result); 
-              console.log('profile', profile);
+            const result = await accountResponse.json();
+            setProfile(result);
           } else {
             console.error(
               'Error fetching user profile: ',
@@ -41,16 +37,16 @@ const Account = ({ token }) => {
             );
           }
 
-          //   const ordersResponse = await axios.get('', {
-          //     headers: {
-          //       Authorization: 'Bearer ' + token,
-          //     },
-          //   }
-          //   );
+          //     const ordersResponse = await axios.get('', {
+          //       headers: {
+          //         Authorization: 'Bearer ' + token,
+          //       },
+          //     }
+          //     );
 
-          // ordersResponse looks like { data: actual data }
-          //   console.log('ordersResponse', ordersResponse);
-          //   setOrders(ordersResponse.data.orders);
+          //   ordersResponse looks like { data: actual data }
+          //     console.log('ordersResponse', ordersResponse);
+          //     setOrders(ordersResponse.data.orders);
         }
       } catch (err) {
         console.error(err);
@@ -62,24 +58,37 @@ const Account = ({ token }) => {
   if (!token) {
     return <div>You are not logged in. Please log in to view your account</div>;
   }
-console.log('first name',profile.firstname)
+
   return (
     <main>
       <h1>
-        {profile.firstname} {profile.lastname}
+        Welcome back to <i>Little Seed, Big Garden</i> {profile.firstname}!
       </h1>
-      <h2>{profile.email}</h2>
+      <h2>Your shipping address is:</h2>
+      <ul>
+        <li>
+          Name: {profile.firstname} {profile.lastname}
+        </li>
+        <li>Street Address: {profile.address}</li>
+        <li>City: {profile.city}</li>
+        <li>State: {profile.state}</li>
+        <li>Zip Code:{profile.zipcode}</li>
+        <li>Email: {profile.email}</li>
+        {/* This button is currently non-functional */}
+        <button>Edit Information (Not Active)</button>
+      </ul>
       <div>
-        <p>Orders Made:</p>
+        <h2>Your past orders:</h2>
         {/* {
-            orders.map(order => {
-                return (
-                    <article key={order.id}>
-                        <h2>{order.title}</h2>
-                        <button onClick={() => returnOrder(order.id)}>Return</button>
-                    </article>
-                )
-            })
+        orders.map((order) => {
+            return (
+              <article key={order.id}>
+                <h2>{order.title}</h2>
+                <button onClick={() => returnOrder(order.id)}>Return</button>
+              </article>
+            );
+          
+        })
         } */}
       </div>
     </main>
