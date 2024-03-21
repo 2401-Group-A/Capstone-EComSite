@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 
 const Account = ({ token }) => {
   const [profile, setProfile] = useState({});
@@ -18,18 +20,20 @@ const Account = ({ token }) => {
         } else {
             console.log("token ", token)
           const accountResponse = await fetch(
-            'http://localhost:3000/api/users/me',
+            `http://localhost:3000/api/users/me`,
             {
               method: 'GET',
               headers: {
+                'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + token,
               },
             }
           );
-          console.log('profile', profile);
+          console.log('account response: ', accountResponse)
           if (accountResponse.ok) {
-            const result = await accountResponse.json();
-            setProfile(result); 
+              const result = await accountResponse.json();
+              setProfile(result); 
+              console.log('profile', profile);
           } else {
             console.error(
               'Error fetching user profile: ',

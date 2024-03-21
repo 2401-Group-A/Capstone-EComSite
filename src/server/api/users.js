@@ -1,6 +1,6 @@
 const express = require('express');
 const usersRouter = express.Router();
-const requireToken = require('./requireToken')
+const requireToken = require('./requireToken');
 const { createUser, getUser, getUserByEmail, getUserById } = require('../db');
 
 const jwt = require('jsonwebtoken');
@@ -19,11 +19,16 @@ usersRouter.get('/', async (req, res, next) => {
 });
 
 // -----GET Single User-----
+
 usersRouter.get('/me', requireToken, async (req, res, next) => {
+  console.log('user', req.user);
+  const user = await getUserById(req.user.id);
   try {
-    const user = await getUserById(req.user.id);
-    console.log("user", user);
-    res.send({ user });
+    if (!user) {
+      res.status(404).send('No user found');
+    } else {
+      res.send(user);
+    }
   } catch (err) {
     next(err);
   }
