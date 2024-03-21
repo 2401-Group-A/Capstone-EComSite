@@ -5,15 +5,15 @@ import Hamburger from "./Hamburger";
 import { useState } from "react";
 // import logo??
 
-export default function NavBar({size, setShow}) {
+export default function NavBar({size, setShow, setToken, cookies}) {
   return (
     <header className="navbar-container">
       
       <section className="burger-container">
-        <Hamburger />
+        <Hamburger cookies={cookies} setToken={setToken}/>
       </section>
       
-      <h1 className="nav-logo">LOGO</h1>
+      <h1 className="nav-logo">Little Seed, BIG Garden</h1>
       
       <nav>
 

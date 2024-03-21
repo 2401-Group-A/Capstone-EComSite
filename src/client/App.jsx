@@ -39,7 +39,7 @@ function App() {
   };
   return (
     <>
-      <NavBar size={cart.length} setShow={setShow} />
+      <NavBar size={cart.length} setShow={setShow} setToken={setToken} cookies={cookies}/>
       {/* {
         show ? <Home handleClick={handleClick}/> : <Cart cart={cart} setCart={setCart}/>
       } */}
