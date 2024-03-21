@@ -40,13 +40,15 @@ function App() {
   return (
 
     <>
-      <NavBar size={cart.length} />
+      <NavBar size={cart.length} setShow={setShow} />
+      {
+        show ? <Home handleClick={handleClick}/> : <Cart cart={cart} setCart={setCart}/>
+      }
       <Routes>
-        <Route path='/' element={<Home handleClick={handleClick}/>}/>
-       
-        {/* <Route path='/products:id' element={<singleSeed/>}/> */}
+        <Route path='/' element={<Home/>}/>
+        <Route path='/products:id' element={<singleSeed/>}/>
         <Route path='/account' element={<Accounts/>}/>
-        <Route path='/cart' element={<Cart cart={cart} setCart={setCart}/>}/>
+        <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='inventory' element={<Inventory/>}/>
         <Route path='userdata' element={<UserData/>}/>

@@ -1,6 +1,7 @@
 import {useState} from 'react'
 
 
+
 export default function Cart({cart, setCart}) {
     const [price, setPrice] = useState(0);
   return (
