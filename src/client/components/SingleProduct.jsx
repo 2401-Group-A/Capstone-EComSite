@@ -15,14 +15,14 @@ export default function SingleProduct() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                }); setProduct(data)
+                }); 
                     
                 if (!response.ok) {
                     throw new Error('Failed to fetch product');
                 }
                 const result = await response.json();
                 setProduct(result.product);
-                console.log("product", product)
+
             } catch (err) {
                 console.error(err);
             }
@@ -30,13 +30,17 @@ export default function SingleProduct() {
         fetchProduct();
     }, []);
 
+    if (!product) {
+        return <div>Loading...</div>
+    }
+
     return (
         <>
         <main className="Seed-Conatiner">
                     <article key={product.id}>
 
                         <div className='product-card'>
-                            {/* <img className='product'src={product.imgurl}/> */}
+                            <img className='product'src={product.imgurl}/>
                             <h2>{product.plantvariety}</h2>
                         </div>
                     </article>
