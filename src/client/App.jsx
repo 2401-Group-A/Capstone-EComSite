@@ -17,7 +17,7 @@ import NavBar from "./components/NavBar";
 
 
 function App() {
-  const [token, useToken] = useState(null)
+  const [token, setToken] = useState(null)
   
   // show and cart are part of add to cart function
   const [show, setShow] = useState(true)
@@ -41,9 +41,9 @@ function App() {
 
     <>
       <NavBar size={cart.length} setShow={setShow} />
-      {
+      {/* {
         show ? <Home handleClick={handleClick}/> : <Cart cart={cart} setCart={setCart}/>
-      }
+      } */}
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/products:id' element={<singleSeed/>}/>
