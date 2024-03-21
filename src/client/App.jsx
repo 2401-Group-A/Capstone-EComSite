@@ -9,7 +9,7 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import Register from './components/Register'
 import Home from './components/Home'
-// import SingleSeed from './components/SingleSeed'
+import SingleProduct from './components/SingleProduct'
 import { Routes, Route } from 'react-router-dom';
 import NavBar from "./components/NavBar";
 
@@ -24,7 +24,7 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path='/' element={<Home />}/>
-        {/* <Route path='/products:id' element={<singleSeed/>}/> */}
+        <Route path='/product/:id' element={<SingleProduct/>}/>
         <Route path='/account' element={<Accounts/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element={<Checkout/>}/>

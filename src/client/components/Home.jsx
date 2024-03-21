@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Home.css";
+import { Link } from "react-router-dom"
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -170,7 +171,7 @@ const Home = () => {
                       src={product.imgurl}
                       alt={product.planttype}
                     />
-                    <h1 className="plant-type">{product.planttype}</h1>
+                    <Link to={`/product/${product.id}`}> <h1 className="plant-type">{product.planttype}</h1> </Link>
                     <h1 className="plant-variety">{product.plantvariety}</h1>
                     <p className="produce-type">{product.producetype}</p>
                     {/* <p>{product.price}</p> */}
