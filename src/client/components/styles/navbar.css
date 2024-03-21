@@ -61,8 +61,8 @@ header nav > a {
 
 .menu button {
   width: 100%;
-  padding: 5px 5px;
-  text-align: center;
+  padding: 10px 20px;
+  text-align: left;
   background: none;
   border: none;
   border-bottom: 1px solid #D25B35;
@@ -101,3 +101,4 @@ header nav > a {
 .cart-icon {
   color: #D25B35;
 }
+
