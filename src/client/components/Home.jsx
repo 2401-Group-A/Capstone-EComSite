@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Home.css";
-// Random comment for push
+
 const Home = () => {
   const [products, setProducts] = useState([]);
 
