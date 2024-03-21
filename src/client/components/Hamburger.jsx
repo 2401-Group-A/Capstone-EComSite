@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Hamburger() {
+export default function Hamburger({cookies, setToken}) {
   const [burgerClass, setBurgerClass] = useState('burger-bar unclicked');
   const [menuClass, setMenuClass] = useState('menu hidden');
   const [isMenuClicked, setIsMenuClicked] = useState(false);
@@ -21,6 +21,14 @@ export default function Hamburger() {
   const routeAccount = () => {
     navigate('/account');
   }
+
+  // ------ onClick logout to account -----------
+  const routeLogout = () => {
+    cookies.remove('login_token', {path:'/'})
+    setToken('')
+    navigate('/');
+  }
+
 
   // ------ Update menu visibility on burger menu click -----------
   const updateMenu = () => {
@@ -42,7 +50,7 @@ export default function Hamburger() {
         <button onClick={routeAccount}>Account</button>
         {/* Add onClick handlers for other buttons as needed */}
         <button>Calendar Page</button> 
-        <button>Sign Out</button>
+        <button onClick={routeLogout}>Sign Out</button>
       </div>
     </>
   );
