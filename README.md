@@ -28,13 +28,13 @@ JWT_SECRET='somesecretvalue'
 5. Create the database
 
 ```bash
-createdb your-database-name
+createdb little_seed
 ```
 
 6. Update `src/server/db/client.js` to reflect the name of your database
 
 ```js
-const connectionString = process.env.DATABASE_URL || 'https://localhost:5432/your-database-name';
+const connectionString = process.env.DATABASE_URL || 'https://localhost:5432/little_seed';
 ```
 
 7. Seed the database
