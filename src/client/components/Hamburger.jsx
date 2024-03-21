@@ -1,59 +1,49 @@
-import {useState} from 'react'
-import {Link} from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hamburger() {
-  const [burgerClass, setBurgerClass] = useState('burger-bar unclicked')
-  const [menuClass, setMenuClass] = useState('menu hidden')
-  const [isMenuClicked, setIsMenuClicked] = useState(false)
+  const [burgerClass, setBurgerClass] = useState('burger-bar unclicked');
+  const [menuClass, setMenuClass] = useState('menu hidden');
+  const [isMenuClicked, setIsMenuClicked] = useState(false);
+  let navigate = useNavigate();
 
   // ------ onClick navigate to login -----------
-  let navigate = useNavigate();
-    const routeLogin = () => {
-      let path = 'login';
-      navigate(path)
-    }
-
-    // ------ onClick navigate to register -----------
-    const routeRegister = () => {
-      let path = 'register';
-      navigate(path)
-    }
-
-  const updateMenu = () => {
-    if (!isMenuClicked) {
-      setBurgerClass('burger-bar clicked')
-      setMenuClass('menu visible')
-    } else{
-      setBurgerClass('burger-bar unclicked')
-      setMenuClass('menu hidden')
-    }
-
-    setIsMenuClicked(!isMenuClicked)
-
-    
-    
+  const routeLogin = () => {
+    navigate('/login');
   }
+
+  // ------ onClick navigate to register -----------
+  const routeRegister = () => {
+    navigate('/register');
+  }
+
+  // ------ onClick navigate to account -----------
+  const routeAccount = () => {
+    navigate('/account');
+  }
+
+  // ------ Update menu visibility on burger menu click -----------
+  const updateMenu = () => {
+    setBurgerClass(isMenuClicked ? 'burger-bar unclicked' : 'burger-bar clicked');
+    setMenuClass(isMenuClicked ? 'menu hidden' : 'menu visible');
+    setIsMenuClicked(!isMenuClicked);
+  }
+
   return (
     <>
-    <div>
       <div className="burger-menu" onClick={updateMenu}>
         <div className={burgerClass}></div>
         <div className={burgerClass}></div>
         <div className={burgerClass}></div>
       </div>
       <div className={menuClass}>
-        <button onClick={routeLogin}> Login </button>
-        <button onClick={routeRegister}>Register </button>
-        <ul className='burger-menu-items'>
-          <li> <Link to="/account">Account</Link> </li>
-          <li> Calendar Page</li>
-
-        </ul>
-        {/* <Link to="/account">Account</Link> */}
-      
+        <button onClick={routeLogin}>Login</button>
+        <button onClick={routeRegister}>Register</button>
+        <button onClick={routeAccount}>Account</button>
+        {/* Add onClick handlers for other buttons as needed */}
+        <button>Calendar Page</button> 
+        <button>Sign Out</button>
       </div>
-    </div>
     </>
   );
 }
