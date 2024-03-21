@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ setToken }) => {
+const Login = ({ token, setToken, cookies }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -22,6 +22,14 @@ const Login = ({ setToken }) => {
     login();
   };
 
+useEffect(()=>{
+  if(token) {
+    setTimeout(function (){
+      navigate('/account')
+    }, 1000)
+  }
+}, [])
+
   const login = async () => {
     try {
       const response = await fetch('http://localhost:3000/api/users/login', {
@@ -34,12 +42,14 @@ const Login = ({ setToken }) => {
           password,
         }),
       });
+
       const result = await response.json();
-      setMessage(result.message);
       if (!response.ok) {
         throw result;
       }
+      cookies.set('login_token', result.token)
       setToken(result.token)
+      setMessage(result.message);
       setEmail('');
       setPassword('');
       navigate('/account')

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/register.css';
+import { useNavigate } from 'react-router-dom';
 
-const Register = ({ setToken }) => {
+const Register = ({ token, setToken, cookies }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstname, setFirstName] = useState('');
@@ -12,43 +13,53 @@ const Register = ({ setToken }) => {
   const [state, setState] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-      const registerUser = async () => {
-          try {
-              const response = await fetch('http://localhost:3000/api/users/register', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({
-                      email,
-                      password,
-                      firstname,
-                      lastname,
-                      address,
-                      city,
-                      state,
-                      zipcode
-                  })
-              });
-              const result = await response.json();
-              setMessage(result.message);
-              if (!response.ok) {
-                  throw new Error(result.message);
-              }
-              setEmail('');
-              setPassword('');
-              setFirstName('');
-              setLastName('');
-              setStreet('');
-              setCity('');
-              setState('');
-              setZipcode('');
-          } catch (err) {
-              console.error(`Error during registration: ${err}`);
-              setMessage(err.message);
-          }
-      };
+  useEffect(() => {
+    if (token) {
+      setTimeout(function () {
+        navigate('/account');
+      }, 1000);
+    }
+  }, []);
+
+  const registerUser = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          firstname,
+          lastname,
+          address,
+          city,
+          state,
+          zipcode,
+        }),
+      });
+      const result = await response.json();
+      setMessage(result.message);
+      if (!response.ok) {
+        throw new Error(result.message);
+      }
+
+      setEmail('');
+      setPassword('');
+      setFirstName('');
+      setLastName('');
+      setStreet('');
+      setCity('');
+      setState('');
+      setZipcode('');
+    } catch (err) {
+      console.error(`Error during registration: ${err}`);
+      setMessage(err.message);
+    }
+  };
 
   async function handleSubmit(event) {
     const payload = {
@@ -63,7 +74,10 @@ const Register = ({ setToken }) => {
     };
     try {
       const user = await registerUser(payload);
+      console.log(user)
+      cookies.set('login_token', user.token);
       setToken(user.token);
+      navigate('/account');
     } catch (err) {
       throw err;
     }
