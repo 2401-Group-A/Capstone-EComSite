@@ -55,14 +55,16 @@ header nav > a {
   position: absolute;
   top: 55px;
   left: 0;
-  width: auto;
+  width: 10rem; /* width of dropdown */
   z-index: 100;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .menu button {
   width: 100%;
   padding: 10px 20px;
-  text-align: left;
+  text-align: center;
   background: none;
   border: none;
   border-bottom: 1px solid #D25B35;
