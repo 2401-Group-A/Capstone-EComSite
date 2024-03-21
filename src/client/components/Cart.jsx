@@ -5,17 +5,17 @@ import './styles/cart.css'
 export default function Cart({cart, setCart}) {
     const [price, setPrice] = useState(0);
 
-    const handlePrice = () => {
-        let cartTotal = 0;
-        cart.map((product) => (
-            cartTotal += product.amount * product.price
-        ))
-        setPrice(cartTotal);
-    }
+//     const handlePrice = () => {
+//         let cartTotal = 0;
+//         cart.map((product) => (
+//             cartTotal += product.amount * product.price
+//         ))
+//         setPrice(cartTotal);
+//     }
 
-useEffect(() => {
-    handlePrice()
-})
+// useEffect(() => {
+//     handlePrice()
+// })
 
 
 
