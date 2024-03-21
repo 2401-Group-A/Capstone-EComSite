@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Home.css";
 
-const Home = () => {
+const Home = ({handleClick}) => {
   const [products, setProducts] = useState([]);
 
   // Const for Search Bar
@@ -182,8 +182,8 @@ const Home = () => {
                     <h1 className="plant-type">{product.planttype}</h1>
                     <h1 className="plant-variety">{product.plantvariety}</h1>
                     <p className="produce-type">{product.producetype}</p>
-                    {/* <p>{product.price}</p> */}
-                    <button>Add to Cart</button>
+                    <p>{product.price}</p>
+                    <button onClick={() => handleClick(product)}>Add to Cart</button>
                   </div>
                 </article>
               )
