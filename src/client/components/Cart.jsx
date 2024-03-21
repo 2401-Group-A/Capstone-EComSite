@@ -9,7 +9,7 @@ export default function Cart({cart, setCart}) {
 
     const handlePrice = () => {
         let cartTotal = 0;
-        cart.map((product) => (
+        cart.forEach((product) => (
             cartTotal += product.amount * product.price
         ))
         setPrice(cartTotal);
