@@ -51,10 +51,11 @@ const Register = ({ token, setToken, cookies }) => {
       setPassword('');
       setFirstName('');
       setLastName('');
-      setStreet('');
+      setAddress('');
       setCity('');
       setState('');
       setZipcode('');
+      return result
     } catch (err) {
       console.error(`Error during registration: ${err}`);
       setMessage(err.message);
@@ -62,6 +63,7 @@ const Register = ({ token, setToken, cookies }) => {
   };
 
   async function handleSubmit(event) {
+    event.preventDefault();
     const payload = {
       firstname,
       lastname,
@@ -82,7 +84,6 @@ const Register = ({ token, setToken, cookies }) => {
       throw err;
     }
 
-    event.preventDefault();
   }
 
   return (
