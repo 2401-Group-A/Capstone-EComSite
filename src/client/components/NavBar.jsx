@@ -13,9 +13,9 @@ export default function NavBar() {
       </section>
       <h1 className="nav-logo">LOGO</h1>
       <nav>
-        <Link to="/">Home</Link>
+        <Link to="/"     className="material-symbols-outlined home-icon">home_and_garden</Link>
         {/* <Link to="/account">Account</Link> */}
-        <Link to="/cart" className="material-symbols-outlined">garden_cart</Link>
+        <Link to="/cart" className="material-symbols-outlined cart-icon">garden_cart</Link>
       </nav>
     </header>
   );
