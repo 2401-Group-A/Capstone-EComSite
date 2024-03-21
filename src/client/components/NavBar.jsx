@@ -16,9 +16,11 @@ export default function NavBar({size, setShow}) {
       <h1 className="nav-logo">LOGO</h1>
       
       <nav>
-        <Link to="/" onClick={() => setShow(true)}>Home</Link>
-        <Link to="/cart" className="material-symbols-outlined" onClick={() => setShow(false)}> garden_cart</Link>
+
+        <Link to="/" onClick={() => setShow(true)} className="material-symbols-outlined home-icon">home_and_garden</Link>
+        <Link to="/cart" className="material-symbols-outlined cart-icon" onClick={() => setShow(false)}> garden_cart</Link>
         <span>{size}</span>
+
       </nav>
 
     </header>
