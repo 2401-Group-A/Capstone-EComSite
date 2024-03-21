@@ -1,11 +1,20 @@
 
 :root{
+  /* Colors */
   --forrestGreen: #3d6a30;
   --soil: #BC8B6D;
   --paleGreen: #DCF1D6;
   --terracotta: #D25B35;
   --brightGreen: #81D144;
+  /* Fonts */
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
+
 
 .App {
   display: flex;
