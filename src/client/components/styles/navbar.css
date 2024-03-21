@@ -61,8 +61,8 @@ header nav > a {
 
 .menu button {
   width: 100%;
-  padding: 10px 20px;
-  text-align: left;
+  padding: 5px 5px;
+  text-align: center;
   background: none;
   border: none;
   border-bottom: 1px solid #D25B35;
