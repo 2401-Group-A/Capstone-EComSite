@@ -30,7 +30,6 @@
 
   .edit-button, .delete-button {
     border-radius: 8px;
-    /* background-color: red; */
   }
   
   .row:nth-child(even) {
@@ -38,12 +37,16 @@
   }
   
   .add-new-product-btn {
-    margin-top: 20px;
-    background-color: #81D144; 
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+  background-color: #D25B35;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
   }
   
   .add-new-product-btn:hover {
@@ -53,13 +56,63 @@
   /* Single Product Style */
 .details-container {
   width: 55rem; 
-  margin-top: 20px;
-  background-color: #81D144;
 }
 .product-image {
   height: 30rem;
   border-radius: 8px;
 }
 
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
 
-/* Edit Buttons */
+.product-details-list {
+  margin-top: 20px;
+}
+
+.price-change, .seed-change {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.price-change label, .seed-change label {
+  margin-right: 10px;
+}
+
+input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.save-bttn, .cancel-bttn {
+  background-color: #D25B35;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cancel-bttn:hover {
+  background-color: #f44336; /* Red */
+}
+
+.save-bttn:hover{
+  background-color: #3d6a30;
+}

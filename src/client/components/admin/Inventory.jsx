@@ -32,10 +32,12 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
     onSaveChanges(product.id, editablePrice, editableSeedCount);
   };
 
+
+  //  Single Product Table
   return (
     <div className="product-details">
       <img className="product-image" src={product.imgurl} alt={`${product.plantvariety}`} />
-      <div>
+      <div className="product-details-list">
         <h2>Variety: {product.plantvariety}</h2>
         <h2>Type: {product.planttype}</h2>
         <p>Current Price: ${product.price}</p>
@@ -87,15 +89,16 @@ const Inventory = () => {
   };
 
   const handleSaveChanges = (id, price, seedCount) => {
-    // Implement saving logic here
+    // saving logic here
     console.log("Saving changes for product", id, "with new price", price, "and new seed count", seedCount);
-    // Optionally, refresh the products list here if necessary
   };
 
   const handleClose = () => {
-    setSelectedProduct(null); // This will close the details-container
+    setSelectedProduct(null); // This will close the details-container onClick 'close' button 
   };
 
+
+  // Full Inventory Table 
   return (
     <div className="inventory-layout">
       <div className="inventory-container">
@@ -114,7 +117,7 @@ const Inventory = () => {
             ))}
           </tbody>
         </table>
-        <button className="add-new-product-btn">Add New Product</button>
+        <button className="add-new-product-btn">Add Product</button>
       </div>
       {selectedProduct && (
         <div className="details-container">
