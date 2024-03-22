@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import "./styles/SingleProduct.css";
+import "./styles/SingleProduct.css";
 
 
 export default function SingleProduct() {
@@ -41,7 +41,7 @@ export default function SingleProduct() {
                     <article key={product.id}>
 
                         <div className='left-div'>
-                            <img className='product'src={"/" + product.imgurl}/>
+                            <img className='pic'src={"/" + product.imgurl}/>
                             <p className="price">{product.price}</p>
                             {/* <p className="quantity">{product.quantity}</p> */}
                             {/* <button>Add to Cart</button> */}
