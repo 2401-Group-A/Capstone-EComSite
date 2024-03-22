@@ -16,16 +16,20 @@ const Row = ({ product, onEdit }) => (
   </tr>
 );
 
-const SingleProductView = ({ product, onSaveChanges }) => {
-  const [price, setPrice] = useState(product.price);
-  const [seedCount, setSeedCount] = useState(product.seedcount);
+const SingleProductView = ({ product, onSaveChanges, onClose }) => {
+  const [editablePrice, setEditablePrice] = useState(product.price);
+  const [editableSeedCount, setEditableSeedCount] = useState(product.seedcount);
 
   const handlePriceChange = (event) => {
-    setPrice(event.target.value);
+    setEditablePrice(event.target.value);
   };
 
   const handleSeedCountChange = (event) => {
-    setSeedCount(event.target.value);
+    setEditableSeedCount(event.target.value);
+  };
+
+  const saveChanges = () => {
+    onSaveChanges(product.id, editablePrice, editableSeedCount);
   };
 
   return (
@@ -34,18 +38,18 @@ const SingleProductView = ({ product, onSaveChanges }) => {
       <div>
         <h2>Variety: {product.plantvariety}</h2>
         <h2>Type: {product.planttype}</h2>
-        <p>Current Price: ${price}</p>
-        <p>Current Quantity: {seedCount}</p>
+        <p>Current Price: ${product.price}</p>
+        <p>Current Quantity: {product.seedcount}</p>
         <div className="price-change">
           <label>Price: $</label>
-          <input type="number" value={price} onChange={handlePriceChange} />
+          <input type="number" value={editablePrice} onChange={handlePriceChange} />
         </div>
         <div className="seed-change">
           <label>Seed Count: </label>
-          <input type="number" value={seedCount} onChange={handleSeedCountChange} />
+          <input type="number" value={editableSeedCount} onChange={handleSeedCountChange} />
         </div>
-        <button className="save-bttn" onClick={() => onSaveChanges(price, seedCount)}>Save</button>
-        <button className="cancel-bttn" onClick={() => setSelectedProduct(null)}>Close</button>
+        <button className="save-bttn" onClick={saveChanges}>Save</button>
+        <button className="cancel-bttn" onClick={onClose}>Close</button>
       </div>
     </div>
   );
@@ -82,11 +86,14 @@ const Inventory = () => {
     setSelectedProduct(product);
   };
 
-  // Implement this function to handle the save changes click
-  const handleSaveChanges = (price, seedCount) => {
-    // Here you would typically send the updates to the server
-    console.log("Saving changes to product:", selectedProduct.id, price, seedCount);
-    // After saving, you might want to update the local state or refetch products
+  const handleSaveChanges = (id, price, seedCount) => {
+    // Implement saving logic here
+    console.log("Saving changes for product", id, "with new price", price, "and new seed count", seedCount);
+    // Optionally, refresh the products list here if necessary
+  };
+
+  const handleClose = () => {
+    setSelectedProduct(null); // This will close the details-container
   };
 
   return (
@@ -111,7 +118,7 @@ const Inventory = () => {
       </div>
       {selectedProduct && (
         <div className="details-container">
-          <SingleProductView product={selectedProduct} onSaveChanges={handleSaveChanges} />
+          <SingleProductView product={selectedProduct} onSaveChanges={handleSaveChanges} onClose={handleClose} />
         </div>
       )}
     </div>
