@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./styles/SingleProduct.css";
+// import "./styles/SingleProduct.css";
 
 
 export default function SingleProduct() {
@@ -52,7 +52,7 @@ export default function SingleProduct() {
                             <div className='summary'>
 
                             <h1>{product.planttype}</h1>
-                            <p>{product.plantvariety}</p>
+                            <h2>{product.plantvariety}</h2>
                             <p>{product.producetype}</p>
                             <p>{product.plantdescription}</p>
 

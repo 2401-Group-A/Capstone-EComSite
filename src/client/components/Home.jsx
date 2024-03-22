@@ -180,7 +180,7 @@ const Home = ({handleClick}) => {
                       src={product.imgurl}
                       alt={product.planttype}
                     />
-                    <Link to={`/product/${product.id}`}> <h1 className="plant-type">{product.planttype}</h1> </Link>
+                    <Link to={`/products/${product.id}`}> <h1 className="plant-type">{product.planttype}</h1> </Link>
                     <h1 className="plant-variety">{product.plantvariety}</h1>
                     <p className="produce-type">{product.producetype}</p>
                     <p>{product.price}</p>
