@@ -1,9 +1,17 @@
+.inventory-layout {
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+}
+
+
 .inventory-container {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
+  flex-grow: 1;
+  max-width: 900px; 
+  margin-left: 20px; 
   }
-  
+
+/* Full Inventory Table */
   .inventory-table {
     width: 100%;
     border-collapse: collapse;
@@ -42,4 +50,12 @@
     background-color: #3d6a30;
   }
   
-  
+  /* Single Product Style */
+.details-container {
+  width: 400px; 
+  margin-top: 20px;
+}
+.product-image {
+  height: 30rem;
+  border-radius: 8px;
+}
