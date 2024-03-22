@@ -1,0 +1,45 @@
+.inventory-container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; 
+  }
+  
+  .header {
+    background-color: #f0f0f0; 
+    text-align: center;
+  }
+  
+  .cell {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .edit-button, .delete-button {
+    border-radius: 8px;
+    /* background-color: red; */
+  }
+  
+  .row:nth-child(even) {
+    background-color: #f9f9f9; /* Every other row color */
+  }
+  
+  .add-new-product-btn {
+    margin-top: 20px;
+    background-color: #81D144; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .add-new-product-btn:hover {
+    background-color: #3d6a30;
+  }
+  
+  

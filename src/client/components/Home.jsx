@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles/Home.css";
 import { Link } from "react-router-dom"
 
-const Home = () => {
+const Home = ({handleClick}) => {
   const [products, setProducts] = useState([]);
 
   // Const for Search Bar
@@ -13,8 +13,10 @@ const Home = () => {
   // Light requirement filters
   const [filterFullSun, setFilterFullSun] = useState(false);
   const [filterFullToPartSun, setFilterFullToPartSun] = useState(false);
-  const [filterFullSunToPartShade, setFilterFullSunToPartShade] =
-    useState(false);
+  const [filterFullSunToPartShade, setFilterFullSunToPartShade] = useState(false);
+
+  // Price Const
+  const [maxPrice, setMaxPrice] = useState(100);
 
   // Reset Filters
   const resetFilters = () => {
@@ -70,7 +72,9 @@ const Home = () => {
       product.planttype.toLowerCase().includes(searchQuery.toLowerCase()) || //For Plant Type
       product.plantvariety.toLowerCase().includes(searchQuery.toLowerCase()); // For Plant Variety
 
-    return matchesType && matchesSearch && matchesLightRequirements;
+      const matchesPrice = product.price <= maxPrice;
+
+      return matchesType && matchesSearch && matchesLightRequirements && matchesPrice;
   });
 
   // Return Start
@@ -94,7 +98,12 @@ const Home = () => {
 
           {/* Price Scale Slider */}
           <h3>Price</h3>
-          <input type="range" min="0" max="100" />
+          <span className="price-label"> $ </span>
+          <input type="range" min="0" max="8" 
+            value={maxPrice}
+            onChange={(e) => setMaxPrice(e.target.value)}
+          />
+          <span className="price-label"> $$$ </span>
 
           {/* Produce Type Checkboxes */}
           <h3>Produce Type</h3>
@@ -174,8 +183,8 @@ const Home = () => {
                     <Link to={`/product/${product.id}`}> <h1 className="plant-type">{product.planttype}</h1> </Link>
                     <h1 className="plant-variety">{product.plantvariety}</h1>
                     <p className="produce-type">{product.producetype}</p>
-                    {/* <p>{product.price}</p> */}
-                    <button>Add to Cart</button>
+                    <p>{product.price}</p>
+                    <button onClick={() => handleClick(product)}>Add to Cart</button>
                   </div>
                 </article>
               )

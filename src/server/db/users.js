@@ -22,7 +22,16 @@ const createUser = async ({
         VALUES($1, $2, $3, $4, $5, $6, $7, $8)
         ON CONFLICT (email) DO NOTHING
         RETURNING *`,
-      [firstname, lastname, email, hashedPassword, address, city, state, zipcode]
+      [
+        firstname,
+        lastname,
+        email,
+        hashedPassword,
+        address,
+        city,
+        state,
+        zipcode,
+      ]
     );
 
     return user;
@@ -68,9 +77,24 @@ const getUserByEmail = async (email) => {
     throw err;
   }
 };
+// Created this to pull user by ID for Account
+const getUserById = async (id) => {
+  try {
+    const { rows } = await db.query(
+      `
+    SELECT * FROM users
+    WHERE id = $1;`,
+      [id]
+    );
+    return rows[0];
+  } catch (err) {
+    throw err;
+  }
+};
 
 module.exports = {
   createUser,
   getUser,
   getUserByEmail,
+  getUserById
 };
