@@ -18,22 +18,15 @@ const Row = ({ product, onEdit }) => (
 
 const SingleProductView = ({ product, onSaveChanges, onClose }) => {
   const [editablePrice, setEditablePrice] = useState(product.price);
-  const [editableSeedCount, setEditableSeedCount] = useState(product.seedcount);
 
   const handlePriceChange = (event) => {
     setEditablePrice(event.target.value);
   };
 
-  const handleSeedCountChange = (event) => {
-    setEditableSeedCount(event.target.value);
-  };
-
   const saveChanges = () => {
-    onSaveChanges(product.id, editablePrice, editableSeedCount);
+    onSaveChanges(product.id, editablePrice);
   };
 
-
-  //  Single Product Table
   return (
     <div className="product-details">
       <img className="product-image" src={product.imgurl} alt={`${product.plantvariety}`} />
@@ -41,14 +34,9 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
         <h2>Variety: {product.plantvariety}</h2>
         <h2>Type: {product.planttype}</h2>
         <p>Current Price: ${product.price}</p>
-        <p>Current Quantity: {product.seedcount}</p>
         <div className="price-change">
           <label>Price: $</label>
           <input type="number" value={editablePrice} onChange={handlePriceChange} />
-        </div>
-        <div className="seed-change">
-          <label>Seed Count: </label>
-          <input type="number" value={editableSeedCount} onChange={handleSeedCountChange} />
         </div>
         <button className="save-bttn" onClick={saveChanges}>Save</button>
         <button className="cancel-bttn" onClick={onClose}>Close</button>
@@ -88,17 +76,15 @@ const Inventory = () => {
     setSelectedProduct(product);
   };
 
-  const handleSaveChanges = (id, price, seedCount) => {
-    // saving logic here
-    console.log("Saving changes for product", id, "with new price", price, "and new seed count", seedCount);
+  const handleSaveChanges = (id, price) => {
+    console.log("Saving changes for product", id, "with new price", price);
+    // Include your API call here to save the new price to the database
   };
 
   const handleClose = () => {
-    setSelectedProduct(null); // This will close the details-container onClick 'close' button 
+    setSelectedProduct(null); // This will close the details-container
   };
 
-
-  // Full Inventory Table 
   return (
     <div className="inventory-layout">
       <div className="inventory-container">
