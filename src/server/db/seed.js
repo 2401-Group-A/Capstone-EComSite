@@ -11,6 +11,7 @@ const users = [
     city: 'Dallas',
     state: 'Texas',
     zipcode: '75287',
+    admin: 'TRUE',
   },
   {
     firstname: 'Brittany',
@@ -21,6 +22,7 @@ const users = [
     city: 'Oklahoma City',
     state: 'Oklahoma',
     zipcode: '73128',
+    admin: 'TRUE',
   },
   {
     firstname: 'Michael',
@@ -31,6 +33,7 @@ const users = [
     city: 'Romeo',
     state: 'Michigan',
     zipcode: '48065',
+    admin: 'TRUE',
   },
   {
     firstname: 'Raquel',
@@ -41,6 +44,7 @@ const users = [
     city: 'STA',
     state: 'Florida',
     zipcode: '32092',
+    admin: 'TRUE',
   },
   {
     firstname: 'Emily',
@@ -51,6 +55,7 @@ const users = [
     city: 'Detroit',
     state: 'Michigan',
     zipcode: '12345',
+    admin: 'FALSE',
   },
   // Add more user objects as needed
 ];
@@ -88,7 +93,8 @@ const createTables = async () => {
             state VARCHAR(50) NOT NULL,
             zipcode VARCHAR(5) NOT NULL,
             userCart TEXT,
-            pastOrders TEXT
+            pastOrders TEXT,
+            admin BOOLEAN default 'FALSE'
         )`);
 
     await db.query(`
