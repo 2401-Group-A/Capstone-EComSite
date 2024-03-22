@@ -52,8 +52,9 @@
   
   /* Single Product Style */
 .details-container {
-  width: 400px; 
+  width: 55rem; 
   margin-top: 20px;
+  background-color: #81D144;
 }
 .product-image {
   height: 30rem;

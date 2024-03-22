@@ -16,25 +16,36 @@ const Row = ({ product, onEdit }) => (
   </tr>
 );
 
-// SingleProduct Component
-const SingleProductView = ({ product }) => {
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+const SingleProductView = ({ product, onSaveChanges }) => {
+  const [price, setPrice] = useState(product.price);
+  const [seedCount, setSeedCount] = useState(product.seedcount);
+
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const handleSeedCountChange = (event) => {
+    setSeedCount(event.target.value);
+  };
 
   return (
     <div className="product-details">
-      <img
-        className="product-image"
-        src={product.imgurl}
-        alt={`${product.plantvariety}`}
-      />
+      <img className="product-image" src={product.imgurl} alt={`${product.plantvariety}`} />
       <div>
         <h2>Variety: {product.plantvariety}</h2>
-        <h2> Type: {product.planttype}</h2>
-        <p> Current Price: {product.price}</p>
-        <p> Current Quantity: {product.seedcount}</p>
-        {/* Add editable fields for price and quantity here if required */}
+        <h2>Type: {product.planttype}</h2>
+        <p>Current Price: ${price}</p>
+        <p>Current Quantity: {seedCount}</p>
+        <div className="price-change">
+          <label>Price: $</label>
+          <input type="number" value={price} onChange={handlePriceChange} />
+        </div>
+        <div className="seed-change">
+          <label>Seed Count: </label>
+          <input type="number" value={seedCount} onChange={handleSeedCountChange} />
+        </div>
+        <button className="save-bttn" onClick={() => onSaveChanges(price, seedCount)}>Save</button>
+        <button className="cancel-bttn" onClick={() => setSelectedProduct(null)}>Close</button>
       </div>
     </div>
   );
@@ -71,6 +82,13 @@ const Inventory = () => {
     setSelectedProduct(product);
   };
 
+  // Implement this function to handle the save changes click
+  const handleSaveChanges = (price, seedCount) => {
+    // Here you would typically send the updates to the server
+    console.log("Saving changes to product:", selectedProduct.id, price, seedCount);
+    // After saving, you might want to update the local state or refetch products
+  };
+
   return (
     <div className="inventory-layout">
       <div className="inventory-container">
@@ -93,9 +111,7 @@ const Inventory = () => {
       </div>
       {selectedProduct && (
         <div className="details-container">
-          <SingleProductView product={selectedProduct} />
-          <button className="save-bttn">Save</button>
-          <button className="cancel-bttn">Close</button>
+          <SingleProductView product={selectedProduct} onSaveChanges={handleSaveChanges} />
         </div>
       )}
     </div>
