@@ -45,7 +45,7 @@ function App() {
       } */}
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/products:id' element={<SingleProduct />} />
+        {/* <Route path='/products:id' element={<SingleProduct />} /> */}
         <Route path='/account' element={<Accounts token={token} />} />
         <Route path='/cart' element={<Cart token={token} />} />
         <Route path='/checkout' element={<Checkout token={token} />} />
