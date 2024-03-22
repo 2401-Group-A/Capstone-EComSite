@@ -2,7 +2,7 @@
 /* Styles for the entire home container */
 .home-container {
     display: flex;
-    background-color: rgba(128, 128, 128, 0.344);
+    background-color: rgba(247,247,247);
   }
   
   /* Styles for the filter Sidebar */

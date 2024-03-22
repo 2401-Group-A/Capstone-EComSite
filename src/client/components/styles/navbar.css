@@ -72,6 +72,7 @@ header nav > a {
 
 .menu button:hover {
   background-color: #3d6a304d;
+  border: 1px solid var(--brightGreen);
 }
 
 .menu button:last-child {

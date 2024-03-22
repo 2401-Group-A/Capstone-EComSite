@@ -8,7 +8,7 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Register from './components/Register';
 import Home from './components/Home';
-// import SingleSeed from './components/SingleSeed'
+// import SingleSeed from './components/SingleProduct'
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Cookies from 'universal-cookie';
@@ -45,7 +45,7 @@ function App() {
       } */}
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/products:id' element={<singleSeed />} />
+        <Route path='/products:id' element={<SingleProduct />} />
         <Route path='/account' element={<Accounts token={token} />} />
         <Route path='/cart' element={<Cart token={token} />} />
         <Route path='/checkout' element={<Checkout token={token} />} />
