@@ -41,7 +41,7 @@ export default function SingleProduct() {
                     <article key={product.id}>
 
                         <div className='left-div'>
-                            <img className='product'src={product.imgurl}/>
+                            <img className='product'src={"/" + product.imgurl}/>
                             <p className="price">{product.price}</p>
                             {/* <p className="quantity">{product.quantity}</p> */}
                             {/* <button>Add to Cart</button> */}
