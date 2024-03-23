@@ -94,7 +94,7 @@ const createTables = async () => {
             zipcode VARCHAR(5) NOT NULL,
             userCart TEXT,
             pastOrders TEXT,
-            admin BOOLEAN default 'FALSE'
+            admin BOOLEAN DEFAULT 'FALSE'
         )`);
 
     await db.query(`
@@ -152,6 +152,7 @@ const insertUsers = async () => {
         city: user.city,
         state: user.state,
         zipcode: user.zipcode,
+        admin: user.admin
       });
       console.log('User seed data inserted successfully.');
     }

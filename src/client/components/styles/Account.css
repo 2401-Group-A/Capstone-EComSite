@@ -6,7 +6,7 @@ list-style: none    ;
 }
 body{
     /* Almost white */
-    background-color: var(--soil);
+    background-color: var(--almostWhite);
 }
 .account-greeting{
     background-color: var(--paleGreen);
@@ -22,8 +22,8 @@ body{
     border-radius: .25rem;
 }
 h1{
-    color: var(--forrestGreen);
+    color: var(--almostBlack);
 }
-button{
+/* button{
 width: fit-content;
-}
+} */
