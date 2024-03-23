@@ -16,6 +16,7 @@ const Row = ({ product, onEdit }) => (
   </tr>
 );
 
+// Single Products Function
 const SingleProductView = ({ product, onSaveChanges, onClose }) => {
   const [editablePrice, setEditablePrice] = useState(product.price);
 
@@ -27,6 +28,7 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
     onSaveChanges(product.id, editablePrice);
   };
 
+// ON EDIT CONTAINER 
   return (
     <div className="product-details">
       <img className="product-image" src={product.imgurl} alt={`${product.plantvariety}`} />
@@ -35,7 +37,7 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
         <h2>Type: {product.planttype}</h2>
         <p>Current Price: ${product.price}</p>
         <div className="price-change">
-          <label>Price: $</label>
+          <label>Edit Price: $</label>
           <input type="number" value={editablePrice} onChange={handlePriceChange} />
         </div>
         <button className="save-bttn" onClick={saveChanges}>Save</button>
@@ -45,9 +47,14 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
   );
 };
 
+
+// Full Inventory Function
 const Inventory = () => {
   const [products, setProducts] = useState([]);
+  // Edit Products const
   const [selectedProduct, setSelectedProduct] = useState(null);
+  // New product const
+  const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -85,6 +92,9 @@ const Inventory = () => {
     setSelectedProduct(null); // This will close the details-container
   };
 
+
+
+// Full Inventory of Products Container
   return (
     <div className="inventory-layout">
       <div className="inventory-container">
@@ -103,8 +113,22 @@ const Inventory = () => {
             ))}
           </tbody>
         </table>
-        <button className="add-new-product-btn">Add Product</button>
+        <button className="add-new-product-btn" onClick={() => setShowAddForm(true)}>Add Product</button>
       </div>
+
+      {showAddForm && (
+  <div className="add-details">
+    <h2>Add New Product</h2>
+    <div className="price-change">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <button className="save-bttn" /* onClick handler to submit new product */>Save</button>
+    <button className="cancel-bttn" onClick={() => setShowAddForm(false)}>Close</button>
+  </div>
+)}
+      {/* ------------Single Product View Edit bttn */}
       {selectedProduct && (
         <div className="details-container">
           <SingleProductView product={selectedProduct} onSaveChanges={handleSaveChanges} onClose={handleClose} />
