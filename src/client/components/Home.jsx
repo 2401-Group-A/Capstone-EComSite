@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Home.css";
 
-const Home = ({onAdd, onRemove, cartItems, item}) => {
+const Home = ({handleAddToCart}) => {
   const [products, setProducts] = useState([]);
 
   // Const for Search Bar
@@ -183,7 +183,7 @@ const Home = ({onAdd, onRemove, cartItems, item}) => {
                     <h1 className="plant-variety">{product.plantvariety}</h1>
                     <p className="produce-type">{product.producetype}</p>
                     <p>{product.price}</p>
-                    <button onClick={() => onAdd(product)}>Add to Cart</button>
+                    <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
                   </div>
                 </article>
               )

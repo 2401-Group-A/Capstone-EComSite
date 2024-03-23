@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./styles/cart.css";
 
-export default function Cart({ cartItems, setCartItems, handleClick, }) {
+export default function Cart({ cartItems, setCartItems }) {
 
   // const itemsPrice = cartItems.reduce((a,c) => a +c.qty * c.price, 0);
   // const taxPrice= itemsPrice * 0.0862;
@@ -10,28 +10,41 @@ export default function Cart({ cartItems, setCartItems, handleClick, }) {
 
   const [price, setPrice] = useState(0);
 
-      const handlePrice = () => {
-          let cartTotal = 0;
-          cartItems.forEach((product) => (
-              cartTotal += product.amount * product.price
-          ))
-          setPrice(cartTotal);
-      }
+// ------ remove item from cart -------
   const handleRemove = (id) => {
     const updatedCart = cartItems.filter((product) => product.id !== id);
     setCartItems(updatedCart);
   
   };
 
+// --------- calculates total ---------
   useEffect(() => {
      try{
+      const handlePrice = () => {
+        let cartTotal = 0;
+        cartItems.forEach((product) => (
+            cartTotal += product.amount * product.price
+        ))
+        setPrice(cartTotal);
+      };
       handlePrice()
-     }catch (err){
-      console.error(err)
-     }
-  }, [cartItems])
+      }catch (err){
+        console.error(err)
+       }
+  }, [cartItems]);
 
- 
+  
+// ------- handles add and minus buttons ----------
+  const handleQtyChange = (product, change) => {
+    const updatedCart = cartItems.map(item => {
+      if (item.id === product.id) {
+        return { ...item, amount: item.amount + change };
+      }
+      return item;
+    });
+    setCartItems(updatedCart);
+  };
+
 
   return (
     <aside className="cart-container">
@@ -41,16 +54,16 @@ export default function Cart({ cartItems, setCartItems, handleClick, }) {
         {cartItems.map((product) => (
           <div className="cart_box" key={product.id}>
             <div className="cart_img">
-              <img src={product.imgurl} />
+              {/* <img src={product.imgurl} /> */}
               <h1 className="plant-type">{product.planttype}</h1>
             </div>
             
             <div className="button-box">
-              <button onClick={() => handleClick(product, -1)}className="remove">
+              <button onClick={() => handleQtyChange(product, -1)} className="remove">
                 -
               </button>
               <button>{product.amount}</button>
-              <button onClick={() => handleClick(product, +1)} className="add">
+              <button onClick={() => handleQtyChange(product, +1)} className="add">
                 +
               </button>
               <span>{product.price}</span>

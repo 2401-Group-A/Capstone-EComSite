@@ -18,6 +18,7 @@ import Cookies from 'universal-cookie';
 
 function App() {
   const [token, setToken] = useState(null);
+  const [cartItems, setCartItems] = useState([])
 
   const cookies = new Cookies();
   useEffect(() => {
@@ -27,56 +28,26 @@ function App() {
     }
   }, []);
 
-  // --------- rendering item cart count -------------
-  const [cartItems, setCartItems] = useState([])
-  const [warning, setWarning] = useState(false)
-
-  const onAdd =(item) =>{
-    let isPresent = false;
-    cartItems.forEach((product) => {
-      if (item.id === product.id)
-      isPresent = true;
-    })
-    if (isPresent) {
-      setWarning(true);
-      setTimeout(() => {
-        setWarning(false);
-      }, 2000)
-      return;
-    }
-    setCartItems([...cartItems, item])
+  // --------- adding item to cart -------------
+  const handleAddToCart = (product) => {
+    const updatedCart = [...cartItems,, {...product, amount: 1}];
+    setCartItems(updatedCart)
   }
 
-  const handleClick = (product, d) => {
-    let ind = -1;
-    cartItems.forEach((data, index)=>{
-      if (data.ind === product.id)
-        ind = index;
-    })
-    const tempArr = cartItems;
-    tempArr[ind] += d;
-    if (tempArr[ind].amount === 0)
-    tempArr[ind].amount = 1;
-  setCartItems([...tempArr])
-  console.log(cartItems)
-  }
-
+  // ------ local storage ---------
   // useEffect(() =>{
   //   localStorage.setItem('cartItems', JSON.stringify(cartItems))
   // }, [cartItems])
 
-
-
-  
   
   return (
     <>
       <NavBar size={cartItems.length} setToken={setToken} cookies={cookies}/>
       <Routes>
-        <Route path='/' element={<Home cartItems={cartItems} onAdd={onAdd}/>} />
+        <Route path='/' element={<Home handleAddToCart={handleAddToCart} cartItems={cartItems} />} />
         <Route path='/products:id' element={<singleSeed />} />
         <Route path='/account' element={<Accounts token={token} />} />
-        <Route path='/cart' element={<Cart handleClick={handleClick} cartItems={cartItems} setCartItems={setCartItems} onAdd={onAdd}token={token} />} />
+        <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems} token={token} />} />
         <Route path='/checkout' element={<Checkout token={token} />} />
         <Route path='/inventory' element={<Inventory token={token} />} />
         <Route path='/userdata' element={<UserData token={token} />} />
