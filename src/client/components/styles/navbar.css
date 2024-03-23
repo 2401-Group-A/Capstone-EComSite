@@ -104,3 +104,8 @@ header nav > a {
   color: #D25B35;
 }
 
+.button.badge{
+  border: none;
+  background: transparent;
+  color:black;
+}
