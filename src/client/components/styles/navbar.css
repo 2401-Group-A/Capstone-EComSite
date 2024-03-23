@@ -127,7 +127,11 @@ header nav > a {
   color: var(--terracotta);
 }
 
-@media (max-width: 850px) {
+.button.badge{
+  border: none;
+  background: transparent;
+  color:black;
+}@media (max-width: 850px) {
   .nav-header-text {
     font-size: 1.75rem;
   }

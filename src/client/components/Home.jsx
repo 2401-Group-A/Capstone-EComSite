@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './styles/Home.css';
 import { Link } from 'react-router-dom';
 
-const Home = ({ handleClick }) => {
+const Home = ({handleAddToCart}) => {
   const [products, setProducts] = useState([]);
 
   // Const for Search Bar
@@ -195,7 +195,7 @@ const Home = ({ handleClick }) => {
                       <h1 className='plant-type'>{product.planttype}</h1>
                       {/* <p className='produce-type'>{product.producetype}</p> */}
                       <p>{product.seedcount} for ${product.price}</p>
-                      <button className='add-cart-button' onClick={() => handleClick(product)}>
+                      <button className='add-cart-button' onClick={() => handleAddToCart(product)}>
                         Add to Cart
                       </button>
                     </div>
