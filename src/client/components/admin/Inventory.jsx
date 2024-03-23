@@ -40,6 +40,7 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
           <label>Edit Price: $</label>
           <input type="number" value={editablePrice} onChange={handlePriceChange} />
         </div>
+
         <button className="save-bttn" onClick={saveChanges}>Save</button>
         <button className="cancel-bttn" onClick={onClose}>Close</button>
       </div>
@@ -119,11 +120,73 @@ const Inventory = () => {
       {showAddForm && (
   <div className="add-details">
     <h2>Add New Product</h2>
-    <div className="price-change">
+
+    {/* ------------START OF ADD NEW PRODUCT DIVS ------------- */}
+    <div className="plant-type-add">
       <label>Plant Type:</label>
       <input type="text" /* Setup state and onChange handler for each field */ />
       {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
     </div>
+
+    <div className="plant-variety-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+
+    <div className="produce-type-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="mature-height-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="mature-width-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="plant-spacing-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="plant-depth-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="maturation-time-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="light-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="seed-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="price-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+    <div className="description-add">
+      <label>Plant Type:</label>
+      <input type="text" /* Setup state and onChange handler for each field */ />
+      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
+    </div>
+
+{/* ------------END OF ADD NEW PRODUCT DIVS ------------- */}
+
     <button className="save-bttn" /* onClick handler to submit new product */>Save</button>
     <button className="cancel-bttn" onClick={() => setShowAddForm(false)}>Close</button>
   </div>
