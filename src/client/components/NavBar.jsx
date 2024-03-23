@@ -17,7 +17,7 @@ export default function NavBar({ size, setShow, setToken, cookies }) {
           src='src/client/assets/icons/lsbg_logo_new.png'
           alt='Little Seed, Big Garden logo'
         />
-        <h1 className='nav-header-text'>Little Seed, BIG Garden</h1>
+        <h1 className='nav-header-text'>Little Seed, <span className='big-text'>&nbsp;BIG&nbsp;</span>Garden</h1>
       </div>
       <nav>
         <Link

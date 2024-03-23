@@ -4,7 +4,7 @@
   background-color: var(--paleGreen);
   justify-content: space-between;
   border: solid 2px var(--forrestGreen);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   height: 10vh;
 }
 
@@ -24,13 +24,18 @@ header nav > a {
   display: flex;
   align-items: center;
   color: var(--terracotta);
+  font-size: 2.25rem;
+  font-weight: 400;
 }
-
-.nav-logo{
+.big-text {
+  font-weight: 600;
+}
+.nav-logo {
+  margin-top: 0.5rem;
   max-height: 5vw;
 }
 
-.logo-and-text{
+.logo-and-text {
   display: flex;
 }
 /* Hamburger Menu Styles */
@@ -99,14 +104,14 @@ header nav > a {
 }
 
 .visible {
-  display: block; 
+  display: block;
 }
 
 /* Icon Styles General*/
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   text-decoration: none; /* Removes underline */
-  font-size: 24px; 
+  font-size: 24px;
 }
 
 /* Home icon */

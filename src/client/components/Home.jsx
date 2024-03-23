@@ -191,11 +191,11 @@ const Home = ({ handleClick }) => {
                         src={product.imgurl}
                         alt={product.planttype}
                       />
-                      <h1 className='plant-type'>{product.planttype}</h1>
                       <h1 className='plant-variety'>{product.plantvariety}</h1>
-                      <p className='produce-type'>{product.producetype}</p>
-                      <p>{product.price}</p>
-                      <button onClick={() => handleClick(product)}>
+                      <h1 className='plant-type'>{product.planttype}</h1>
+                      {/* <p className='produce-type'>{product.producetype}</p> */}
+                      <p>{product.seedcount} for ${product.price}</p>
+                      <button className='add-cart-button' onClick={() => handleClick(product)}>
                         Add to Cart
                       </button>
                     </div>
