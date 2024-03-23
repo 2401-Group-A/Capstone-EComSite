@@ -1,123 +1,141 @@
-
 /* Styles for the entire home container */
 .home-container {
-    display: flex;
-    background-color: rgba(128, 128, 128, 0.344);
-  }
-  
-  /* Styles for the filter Sidebar */
-  .filter-section {
-    width: 200px; 
-    flex-shrink: 0; /* Stops filter column from shrinking*/
-    border-right: 1px solid #2e2c2c; /* Adds light border to divide from main body */
-    padding: 20px; 
-  }
+  display: flex;
+  background-color: rgba(247, 247, 247);
+}
 
-  .reset-container {
-    /* Reset button container */
-    margin-top: 10px;
-  }
+.search-bar-input{
+  border-radius: .25rem;
+  border-color: var(--forrestGreen);
+}
+/* Styles for the filter Sidebar */
+.filter-section {
+  background-color: var(--almostWhite);
+  width: 200px;
+  flex-shrink: 0; /* Stops filter column from shrinking*/
+  border-right: 1px solid var(--soil); /* Adds light border to divide from main body */
+  padding: 20px;
+  color: var(--forrestGreen);
+}
 
-  .reset-container > button {
-    border-radius: 8px;
-  }
-  
-  /* Styles for the main content area (Seed Cards Area) */
-  .content-area {
-    flex-grow: 1; /* Allow the content area to take up the remaining space */
-    padding: 20px;
-  }
+/* Reset button container */
+.reset-container {
+  margin-top: 10px;
+}
 
-  /* Centers "Our Seeds" H1 Header */
-  .seed-title {
-    text-align: center;
-  }
+.reset-container > button {
+  border-radius: 8px;
+}
+
+/* Styles for the main content area (Seed Cards Area) */
+.content-area {
+  flex-grow: 1; /* Allow the content area to take up the remaining space */
+  padding: 20px;
+}
+
+/* Centers "Our Seeds" H1 Header */
+.seed-title {
+  text-align: center;
+  color: var(--forrestGreen);
+  font-size: 2rem;
+}
 
 /* Style for Seed Container */
-  .seed-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, auto));
-    gap: 20px; 
-  }
+.seed-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, auto));
+  gap: 20px;
+}
 
-  /* Styles for individual seed cards */
-  .seed-card {
-    border: 1px solid #ccc;
-    background-color: #3d6a30;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px; 
-    margin: auto;
-  }
+/* Styles for individual seed cards */
+.seed-card {
+  border: 1px solid #ccc;
+  background-color: var(--soil);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin: auto;
+  text-align: center;
+  min-width: 10.5rem;
+}
 
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+.single-link {
+  text-decoration: none;
+  color: var(--almostBlack);
+}
+.seed-card > button {
+  width: 100%;
+  border-radius: 8px;
+}
 
-  .product-img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    object-position: center; 
-    border-radius: 8px;
-  }
-
-  .seed-card > button {
-    width: 100%;
-    border-radius: 8px;
-  }
-
-  .seed-card:hover {
-    cursor: pointer;
-  }
+.seed-card:hover {
+  cursor: pointer;
+  box-shadow: var(--brightGreen) 0px 0px 25px;
+}
 
 .plant-variety {
+  text-align: center;
   font-size: small;
+  color: var(--almostBlack);
 }
 
 .plant-type {
+  text-align: center;
   font-size: x-large;
+  margin-top: .5rem;
+  color: var(--almostBlack);
 }
 
 .produce-type {
   font-size: small;
 }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .home-container {
-      flex-direction: column; /* Stack the filter and content sections on smaller screens */
-    }
-  
-    .filter-section,
-    .content-area {
-      width: auto; /* Allow sections to fill the width on smaller screens */
-      border-right: none; /* Remove the vertical border */
-      padding: 20px;
-    }
-  
-    .filter-section {
-      border-bottom: 1px solid #ddd; /* Add a border to the bottom for the filter section */
+.add-cart-button {
+  background-color: var(--terracotta);
+  color: var(--almostBlack);
+  border: none;
+}
+.add-cart-button:hover{
+  background-color: var(--paleGreen);
+  color: var(--terracotta);
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column; /* Stack the filter and content sections on smaller screens */
+  }
 
-      display: grid;
-      gap: 20px; /* Adjust the gap between grid items if needed */
+  .filter-section,
+  .content-area {
+    width: auto; /* Allow sections to fill the width on smaller screens */
+    border-right: none; /* Remove the vertical border */
+    padding: 20px;
+  }
 
-    }
-  
-    .content-area {
-      padding-top: 0; /* Remove extra padding at the top of content area when stacked */
-    }
+  .filter-section {
+    border-bottom: 1px solid #ddd; /* Add a border to the bottom for the filter section */
 
+    display: grid;
+    gap: 20px; /* Adjust the gap between grid items if needed */
+  }
 
+  .content-area {
+    padding-top: 0; /* Remove extra padding at the top of content area when stacked */
+  }
 
-
-     /* Adjustments for the filter items to make them fit better in the grid */
-  .filter-section h3, 
+  /* Adjustments for the filter items to make them fit better in the grid */
+  .filter-section h3,
   .filter-section div {
-    margin: 0; 
+    margin: 0;
   }
 
-  .filter-section input[type="range"] {
-    width: 100%; 
+  .filter-section input[type='range'] {
+    width: 100%;
   }
-
-  }
-  
-  
+}

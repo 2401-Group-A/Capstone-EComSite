@@ -4,3 +4,26 @@ text-align: center;
 li {
 list-style: none    ;
 }
+body{
+    /* Almost white */
+    background-color: var(--almostWhite);
+}
+.account-greeting{
+    background-color: var(--paleGreen);
+    border: 2px solid var(--brightGreen);
+    border-radius: .25rem;
+}
+.shipping-container{
+    background-color: var(--paleGreen);
+    border-radius: .25rem;
+}
+.orders-container{
+    background-color: var(--paleGreen);
+    border-radius: .25rem;
+}
+h1{
+    color: var(--almostBlack);
+}
+/* button{
+width: fit-content;
+} */

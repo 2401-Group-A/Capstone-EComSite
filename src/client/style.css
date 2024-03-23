@@ -6,7 +6,11 @@
   --paleGreen: #DCF1D6;
   --terracotta: #D25B35;
   --brightGreen: #81D144;
+  --almostWhite: rgb(247, 247, 247);
+  --almostBlack: rgb(17, 17, 17);
   /* Fonts */
+
+  /* Body Font */
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -14,7 +18,21 @@
   font-variation-settings:
     "wdth" 100;
 }
-
+h1{
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+h2{
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+h3{
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
 
 .App {
   display: flex;

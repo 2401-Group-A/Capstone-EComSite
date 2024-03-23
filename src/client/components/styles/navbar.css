@@ -3,6 +3,9 @@
   display: flex;
   background-color: var(--paleGreen);
   justify-content: space-between;
+  border: solid 2px var(--forrestGreen);
+  border-radius: 0.25rem;
+  height: 10vh;
 }
 
 header nav {
@@ -17,12 +20,24 @@ header nav > a {
 }
 
 /* Logo Style */
-.nav-logo {
+.nav-header-text {
   display: flex;
   align-items: center;
   color: var(--terracotta);
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+.big-text {
+  font-weight: 600;
+}
+.nav-logo {
+  margin-top: 0.5rem;
+  max-height: 5vw;
 }
 
+.logo-and-text {
+  display: flex;
+}
 /* Hamburger Menu Styles */
 .burger-container {
   display: flex;
@@ -43,18 +58,18 @@ header nav > a {
   width: 2rem;
   height: 0.2rem;
   border-radius: 0.5em;
-  background-color: #D25B35;
+  background-color: var(--terracotta);
 }
 
 /* Dropdown Menu Styles */
 .menu {
   display: none;
-  background-color: #DCF1D6;
+  background-color: var(--paleGreen);
   margin-top: 32px;
   margin-left: 7.8px;
-  position: absolute;
-  top: 55px;
-  left: 0;
+  position: relative;
+  top: 6rem;
+  left: -4.5rem;
   width: 10rem; /* width of dropdown */
   z-index: 100;
   border-bottom-left-radius: 8px;
@@ -66,16 +81,21 @@ header nav > a {
   padding: 10px 20px;
   text-align: center;
   background: none;
-  border: none;
-  border-bottom: 1px solid #D25B35;
+  /* border: none; */
+  border-right: 1px solid var(--forrestGreen);
+  border-left: 1px solid var(--forrestGreen);
+  border-top: 1px solid var(--forrestGreen);
+  color: var(--terracotta);
 }
 
 .menu button:hover {
-  background-color: #3d6a304d;
+  background-color: #3d6a3024;
+  border: 1px solid var(--brightGreen);
 }
 
 .menu button:last-child {
-  border-bottom: none;
+  /* border-bottom: none; */
+  border-bottom: 1px solid var(--forrestGreen);
 }
 
 /* Visibility Classes */
@@ -84,23 +104,22 @@ header nav > a {
 }
 
 .visible {
-  display: block; 
+  display: block;
 }
 
 /* Icon Styles General*/
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   text-decoration: none; /* Removes underline */
-  font-size: 24px; 
+  font-size: 24px;
 }
 
 /* Home icon */
 .home-icon {
-  color: #D25B35;
+  color: var(--terracotta);
 }
 
 /* Cart icon */
 .cart-icon {
-  color: #D25B35;
+  color: var(--terracotta);
 }
-
