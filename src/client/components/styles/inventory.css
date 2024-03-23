@@ -53,10 +53,15 @@
     background-color: #3d6a30;
   }
   
+
+
   /* Single Product Style */
 .details-container {
   width: 55rem; 
 }
+
+
+
 .product-image {
   height: 30rem;
   border-radius: 8px;
@@ -77,14 +82,11 @@
   margin-top: 20px;
 }
 
-.price-change, .seed-change {
+.price-change {
   display: flex;
   align-items: center;
   margin-top: 10px;
-}
-
-.price-change label, .seed-change label {
-  margin-right: 10px;
+  margin-bottom: 15px;
 }
 
 input[type="number"] {
@@ -129,4 +131,10 @@ input[type="number"] {
 
 .save-bttn:hover{
   background-color: #3d6a30;
+}
+
+
+/* Edits to fix content shits of edit item switch */
+.product-details, .details-container {
+  align-items: flex-start; 
 }
