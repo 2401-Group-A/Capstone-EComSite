@@ -55,7 +55,7 @@ const Register = ({ token, setToken, cookies }) => {
       setCity('');
       setState('');
       setZipcode('');
-      return result
+      return result;
     } catch (err) {
       console.error(`Error during registration: ${err}`);
       setMessage(err.message);
@@ -76,14 +76,13 @@ const Register = ({ token, setToken, cookies }) => {
     };
     try {
       const user = await registerUser(payload);
-      console.log(user)
+      console.log(user);
       cookies.set('login_token', user.token);
       setToken(user.token);
       navigate('/account');
     } catch (err) {
       throw err;
     }
-
   }
 
   return (
@@ -172,9 +171,13 @@ const Register = ({ token, setToken, cookies }) => {
         </div>
         <div className='form-footer'>
           <Link to='/login' className='register-route'>
-            Already have an account? Login
+            <button className='register-buttons'>
+              or <br /> Login Here
+            </button>
           </Link>
-          <button type='submit'>Register</button>
+          <button className='register-buttons' type='submit'>
+            Register
+          </button>
         </div>
       </form>
       <p>{message}</p>

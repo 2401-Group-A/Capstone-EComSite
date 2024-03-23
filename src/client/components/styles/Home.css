@@ -4,8 +4,8 @@
   background-color: rgba(247, 247, 247);
 }
 
-.search-bar-input{
-  border-radius: .25rem;
+.search-bar-input {
+  border-radius: var(--radiusStandard);
   border-color: var(--forrestGreen);
 }
 /* Styles for the filter Sidebar */
@@ -24,7 +24,7 @@
 }
 
 .reset-container > button {
-  border-radius: 8px;
+  border-radius: var(--radiusStandard);
 }
 
 /* Styles for the main content area (Seed Cards Area) */
@@ -51,7 +51,7 @@
 .seed-card {
   border: 1px solid #ccc;
   background-color: var(--soil);
-  border-radius: 8px;
+  border-radius: var(--radiusStandard);
   padding: 10px;
   margin-bottom: 10px;
   margin: auto;
@@ -64,7 +64,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 8px;
+  border-radius: var(--radiusStandard);
 }
 .single-link {
   text-decoration: none;
@@ -72,7 +72,7 @@
 }
 .seed-card > button {
   width: 100%;
-  border-radius: 8px;
+  border-radius: var(--radiusStandard);
 }
 
 .seed-card:hover {
@@ -89,7 +89,7 @@
 .plant-type {
   text-align: center;
   font-size: x-large;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   color: var(--almostBlack);
 }
 
@@ -100,8 +100,10 @@
   background-color: var(--terracotta);
   color: var(--almostBlack);
   border: none;
+  width: 6.25rem;
+  height: 2.5rem;
 }
-.add-cart-button:hover{
+.add-cart-button:hover {
   background-color: var(--paleGreen);
   color: var(--terracotta);
 }

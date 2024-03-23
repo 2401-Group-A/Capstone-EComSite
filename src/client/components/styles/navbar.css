@@ -4,7 +4,7 @@
   background-color: var(--paleGreen);
   justify-content: space-between;
   border: solid 2px var(--forrestGreen);
-  border-radius: 0.25rem;
+  border-radius: var(--radiusStandard);
   height: 10vh;
 }
 
@@ -26,7 +26,6 @@ header nav > a {
   color: var(--terracotta);
   font-size: 2.25rem;
   font-weight: 400;
-  /* z-index: 0; */
 }
 .big-text {
   font-weight: 600;
@@ -59,7 +58,7 @@ header nav > a {
 .burger-bar {
   width: 2rem;
   height: 0.2rem;
-  border-radius: 0.5em;
+  border-radius: var(--radiusStandard);
   background-color: var(--terracotta);
 }
 
@@ -75,30 +74,31 @@ header nav > a {
   left: -4.5rem;
   width: 10rem; /* width of dropdown */
   z-index: 10;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: var(--radiusStandard);
+  border-bottom-right-radius: var(--radiusStandard);
 }
 
-.menu button {
+.menu-button {
   width: 100%;
-  padding: 10px 20px;
+  height: 2.3rem;
   text-align: center;
   background: none;
-  /* border: none; */
   border-right: 1px solid var(--forrestGreen);
   border-left: 1px solid var(--forrestGreen);
   border-top: 1px solid var(--forrestGreen);
+  border-bottom: none;
   color: var(--terracotta);
 }
 
-.menu button:hover {
+.menu-button:hover {
   background-color: #3d6a3024;
   border: 1px solid var(--brightGreen);
 }
 
-.menu button:last-child {
-  /* border-bottom: none; */
+.menu-button:last-child {
   border-bottom: 1px solid var(--forrestGreen);
+  border-bottom-left-radius: var(--radiusStandard);
+  border-bottom-right-radius: var(--radiusStandard);
 }
 
 /* Visibility Classes */
@@ -126,33 +126,29 @@ header nav > a {
 .cart-icon {
   color: var(--terracotta);
 }
-/* @media (max-width:1000px) {
-  .nav-header-text{
-    font-size: 2rem ;
-  } */
-/* } */
-@media (max-width:850px) {
-  .nav-header-text{
-    font-size: 1.75rem ;
+
+@media (max-width: 850px) {
+  .nav-header-text {
+    font-size: 1.75rem;
   }
 }
-@media (max-width:750px) {
-  .nav-header-text{
-    font-size: 1.25rem ;
+@media (max-width: 750px) {
+  .nav-header-text {
+    font-size: 1.25rem;
   }
 }
-@media (max-width:650px) {
-  .nav-header-text{
-    font-size: 1rem ;
+@media (max-width: 650px) {
+  .nav-header-text {
+    font-size: 1rem;
   }
 }
-@media (max-width:600px) {
-  .nav-header-text{
-    font-size: .79rem ;
+@media (max-width: 600px) {
+  .nav-header-text {
+    font-size: 0.79rem;
   }
 }
-@media (max-width:375px) {
-  .nav-header-text{
-    font-size: .72rem ;
+@media (max-width: 375px) {
+  .nav-header-text {
+    font-size: 0.72rem;
   }
 }
