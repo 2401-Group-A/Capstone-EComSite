@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import "./styles/Account.css"
+import './styles/Account.css';
 const Account = ({ token }) => {
   const [profile, setProfile] = useState({});
   const [orders, setOrders] = useState([]);
@@ -56,30 +56,46 @@ const Account = ({ token }) => {
   }, []);
 
   if (!token) {
-    return <div>You are not logged in. Please log in to view your account</div>;
+    return (
+      <div className='not-logged-container'>
+        <h1>
+          You are not logged in. <br />
+          Please log in or create an account.
+        </h1>
+      </div>
+    );
   }
 
   return (
-    <main>
-      <h1>
-        Welcome back to <i>Little Seed, Big Garden</i> {profile.firstname}!
-      </h1>
-      <h2>Your shipping address is:</h2>
-      <ul>
-        <li>
-          Name: {profile.firstname} {profile.lastname}
-        </li>
-        <li>Street Address: {profile.address}</li>
-        <li>City: {profile.city}</li>
-        <li>State: {profile.state}</li>
-        <li>Zip Code:{profile.zipcode}</li>
-        <li>Email: {profile.email}</li>
-        {/* This button is currently non-functional */}
-        <button>Edit Information (Not Active)</button>
-      </ul>
-      <div>
-        <h2>Your past orders:</h2>
-        {/* {
+    <main className='profile-container'>
+      <div className='account-greeting'>
+        <h1>
+          Welcome back to <i>Little Seed, BIG Garden</i> {profile.firstname}!
+        </h1>
+      </div>
+      <div className='shipping-orders-container'>
+        <div className='shipping-container'>
+          <h2>Your shipping address:</h2>
+          <ul className='user-address'>
+            <li>
+            <b>Name:</b> {profile.firstname} {profile.lastname}
+            </li>
+            
+            <li><b>Street Address:</b> {profile.address}</li>
+            <li><b>City:</b> {profile.city}</li>
+            <li><b>State:</b> {profile.state}</li>
+            <li><b>Zip Code: </b>{profile.zipcode}</li>
+            <li><b>Email:</b> {profile.email}</li>
+            {/* This button is currently non-functional */}
+            {/* <button c>
+            Edit <br />
+            (Not Active)
+          </button> */}
+          </ul>
+        </div>
+        <div className='orders-container'>
+          <h2>Your past orders:</h2>
+          {/* {
         orders.map((order) => {
             return (
               <article key={order.id}>
@@ -90,6 +106,7 @@ const Account = ({ token }) => {
           
         })
         } */}
+        </div>
       </div>
     </main>
   );

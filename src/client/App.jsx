@@ -14,8 +14,12 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Cookies from 'universal-cookie';
 
+
+// const cartFromLocalStorage = JSON.parse(localStorage.getItem('cartItems') || '[]')
+
 function App() {
   const [token, setToken] = useState(null);
+  const [cartItems, setCartItems] = useState([])
 
   const cookies = new Cookies();
   useEffect(() => {
@@ -25,30 +29,26 @@ function App() {
     }
   }, []);
 
-  // show and cart are part of add to cart function
-  const [show, setShow] = useState(true);
-  const [cart, setCart] = useState([]);
+  // --------- adding item to cart -------------
+  const handleAddToCart = (product) => {
+    const updatedCart = [...cartItems, {...product, amount: 1}];
+    setCartItems(updatedCart)
+  }
 
-  // add to cart handle click
-  const handleClick = (item) => {
-    let isPresent = false;
-    cart.forEach((product) => {
-      if (item.id === product.id) isPresent = true;
-    });
-    if (isPresent) return;
-    setCart([...cart, item]);
-  };
+  // ------ local storage ---------
+  // useEffect(() =>{
+  //   localStorage.setItem('cartItems', JSON.stringify(cartItems))
+  // }, [cartItems])
+
+  
   return (
     <>
-      <NavBar size={cart.length} setShow={setShow} setToken={setToken} cookies={cookies}/>
-      {/* {
-        show ? <Home handleClick={handleClick}/> : <Cart cart={cart} setCart={setCart}/>
-      } */}
+      <NavBar size={cartItems.length} setToken={setToken} cookies={cookies}/>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home handleAddToCart={handleAddToCart} cartItems={cartItems} />} />
         <Route path='/products/:id' element={<SingleProduct />} />
         <Route path='/account' element={<Accounts token={token} />} />
-        <Route path='/cart' element={<Cart token={token} />} />
+        <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems} token={token} />} />
         <Route path='/checkout' element={<Checkout token={token} />} />
         <Route path='/inventory' element={<Inventory token={token} />} />
         <Route path='/userdata' element={<UserData token={token} />} />

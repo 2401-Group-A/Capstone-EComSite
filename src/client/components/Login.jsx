@@ -22,13 +22,13 @@ const Login = ({ token, setToken, cookies }) => {
     login();
   };
 
-useEffect(()=>{
-  if(token) {
-    setTimeout(function (){
-      navigate('/account')
-    }, 1000)
-  }
-}, [])
+  useEffect(() => {
+    if (token) {
+      setTimeout(function () {
+        navigate('/account');
+      }, 1000);
+    }
+  }, []);
 
   const login = async () => {
     try {
@@ -47,17 +47,16 @@ useEffect(()=>{
       if (!response.ok) {
         throw result;
       }
-      cookies.set('login_token', result.token)
-      setToken(result.token)
+      cookies.set('login_token', result.token);
+      setToken(result.token);
       setMessage(result.message);
       setEmail('');
       setPassword('');
-      navigate('/account')
+      navigate('/account');
     } catch (err) {
       console.error(`${err.name}: ${err.message}`);
     }
   };
-
 
   return (
     <div className='login-container'>
@@ -89,9 +88,13 @@ useEffect(()=>{
         {/* Buttons */}
         <div className='form-footer'>
           <Link to='/register' className='register-route'>
-            <button type='button'>Sign-up</button>
+            <button type='button' className='login-buttons'>
+              No Account? Register Here
+            </button>
           </Link>
-          <button type='submit'>Login</button>
+          <button type='submit' className='login-buttons'>
+            Login
+          </button>
         </div>
       </form>
       <p>{message}</p>

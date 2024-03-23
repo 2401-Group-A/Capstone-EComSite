@@ -1,27 +1,45 @@
-
-:root{
-  /* Colors */
-  --forrestGreen: #3d6a30;
-  --soil: #BC8B6D;
-  --paleGreen: #DCF1D6;
-  --terracotta: #D25B35;
-  --brightGreen: #81D144;
-  /* Fonts */
-  font-family: "Open Sans", sans-serif;
+:root {
+  /* Body Font */
+  font-family: 'Open Sans', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
+  font-variation-settings: 'wdth' 100;
 
+  /* Colors */
+  --forrestGreen: #3d6a30;
+  --soil: #bc8b6d;
+  --paleGreen: #dcf1d6;
+  --terracotta: #d25b35;
+  --brightGreen: #81d144;
+  --almostWhite: rgb(247, 247, 247);
+  --almostBlack: rgb(17, 17, 17);
+
+  /* Other Styling Standards */
+  --radiusStandard: 0.25rem;
+}
+h1 {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-style: normal;
+}
+h2 {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-style: normal;
+}
+h3 {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-style: normal;
+}
 
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .App-header {
@@ -29,8 +47,9 @@
   font-size: 24px;
 }
 
-#comp-img{
+#comp-img {
   width: 250px;
 }
-
-/* Add more styling for other elements if needed */
+body {
+  background-color: var(--almostWhite);
+}
