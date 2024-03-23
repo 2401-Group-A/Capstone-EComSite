@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Inventory.css";
 
+const DEFAULT_IMAGE_URL = "/client/assets/plants/placeholder.jpg";
+
+
 const Row = ({ product, onEdit }) => (
   <tr className="row">
     <td className="cell">{`${product.plantvariety}, ${product.planttype}`}</td>
@@ -128,7 +131,7 @@ const Inventory = () => {
       plantingDepth: newPlantingDepth,
       maturationTime: newMaturationTime,
       lightRequirements: newLightRequirements,
-      imgUrl: newImgUrl,
+      imgUrl: newImgUrl || DEFAULT_IMAGE_URL, // Uses default img const at top 
       seedCount: newSeedCount,
       price: newPrice,
       plantDescription: newPlantDescription,
@@ -193,7 +196,7 @@ const Inventory = () => {
                 onChange={(e) => setNewPlantType(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Plant Type
+                  Plant Type
                 </option>
                 <option value="Basil">Basil</option>
                 <option value="Cilantro">Cilantro</option>
@@ -230,7 +233,7 @@ const Inventory = () => {
                 onChange={(e) => setNewProduceType(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Produce Type
+                  Produce Type
                 </option>
                 <option value="Herb">Herb</option>
                 <option value="Vegetable">Vegetable</option>
@@ -243,7 +246,7 @@ const Inventory = () => {
                 onChange={(e) => setNewMatureHeight(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Mature Height
+                  Mature Height
                 </option>
                 <option value="6-8 inches">6-8 inches</option>
                 <option value="8-12 inches">8-12 inches</option>
@@ -266,7 +269,7 @@ const Inventory = () => {
                 onChange={(e) => setNewMatureWidth(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Mature Width
+                  Mature Width
                 </option>
                 <option value="2-3 inches">2-3 inches</option>
                 <option value="3-4 inches">3-4 inches</option>
@@ -287,7 +290,7 @@ const Inventory = () => {
                 onChange={(e) => setNewPlantSpacing(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Plant Spacing
+                  Plant Spacing
                 </option>
                 <option value="2-3 inches">2-3 inches</option>
                 <option value="2-3 inches (single row), 6-8 inches (double row)">
@@ -315,7 +318,7 @@ const Inventory = () => {
                 onChange={(e) => setNewPlantingDepth(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Planting Depth
+                  Planting Depth
                 </option>
                 <option value="¼ inch">¼ inch</option>
                 <option value="¼ - ½ inch">¼ - ½ inch</option>
@@ -335,7 +338,7 @@ const Inventory = () => {
                 onChange={(e) => setNewMaturationTime(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Maturation Time
+                  Maturation Time
                 </option>
                 <option value="3-4 weeks">3-4 weeks</option>
                 <option value="4-6 weeks">4-6 weeks</option>
@@ -357,14 +360,22 @@ const Inventory = () => {
                 <option value="100-120 days">100-120 days</option>
               </select>
             </div>
-            
+
             <div className="input-change">
               <label>Light Requirements:</label>
-              <input
-                type="text"
+              <select
                 value={newLightRequirements}
                 onChange={(e) => setNewLightRequirements(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Light Requirements
+                </option>
+                <option value="Full Sun">Full Sun</option>
+                <option value="Full to Part Sun">Full to Part Sun</option>
+                <option value="Full Sun to Part Shade">
+                  Full Sun to Part Shade
+                </option>
+              </select>
             </div>
             <div className="input-change">
               <label>Image URL:</label>
@@ -374,14 +385,22 @@ const Inventory = () => {
                 onChange={(e) => setNewImgUrl(e.target.value)}
               />
             </div>
+
             <div className="input-change">
               <label>Seed Count:</label>
-              <input
-                type="number"
+              <select
                 value={newSeedCount}
                 onChange={(e) => setNewSeedCount(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Seed Count
+                </option>
+                <option value="300 Seeds">300 Seeds</option>
+                <option value="500 Seeds">500 Seeds</option>
+                <option value="800 Seeds">800 Seeds</option>
+              </select>
             </div>
+
             <div className="input-change">
               <label>Price:</label>
               <input
