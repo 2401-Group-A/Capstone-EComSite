@@ -7,9 +7,10 @@
   
   /* Styles for the filter Sidebar */
   .filter-section {
+    background-color: var(--almostWhite);
     width: 200px; 
     flex-shrink: 0; /* Stops filter column from shrinking*/
-    border-right: 1px solid #2e2c2c; /* Adds light border to divide from main body */
+    border-right: 1px solid var(--soil); /* Adds light border to divide from main body */
     padding: 20px; 
   }
 
@@ -43,7 +44,7 @@
   /* Styles for individual seed cards */
   .seed-card {
     border: 1px solid #ccc;
-    background-color: #3d6a30;
+    background-color: var(--soil);
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px; 
@@ -58,7 +59,9 @@
     object-position: center; 
     border-radius: 8px;
   }
-
+.single-link{
+  text-decoration: none;
+}
   .seed-card > button {
     width: 100%;
     border-radius: 8px;
@@ -69,10 +72,12 @@
   }
 
 .plant-variety {
+  text-align: center;
   font-size: small;
 }
 
 .plant-type {
+  text-align: center;
   font-size: x-large;
 }
 
