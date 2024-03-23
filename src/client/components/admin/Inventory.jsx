@@ -198,6 +198,8 @@ const Inventory = () => {
         </button>
       </div>
 
+      {/* Add product container and inputs */}
+
       {showAddForm && (
         <div className="product-add">
           <h2>Add New Product</h2>
