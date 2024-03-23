@@ -16,7 +16,6 @@ const Row = ({ product, onEdit }) => (
   </tr>
 );
 
-// Single Products Function
 const SingleProductView = ({ product, onSaveChanges, onClose }) => {
   const [editablePrice, setEditablePrice] = useState(product.price);
 
@@ -28,34 +27,58 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
     onSaveChanges(product.id, editablePrice);
   };
 
-// ON EDIT CONTAINER 
   return (
     <div className="product-details">
-      <img className="product-image" src={product.imgurl} alt={`${product.plantvariety}`} />
+      <img
+        className="product-image"
+        src={product.imgurl}
+        alt={`${product.plantvariety}`}
+      />
       <div className="product-details-list">
         <h2>Variety: {product.plantvariety}</h2>
         <h2>Type: {product.planttype}</h2>
         <p>Current Price: ${product.price}</p>
         <div className="price-change">
           <label>Edit Price: $</label>
-          <input type="number" value={editablePrice} onChange={handlePriceChange} />
+          <input
+            type="number"
+            value={editablePrice}
+            onChange={handlePriceChange}
+          />
         </div>
-
-        <button className="save-bttn" onClick={saveChanges}>Save</button>
-        <button className="cancel-bttn" onClick={onClose}>Close</button>
+        <button className="save-bttn" onClick={saveChanges}>
+          Save
+        </button>
+        <button className="cancel-bttn" onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );
 };
 
-
 // Full Inventory Function
 const Inventory = () => {
   const [products, setProducts] = useState([]);
-  // Edit Products const
   const [selectedProduct, setSelectedProduct] = useState(null);
-  // New product const
   const [showAddForm, setShowAddForm] = useState(false);
+
+  // States for new product attributes
+  const [newPlantType, setNewPlantType] = useState("");
+  const [newPlantVariety, setNewPlantVariety] = useState("");
+  const [newProduceType, setNewProduceType] = useState("");
+  const [newMatureHeight, setNewMatureHeight] = useState("");
+  const [newMatureWidth, setNewMatureWidth] = useState("");
+  const [newPlantSpacing, setNewPlantSpacing] = useState("");
+  const [newPlantingDepth, setNewPlantingDepth] = useState("");
+  const [newMaturationTime, setNewMaturationTime] = useState("");
+  const [newLightRequirements, setNewLightRequirements] = useState("");
+  const [newImgUrl, setNewImgUrl] = useState("");
+  const [newSeedCount, setNewSeedCount] = useState("");
+  const [newPrice, setNewPrice] = useState("");
+  const [newPlantDescription, setNewPlantDescription] = useState("");
+  const [newPlantingInstructions, setNewPlantingInstructions] = useState("");
+  // End of new product states
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -86,16 +109,52 @@ const Inventory = () => {
 
   const handleSaveChanges = (id, price) => {
     console.log("Saving changes for product", id, "with new price", price);
-    // Include your API call here to save the new price to the database
+    // API call to save changes here
   };
 
   const handleClose = () => {
-    setSelectedProduct(null); // This will close the details-container
+    setSelectedProduct(null); // Close the product edit view
   };
 
+  const handleAddNewProduct = async () => {
+    // New Product data
+    const newProductData = {
+      plantType: newPlantType,
+      plantVariety: newPlantVariety,
+      produceType: newProduceType,
+      matureHeight: newMatureHeight,
+      matureWidth: newMatureWidth,
+      plantSpacing: newPlantSpacing,
+      plantingDepth: newPlantingDepth,
+      maturationTime: newMaturationTime,
+      lightRequirements: newLightRequirements,
+      imgUrl: newImgUrl,
+      seedCount: newSeedCount,
+      price: newPrice,
+      plantDescription: newPlantDescription,
+      plantingInstructions: newPlantingInstructions,
+    };
 
+    try {
+      const response = await fetch("http://localhost:3000/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProductData),
+      });
 
-// Full Inventory of Products Container
+      if (!response.ok) {
+        throw new Error("Failed to add new product");
+      }
+      await fetchProducts();
+      setShowAddForm(false); // Hides form after successful submission
+    } catch (error) {
+      console.error("Error adding new product:", error);
+    }
+  };
+
+  // Inventory Container
   return (
     <div className="inventory-layout">
       <div className="inventory-container">
@@ -114,87 +173,170 @@ const Inventory = () => {
             ))}
           </tbody>
         </table>
-        <button className="add-new-product-btn" onClick={() => setShowAddForm(true)}>Add Product</button>
+        <button
+          className="add-new-product-btn"
+          onClick={() => setShowAddForm(true)}
+        >
+          Add Product
+        </button>
       </div>
 
       {showAddForm && (
-  <div className="add-details">
-    <h2>Add New Product</h2>
+        <div className="product-add">
+          <h2>Add New Product</h2>
+          <div className="product-add-list">
+            {/* Example input for new plant type */}
+            <div className="input-change">
+              <label>Plant Type:</label>
+              <select
+                value={newPlantType}
+                onChange={(e) => setNewPlantType(e.target.value)}
+              >
+                <option value="Basil">Basil</option>
+                <option value="Cilantro">Cilantro</option>
+                <option value="Mint">Mint</option>
+                <option value="Oregano">Oregano</option>
+                <option value="Parsley">Parsley</option>
+                <option value="Spinach">Spinach</option>
+                <option value="Arugula">Arugula</option>
+                <option value="Pea">Pea</option>
+                <option value="Lettuce">Lettuce</option>
+                <option value="Cabbage">Cabbage</option>
+                <option value="Radish">Radish</option>
+                <option value="Tomato">Tomato</option>
+                <option value="Pepper">Pepper</option>
+                <option value="Cucumber">Cucumber</option>
+                <option value="Onion">Onion</option>
+                <option value="Zucchini">Zucchini</option>
+                <option value="Bean">Bean</option>
+                <option value="Carrot">Carrot</option>
+              </select>
+            </div>
+            <div className="input-change">
+              <label>Plant Variety:</label>
+              <input
+                type="text"
+                value={newPlantVariety}
+                onChange={(e) => setNewPlantVariety(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Produce Type:</label>
+              <input
+                type="text"
+                value={newProduceType}
+                onChange={(e) => setNewProduceType(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Mature Height:</label>
+              <input
+                type="text"
+                value={newMatureHeight}
+                onChange={(e) => setNewMatureHeight(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Mature Width:</label>
+              <input
+                type="text"
+                value={newMatureWidth}
+                onChange={(e) => setNewMatureWidth(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Plant Spacing:</label>
+              <input
+                type="text"
+                value={newPlantSpacing}
+                onChange={(e) => setNewPlantSpacing(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Planting Depth:</label>
+              <input
+                type="text"
+                value={newPlantingDepth}
+                onChange={(e) => setNewPlantingDepth(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Maturation Time:</label>
+              <input
+                type="text"
+                value={newMaturationTime}
+                onChange={(e) => setNewMaturationTime(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Light Requirements:</label>
+              <input
+                type="text"
+                value={newLightRequirements}
+                onChange={(e) => setNewLightRequirements(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Image URL:</label>
+              <input
+                type="text"
+                value={newImgUrl}
+                onChange={(e) => setNewImgUrl(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Seed Count:</label>
+              <input
+                type="number"
+                value={newSeedCount}
+                onChange={(e) => setNewSeedCount(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Price:</label>
+              <input
+                type="number"
+                value={newPrice}
+                onChange={(e) => setNewPrice(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Plant Description:</label>
+              <textarea
+                value={newPlantDescription}
+                onChange={(e) => setNewPlantDescription(e.target.value)}
+              />
+            </div>
+            <div className="input-change">
+              <label>Planting Instructions:</label>
+              <textarea
+                value={newPlantingInstructions}
+                onChange={(e) => setNewPlantingInstructions(e.target.value)}
+              />
+            </div>
 
-    {/* ------------START OF ADD NEW PRODUCT DIVS ------------- */}
-    <div className="plant-type-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
+            {/* End of inputs */}
 
-    <div className="plant-variety-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
+            <button className="save-bttn" onClick={handleAddNewProduct}>
+              Save
+            </button>
+            <button
+              className="cancel-bttn"
+              onClick={() => setShowAddForm(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
-    <div className="produce-type-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="mature-height-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="mature-width-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="plant-spacing-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="plant-depth-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="maturation-time-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="light-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="seed-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="price-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-    <div className="description-add">
-      <label>Plant Type:</label>
-      <input type="text" /* Setup state and onChange handler for each field */ />
-      {/* Repeat for other product attributes like plantvariety, producttype, etc. */}
-    </div>
-
-{/* ------------END OF ADD NEW PRODUCT DIVS ------------- */}
-
-    <button className="save-bttn" /* onClick handler to submit new product */>Save</button>
-    <button className="cancel-bttn" onClick={() => setShowAddForm(false)}>Close</button>
-  </div>
-)}
-      {/* ------------Single Product View Edit bttn */}
       {selectedProduct && (
         <div className="details-container">
-          <SingleProductView product={selectedProduct} onSaveChanges={handleSaveChanges} onClose={handleClose} />
+          <SingleProductView
+            product={selectedProduct}
+            onSaveChanges={handleSaveChanges}
+            onClose={handleClose}
+          />
         </div>
       )}
     </div>

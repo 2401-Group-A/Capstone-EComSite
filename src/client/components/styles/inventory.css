@@ -147,4 +147,39 @@ input[type="number"] {
 
 
 
-/* Add Products Style */
+/* ------ Add Products Style-------*/
+.product-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.product-add-list {
+  margin-top: 20px;
+}
+
+.input-change {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.input-change > label {
+  /* Price input alings with close button */
+  margin-right: 1.5rem;
+}
+
+input[type="text"] {
+  /* Add this for each type of input */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100px;
+  margin-right: 10px;
+}
