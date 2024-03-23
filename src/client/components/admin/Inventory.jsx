@@ -204,14 +204,13 @@ const Inventory = () => {
         <div className="product-add">
           <h2>Add New Product</h2>
           <div className="product-add-list">
-            {/* Example input for new plant type */}
             <div className="input-change">
               <label>Plant Type:</label>
               <select
                 value={newPlantType}
                 onChange={(e) => setNewPlantType(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Plant Type
                 </option>
                 <option value="Basil">Basil</option>
@@ -248,7 +247,7 @@ const Inventory = () => {
                 value={newProduceType}
                 onChange={(e) => setNewProduceType(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Produce Type
                 </option>
                 <option value="Herb">Herb</option>
@@ -261,7 +260,7 @@ const Inventory = () => {
                 value={newMatureHeight}
                 onChange={(e) => setNewMatureHeight(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Mature Height
                 </option>
                 <option value="6-8 inches">6-8 inches</option>
@@ -284,7 +283,7 @@ const Inventory = () => {
                 value={newMatureWidth}
                 onChange={(e) => setNewMatureWidth(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Mature Width
                 </option>
                 <option value="2-3 inches">2-3 inches</option>
@@ -305,7 +304,7 @@ const Inventory = () => {
                 value={newPlantSpacing}
                 onChange={(e) => setNewPlantSpacing(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Plant Spacing
                 </option>
                 <option value="2-3 inches">2-3 inches</option>
@@ -333,7 +332,7 @@ const Inventory = () => {
                 value={newPlantingDepth}
                 onChange={(e) => setNewPlantingDepth(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Planting Depth
                 </option>
                 <option value="¼ inch">¼ inch</option>
@@ -353,7 +352,7 @@ const Inventory = () => {
                 value={newMaturationTime}
                 onChange={(e) => setNewMaturationTime(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Maturation Time
                 </option>
                 <option value="3-4 weeks">3-4 weeks</option>
@@ -383,7 +382,7 @@ const Inventory = () => {
                 value={newLightRequirements}
                 onChange={(e) => setNewLightRequirements(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Light Requirements
                 </option>
                 <option value="Full Sun">Full Sun</option>
@@ -399,7 +398,7 @@ const Inventory = () => {
                 value={newImgUrl}
                 onChange={(e) => setNewImgUrl(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Select Image
                 </option>
                 <option value={DEFAULT_IMAGE_URL}>Placeholder Image</option>
@@ -412,7 +411,7 @@ const Inventory = () => {
                 value={newSeedCount}
                 onChange={(e) => setNewSeedCount(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Seed Count
                 </option>
                 <option value="300 Seeds">300 Seeds</option>
@@ -463,6 +462,12 @@ const Inventory = () => {
         </div>
       )}
 
+
+
+
+
+
+{/* Edit product View  */}
       {selectedProduct && (
         <div className="details-container">
           <SingleProductView
