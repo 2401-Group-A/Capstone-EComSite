@@ -53,10 +53,13 @@
     background-color: #3d6a30;
   }
   
+
+
   /* Single Product Style */
 .details-container {
   width: 55rem; 
 }
+
 .product-image {
   height: 30rem;
   border-radius: 8px;
@@ -71,20 +74,31 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   margin-top: 20px;
+  /* Dirty fix to center edit contnet */
+  padding-left: 10rem;
+  max-width: 40rem;
+}
+
+
+.product-details, .details-container {
+  /* Edits to fix content shits of edit item switch */
+  align-items: flex-start; 
 }
 
 .product-details-list {
   margin-top: 20px;
 }
 
-.price-change, .seed-change {
+.price-change {
   display: flex;
   align-items: center;
   margin-top: 10px;
+  margin-bottom: 15px;
 }
 
-.price-change label, .seed-change label {
-  margin-right: 10px;
+.price-change > label {
+  /* Price input alings with close button */
+  margin-right: 1rem;
 }
 
 input[type="number"] {
@@ -129,4 +143,56 @@ input[type="number"] {
 
 .save-bttn:hover{
   background-color: #3d6a30;
+}
+
+
+
+/* ------ Add Products Style-------*/
+.product-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.product-add-list {
+  margin-top: 20px;
+}
+
+.input-change {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.input-change > label {
+  /* Price input alings with close button */
+  margin-right: 1.5rem;
+}
+
+input[type="text"] {
+  /* Add this for each type of input */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+/* Drop Down Box Styling */
+.input-change select {
+  width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input-change option {
+  width: auto; /* Allow options to be wider than the select box */
+  white-space: normal; /* Allow text to wrap */
 }
