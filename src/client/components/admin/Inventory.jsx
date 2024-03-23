@@ -3,7 +3,6 @@ import "../styles/Inventory.css";
 
 const DEFAULT_IMAGE_URL = "/client/assets/plants/placeholder.jpg";
 
-
 const Row = ({ product, onEdit }) => (
   <tr className="row">
     <td className="cell">{`${product.plantvariety}, ${product.planttype}`}</td>
@@ -81,7 +80,22 @@ const Inventory = () => {
   const [newPrice, setNewPrice] = useState("");
   const [newPlantDescription, setNewPlantDescription] = useState("");
   const [newPlantingInstructions, setNewPlantingInstructions] = useState("");
-  // End of new product states
+  // Is New Product Form Complete?
+  const isFormComplete =
+    newPlantType &&
+    newPlantVariety &&
+    newProduceType &&
+    newMatureHeight &&
+    newMatureWidth &&
+    newPlantSpacing &&
+    newPlantingDepth &&
+    newMaturationTime &&
+    newLightRequirements &&
+    newImgUrl &&
+    newSeedCount &&
+    newPrice &&
+    newPlantDescription &&
+    newPlantingInstructions;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -131,7 +145,7 @@ const Inventory = () => {
       plantingDepth: newPlantingDepth,
       maturationTime: newMaturationTime,
       lightRequirements: newLightRequirements,
-      imgUrl: newImgUrl || DEFAULT_IMAGE_URL, // Uses default img const at top 
+      imgUrl: newImgUrl || DEFAULT_IMAGE_URL, // Uses default img const at top
       seedCount: newSeedCount,
       price: newPrice,
       plantDescription: newPlantDescription,
@@ -379,11 +393,15 @@ const Inventory = () => {
             </div>
             <div className="input-change">
               <label>Image URL:</label>
-              <input
-                type="text"
+              <select
                 value={newImgUrl}
                 onChange={(e) => setNewImgUrl(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Image
+                </option>
+                <option value={DEFAULT_IMAGE_URL}>Placeholder Image</option>
+              </select>
             </div>
 
             <div className="input-change">
@@ -426,7 +444,11 @@ const Inventory = () => {
 
             {/* End of inputs */}
 
-            <button className="save-bttn" onClick={handleAddNewProduct}>
+            <button
+              className="save-bttn"
+              onClick={handleAddNewProduct}
+              disabled={!isFormComplete} // Button is disabled if form is not complete
+            >
               Save
             </button>
             <button
