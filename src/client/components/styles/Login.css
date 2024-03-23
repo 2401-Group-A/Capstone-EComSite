@@ -2,30 +2,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
   }
   
   .login-container h2 {
+    font-size: 3rem;
+    margin-top: 5rem;
     margin-bottom: 1rem;
+    color: var(--forrestGreen);
   }
   
   .login-container form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 320px;
+    max-width: 20rem;
+    background-color: var(--soil);
+    padding: 1.5rem;
+    border-radius: var(--radiusStandard);
   }
   
   .login-container label {
     margin-bottom: 0.5rem;
+    color: var(--almostBlack);
   }
   
   .login-container input {
     margin-bottom: 1rem;
-    padding: 9px; /* Padding to match the button height */
+    padding: .56rem; /* Padding to match the button height */
     width: 100%;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    border-radius: var(--radiusStandard);
+    border-color: var(--forrestGreen); 
   }
   
   .login-container .form-footer {
@@ -35,15 +43,16 @@
   }
   
   /* Styles for buttons */
-  button {
-    background-color: #f0f0f0;
-    border: 1px solid #dcdcdc;
-    color: #333;
+  .login-buttons {
+    background-color: var(--terracotta);
+    border: none;
+    color: var(--almostBlack);
     cursor: pointer;
-    margin-right: 0px; /*spacing between buttons */
-    width: 100px; 
-    height: 40px;
+    margin-right: 0px; /*spacing between buttons*/
+    width: 6.25rem; 
+    height: 2.5rem;
     box-sizing: border-box; 
+    border-radius: var(--radiusStandard);
   }
 
   
@@ -53,8 +62,9 @@
     text-decoration: none; 
   }
   
-  button:hover {
-    background-color: #e9e9e9;
+  .login-buttons:hover {
+    background-color: var(--paleGreen);
+    color: var(--terracotta);
   }
   
   /* Media Q's for Responsive Design */

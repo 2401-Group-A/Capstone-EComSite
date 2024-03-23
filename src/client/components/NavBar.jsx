@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './styles/navbar.css';
 import Hamburger from './Hamburger';
 import { useState } from 'react';
-// import logo??
 
 export default function NavBar({ size, setShow, setToken, cookies }) {
   return (
@@ -12,12 +11,14 @@ export default function NavBar({ size, setShow, setToken, cookies }) {
         <Hamburger cookies={cookies} setToken={setToken} />
       </section>
       <div className='logo-and-text'>
-        <img
-          className='nav-logo'
-          src='src/client/assets/icons/lsbg_logo_new.png'
-          alt='Little Seed, Big Garden logo'
-        />
-        <h1 className='nav-header-text'>Little Seed, <span className='big-text'>&nbsp;BIG&nbsp;</span>Garden</h1>
+        <h1 className='nav-header-text'>
+          <img
+            className='nav-logo'
+            src='src/client/assets/icons/lsbg_logo_new.png'
+            alt='Little Seed, Big Garden logo'
+          />
+          Little Seed, <span className='big-text'>&nbsp;BIG&nbsp;</span>Garden
+        </h1>
       </div>
       <nav>
         <Link
