@@ -183,3 +183,16 @@ input[type="text"] {
   width: 100px;
   margin-right: 10px;
 }
+
+/* Drop Down Box Styling */
+.input-change select {
+  width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input-change option {
+  width: auto; /* Allow options to be wider than the select box */
+  white-space: normal; /* Allow text to wrap */
+}

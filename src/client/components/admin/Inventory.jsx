@@ -192,6 +192,9 @@ const Inventory = () => {
                 value={newPlantType}
                 onChange={(e) => setNewPlantType(e.target.value)}
               >
+                <option value="" disabled selected>
+                  Select Plant Type
+                </option>
                 <option value="Basil">Basil</option>
                 <option value="Cilantro">Cilantro</option>
                 <option value="Mint">Mint</option>
@@ -222,52 +225,139 @@ const Inventory = () => {
             </div>
             <div className="input-change">
               <label>Produce Type:</label>
-              <input
-                type="text"
+              <select
                 value={newProduceType}
                 onChange={(e) => setNewProduceType(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Produce Type
+                </option>
+                <option value="Herb">Herb</option>
+                <option value="Vegetable">Vegetable</option>
+              </select>
             </div>
             <div className="input-change">
               <label>Mature Height:</label>
-              <input
-                type="text"
+              <select
                 value={newMatureHeight}
                 onChange={(e) => setNewMatureHeight(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Mature Height
+                </option>
+                <option value="6-8 inches">6-8 inches</option>
+                <option value="8-12 inches">8-12 inches</option>
+                <option value="12-18 inches">12-18 inches</option>
+                <option value="18-24 inches">18-24 inches</option>
+                <option value="24-30 inches">24-30 inches</option>
+                <option value="24-36 inches">24-36 inches</option>
+                <option value="24-36 inches (vining)">
+                  24-36 inches (vining)
+                </option>
+                <option value="48-60 inches">48-60 inches</option>
+                <option value="48-72 inches">48-72 inches</option>
+                <option value="18-24 inches (bush)">18-24 inches (bush)</option>
+              </select>
             </div>
             <div className="input-change">
               <label>Mature Width:</label>
-              <input
-                type="text"
+              <select
                 value={newMatureWidth}
                 onChange={(e) => setNewMatureWidth(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Mature Width
+                </option>
+                <option value="2-3 inches">2-3 inches</option>
+                <option value="3-4 inches">3-4 inches</option>
+                <option value="4-6 inches">4-6 inches</option>
+                <option value="6-8 inches">6-8 inches</option>
+                <option value="8-12 inches">8-12 inches</option>
+                <option value="12-18 inches">12-18 inches</option>
+                <option value="18-24 inches">18-24 inches</option>
+                <option value="24-36 inches">24-36 inches</option>
+                <option value="36-48 inches">36-48 inches</option>
+              </select>
             </div>
+
             <div className="input-change">
               <label>Plant Spacing:</label>
-              <input
-                type="text"
+              <select
                 value={newPlantSpacing}
                 onChange={(e) => setNewPlantSpacing(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Plant Spacing
+                </option>
+                <option value="2-3 inches">2-3 inches</option>
+                <option value="2-3 inches (single row), 6-8 inches (double row)">
+                  2-3 inches (single row), 6-8 inches (double row)
+                </option>
+                <option value="4-6 inches">4-6 inches</option>
+                <option value="6-8 inches">6-8 inches</option>
+                <option value="8-12 inches">8-12 inches</option>
+                <option value="12-18 inches">12-18 inches</option>
+                <option value="18-24 inches">18-24 inches</option>
+                <option value="18-24 inches (invasive)">
+                  18-24 inches (invasive)
+                </option>
+                <option value="24-36 inches">24-36 inches</option>
+                <option value="36-48 inches">36-48 inches</option>
+                <option value="2-3 inches (rows), 4-6 inches (between rows)">
+                  2-3 inches (rows), 4-6 inches (between rows)
+                </option>
+              </select>
             </div>
             <div className="input-change">
               <label>Planting Depth:</label>
-              <input
-                type="text"
+              <select
                 value={newPlantingDepth}
                 onChange={(e) => setNewPlantingDepth(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Planting Depth
+                </option>
+                <option value="¼ inch">¼ inch</option>
+                <option value="¼ - ½ inch">¼ - ½ inch</option>
+                <option value="½ inch">½ inch</option>
+                <option value="½ - 1 inch">½ - 1 inch</option>
+                <option value="1 inch">1 inch (sets)</option>
+                <option value="1-2 inches">1-2 inches</option>
+                <option value="2-3 inches (in pots)">
+                  2-3 inches (in pots)
+                </option>
+              </select>
             </div>
             <div className="input-change">
               <label>Maturation Time:</label>
-              <input
-                type="text"
+              <select
                 value={newMaturationTime}
                 onChange={(e) => setNewMaturationTime(e.target.value)}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Maturation Time
+                </option>
+                <option value="3-4 weeks">3-4 weeks</option>
+                <option value="4-6 weeks">4-6 weeks</option>
+                <option value="4-6 weeks (leaves)">4-6 weeks (leaves)</option>
+                <option value="6-8 weeks">6-8 weeks</option>
+                <option value="6-8 weeks (planting), 80-100 days (harvest)">
+                  6-8 weeks (planting), 80-100 days (harvest)
+                </option>
+                <option value="8-10 weeks">8-10 weeks</option>
+                <option value="25-30 days">25-30 days</option>
+                <option value="45-55 days">45-55 days</option>
+                <option value="50-60 days">50-60 days</option>
+                <option value="60-70 days">60-70 days</option>
+                <option value="60-70 days (green), 70-80 days (red)">
+                  60-70 days (green), 70-80 days (red)
+                </option>
+                <option value="70-80 days">70-80 days</option>
+                <option value="90-100 days">90-100 days</option>
+                <option value="100-120 days">100-120 days</option>
+              </select>
             </div>
+            
             <div className="input-change">
               <label>Light Requirements:</label>
               <input
