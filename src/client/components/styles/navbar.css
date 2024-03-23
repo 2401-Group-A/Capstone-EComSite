@@ -3,6 +3,9 @@
   display: flex;
   background-color: var(--paleGreen);
   justify-content: space-between;
+  border: solid 2px var(--forrestGreen);
+  border-radius: var(--radiusStandard);
+  height: 10vh;
 }
 
 header nav {
@@ -17,12 +20,24 @@ header nav > a {
 }
 
 /* Logo Style */
-.nav-logo {
+.nav-header-text {
   display: flex;
   align-items: center;
   color: var(--terracotta);
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+.big-text {
+  font-weight: 600;
+}
+.nav-logo {
+  margin-top: 0.5rem;
+  max-height: 5vw;
 }
 
+.logo-and-text {
+  display: flex;
+}
 /* Hamburger Menu Styles */
 .burger-container {
   display: flex;
@@ -37,45 +52,53 @@ header nav > a {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  margin: 0;
 }
 
 .burger-bar {
   width: 2rem;
   height: 0.2rem;
-  border-radius: 0.5em;
-  background-color: #D25B35;
+  border-radius: var(--radiusStandard);
+  background-color: var(--terracotta);
 }
 
 /* Dropdown Menu Styles */
 .menu {
   display: none;
-  background-color: #DCF1D6;
+  background-color: var(--paleGreen);
   margin-top: 32px;
   margin-left: 7.8px;
-  position: absolute;
-  top: 55px;
-  left: 0;
+  margin-right: -10.5rem;
+  position: relative;
+  top: 6rem;
+  left: -4.5rem;
   width: 10rem; /* width of dropdown */
-  z-index: 100;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  z-index: 10;
+  border-bottom-left-radius: var(--radiusStandard);
+  border-bottom-right-radius: var(--radiusStandard);
 }
 
-.menu button {
+.menu-button {
   width: 100%;
-  padding: 10px 20px;
+  height: 2.3rem;
   text-align: center;
   background: none;
-  border: none;
-  border-bottom: 1px solid #D25B35;
-}
-
-.menu button:hover {
-  background-color: #3d6a304d;
-}
-
-.menu button:last-child {
+  border-right: 1px solid var(--forrestGreen);
+  border-left: 1px solid var(--forrestGreen);
+  border-top: 1px solid var(--forrestGreen);
   border-bottom: none;
+  color: var(--terracotta);
+}
+
+.menu-button:hover {
+  background-color: #3d6a3024;
+  border: 1px solid var(--brightGreen);
+}
+
+.menu-button:last-child {
+  border-bottom: 1px solid var(--forrestGreen);
+  border-bottom-left-radius: var(--radiusStandard);
+  border-bottom-right-radius: var(--radiusStandard);
 }
 
 /* Visibility Classes */
@@ -84,28 +107,52 @@ header nav > a {
 }
 
 .visible {
-  display: block; 
+  display: block;
 }
 
 /* Icon Styles General*/
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   text-decoration: none; /* Removes underline */
-  font-size: 24px; 
+  font-size: 24px;
 }
 
 /* Home icon */
 .home-icon {
-  color: #D25B35;
+  color: var(--terracotta);
 }
 
 /* Cart icon */
 .cart-icon {
-  color: #D25B35;
+  color: var(--terracotta);
 }
 
 .button.badge{
   border: none;
   background: transparent;
   color:black;
+}@media (max-width: 850px) {
+  .nav-header-text {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 750px) {
+  .nav-header-text {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 650px) {
+  .nav-header-text {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .nav-header-text {
+    font-size: 0.79rem;
+  }
+}
+@media (max-width: 375px) {
+  .nav-header-text {
+    font-size: 0.72rem;
+  }
 }

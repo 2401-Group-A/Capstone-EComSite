@@ -7,25 +7,34 @@
   }
   
   .register-container h2 {
+    font-size: 3rem;
+    margin-top: -2rem;
     margin-bottom: 1rem;
+    color: var(--forrestGreen);
   }
   
   .register-container form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 320px;
+    max-width: 20rem;
+    background-color: var(--soil);
+    padding: 1.5rem;
+    border-radius: var(--radiusStandard);
   }
   
   .register-container label {
     margin-bottom: 0.5rem;
+    color: var(--almostBlack);
   }
   
   .register-container input {
     margin-bottom: 1rem;
-    padding: 9px; /* Padding to match the button height */
+    padding: .56rem; /* Padding to match the button height */
     width: 100%;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    border-radius: var(--radiusStandard);
+    border-color: var(--forrestGreen);  
   }
   
   .register-container .form-footer {
@@ -35,17 +44,17 @@
   }
   
   /* Styles for buttons */
-  button {
-    background-color: #f0f0f0;
-    border: 1px solid #dcdcdc;
-    color: #333;
+  .register-buttons {
+    background-color: var(--terracotta);
+    border: none;
+    color: var(--almostBlack);
     cursor: pointer;
-    margin-right: 0px; /*spacing between buttons */
-    width: 100px; 
-    height: 40px;
+    margin-right: 0px; /*spacing between buttons*/
+    width: 6.25rem; 
+    height: 2.5rem;
     box-sizing: border-box; 
+    border-radius: var(--radiusStandard);
   }
-
   
   /* Set up the link to not affect the button size */
   .register-container .register-route {
@@ -53,8 +62,9 @@
     text-decoration: none; 
   }
   
-  button:hover {
-    background-color: #e9e9e9;
+  .register-buttons:hover {
+    background-color: var(--paleGreen);
+    color: var(--terracotta);
   }
   
   /* Media Q's for Responsive Design */

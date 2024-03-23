@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
-import Login from './components/Login';
-import Inventory from './components/admin/Inventory';
-import UserData from './components/admin/UserData';
-import UserOrder from './components/admin/UserOrders';
-import Accounts from './components/Account';
-import Cart from './components/Cart';
-import Checkout from './components/Checkout';
-import Register from './components/Register';
-import Home from './components/Home';
-// import SingleSeed from './components/SingleSeed'
+
+import { useState, useEffect } from "react";
+import Login from "./components/Login";
+import Inventory from './components/admin/Inventory'
+import UserData from './components/admin/UserData'
+import UserOrder from './components/admin/UserOrders'
+import Accounts from './components/Account'
+import Cart from './components/Cart'
+import Checkout from './components/Checkout'
+import Register from './components/Register'
+import Home from './components/Home'
+import SingleProduct from './components/SingleProduct'
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Cookies from 'universal-cookie';

@@ -1,6 +1,70 @@
-main {
-text-align: center;
+.profile-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 li {
-list-style: none    ;
+  list-style: none;
+}
+
+.account-greeting {
+  color: var(--forrestGreen);
+  /* background-color: var(--paleGreen); */
+  /* border: 2px solid var(--brightGreen); */
+  /* border-radius: var(--radiusStandard); */
+}
+.shipping-orders-container {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: var(--soil); */
+  /* flex-direction: row; */
+}
+.shipping-container {
+    margin: 2rem;
+    background-color: var(--soil);
+    border-radius: var(--radiusStandard);
+    width: 40vw;
+    min-width: 22.5rem;
+    /* min-height: 23rem; */
+    padding: 1rem;
+    /* height: 100%; */
+}
+.user-address {
+    text-align: left;
+    /* padding-left: 0rem; */
+    font-size: 1.5rem;
+    color: var(--almostBlack);
+}
+.user-address>li>b{
+    color: var(--terracotta);
+}
+.orders-container {
+    margin: 2rem;
+    background-color: var(--soil);
+    border-radius: var(--radiusStandard);
+    width: 40vw;
+    min-width: 22.5rem;
+    min-height: 20rem;
+    padding: 1rem;
+}
+.shipping-container > h2 {
+  font-size: 2rem;
+  color: var(--almostBlack);
+}
+.orders-container > h2 {
+    font-size: 2rem;
+    color: var(--almostBlack);
+}
+
+.not-logged-container {
+  text-align: center;
+}
+.not-logged-container > h1 {
+  color: var(--forrestGreen);
+}
+
+@media(max-width:1100px){
+    .shipping-orders-container{
+        flex-direction: column;
+    }
 }
