@@ -26,6 +26,7 @@ header nav > a {
   color: var(--terracotta);
   font-size: 2.25rem;
   font-weight: 400;
+  /* z-index: 0; */
 }
 .big-text {
   font-weight: 600;
@@ -52,6 +53,7 @@ header nav > a {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  margin: 0;
 }
 
 .burger-bar {
@@ -67,11 +69,12 @@ header nav > a {
   background-color: var(--paleGreen);
   margin-top: 32px;
   margin-left: 7.8px;
+  margin-right: -10.5rem;
   position: relative;
   top: 6rem;
   left: -4.5rem;
   width: 10rem; /* width of dropdown */
-  z-index: 100;
+  z-index: 10;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -122,4 +125,34 @@ header nav > a {
 /* Cart icon */
 .cart-icon {
   color: var(--terracotta);
+}
+/* @media (max-width:1000px) {
+  .nav-header-text{
+    font-size: 2rem ;
+  } */
+/* } */
+@media (max-width:850px) {
+  .nav-header-text{
+    font-size: 1.75rem ;
+  }
+}
+@media (max-width:750px) {
+  .nav-header-text{
+    font-size: 1.25rem ;
+  }
+}
+@media (max-width:650px) {
+  .nav-header-text{
+    font-size: 1rem ;
+  }
+}
+@media (max-width:600px) {
+  .nav-header-text{
+    font-size: .79rem ;
+  }
+}
+@media (max-width:375px) {
+  .nav-header-text{
+    font-size: .72rem ;
+  }
 }

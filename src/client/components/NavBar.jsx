@@ -12,12 +12,13 @@ export default function NavBar({ size, setShow, setToken, cookies }) {
         <Hamburger cookies={cookies} setToken={setToken} />
       </section>
       <div className='logo-and-text'>
-        <img
+        
+        <h1 className='nav-header-text'><img
           className='nav-logo'
           src='src/client/assets/icons/lsbg_logo_new.png'
           alt='Little Seed, Big Garden logo'
-        />
-        <h1 className='nav-header-text'>Little Seed, <span className='big-text'>&nbsp;BIG&nbsp;</span>Garden</h1>
+        />Little Seed, <span className='big-text'>&nbsp;BIG&nbsp;</span>Garden</h1>
+        
       </div>
       <nav>
         <Link
