@@ -43,7 +43,7 @@ export default function SingleProduct() {
                         <div className='left-div'>
                             <img className='pic'src={"/" + product.imgurl}/>
                             <p className="price">{product.price}</p>
-                            {/* <p className="quantity">{product.quantity}</p> */}
+                            <p className="quantity">Seeds per pack: {product.seedcount}</p>
                             {/* <button>Add to Cart</button> */}
                         </div>
 
