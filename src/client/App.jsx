@@ -31,7 +31,7 @@ function App() {
 
   // --------- adding item to cart -------------
   const handleAddToCart = (product) => {
-    const updatedCart = [...cartItems,, {...product, amount: 1}];
+    const updatedCart = [...cartItems, {...product, amount: 1}];
     setCartItems(updatedCart)
   }
 
