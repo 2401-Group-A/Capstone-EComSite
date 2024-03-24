@@ -82,8 +82,18 @@ const deleteProduct = async (productId) => {
   }
 };
 
-
-
+//Edit Product Price 
+const updateProductPrice = async (productId, newPrice) => {
+    try {
+      const { rows } = await db.query(
+        `UPDATE products SET price = $1 WHERE id = $2 RETURNING *;`,
+        [newPrice, productId]
+      );
+      return rows[0];
+    } catch (err) {
+      throw err;
+    }
+  };
 
 
 
@@ -94,4 +104,5 @@ module.exports = {
     addProduct,
     getSingleProduct,
     deleteProduct,
+    updateProductPrice,
 };

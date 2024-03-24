@@ -125,9 +125,35 @@ const Inventory = () => {
     setSelectedProduct(product);
   };
 
-  const handleSaveChanges = (id, price) => {
-    console.log("Saving changes for product", id, "with new price", price);
-    // API call to save changes here
+  const handleSaveChanges = async (productId, newPrice) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/${productId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ price: newPrice }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update product price");
+      }
+      const updatedProducts = products.map((product) => {
+        if (product.id === productId) {
+          return { ...product, price: newPrice };
+        }
+        return product;
+      });
+      setProducts(updatedProducts);
+
+      // Close the edit view
+      setSelectedProduct(null);
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
   };
 
   const handleClose = () => {

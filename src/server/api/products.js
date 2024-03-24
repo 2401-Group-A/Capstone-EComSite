@@ -1,7 +1,7 @@
 // API Products
 const express = require('express');
 const productRouter = express.Router();
-const {getAllProducts, getSingleProduct, addProduct, deleteProduct} = require('../db/products');
+const {getAllProducts, getSingleProduct, addProduct, deleteProduct, updateProductPrice} = require('../db/products');
 
 // GET all products
 productRouter.get('/', async (req, res, next) => {
@@ -48,6 +48,25 @@ productRouter.delete('/:productId', async (req, res, next) => {
       next(err);
     }
   });
+
+
+// Edit product 
+productRouter.patch('/:productId', async (req, res, next) => {
+    const { productId } = req.params;
+    const { price } = req.body; // Assuming new price is sent in request body
+  
+    try {
+      const updatedProduct = await updateProductPrice(productId, price);
+      if (updatedProduct) {
+        res.json(updatedProduct);
+      } else {
+        res.status(404).json({ error: 'Product not found' });
+      }
+    } catch (err) {
+      next(err);
+    }
+  });
+
 
 
 
