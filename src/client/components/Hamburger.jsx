@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Hamburger({ cookies, setToken }) {
+
+const Hamburger = ({ cookies, setToken }) => {
   const [burgerClass, setBurgerClass] = useState('burger-bar unclicked');
   const [menuClass, setMenuClass] = useState('menu hidden');
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   let navigate = useNavigate();
+
+  // Determine if the user is logged in based on having a login_token
+  const isLoggedIn = cookies.get('login_token') !== undefined;
 
   // ------ onClick navigate to login -----------
   const routeLogin = () => {
@@ -29,6 +33,34 @@ export default function Hamburger({ cookies, setToken }) {
     navigate('/');
   };
 
+  // Shows drop down options based on login status
+  const renderMenuOptions = () => {
+    if (isLoggedIn) {
+      return (
+        <>
+          <button className='menu-button' onClick={routeAccount}>
+            Account
+          </button>
+          <button className='menu-button' onClick={routeLogout}>
+            Sign Out
+          </button>
+          <button className='menu-button'>Calendar, Coming Soon!</button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <button className='menu-button' onClick={routeLogin}>
+            Login
+          </button>
+          <button className='menu-button' onClick={routeRegister}>
+            Register
+          </button>
+        </>
+      );
+    }
+  };
+
   // ------ Update menu visibility on burger menu click -----------
   const updateMenu = () => {
     setBurgerClass(
@@ -46,21 +78,10 @@ export default function Hamburger({ cookies, setToken }) {
         <div className={burgerClass}></div>
       </div>
       <div className={menuClass}>
-        <button className='menu-button' onClick={routeLogin}>
-          Login
-        </button>
-        <button className='menu-button' onClick={routeRegister}>
-          Register
-        </button>
-        <button className='menu-button' onClick={routeAccount}>
-          Account
-        </button>
-        {/* Add onClick handlers for other buttons as needed */}
-        <button className='menu-button'>Calendar, Coming Soon!</button>
-        <button className='menu-button' onClick={routeLogout}>
-          Sign Out
-        </button>
+        {renderMenuOptions()}
       </div>
     </>
   );
-}
+};
+
+export default Hamburger;
