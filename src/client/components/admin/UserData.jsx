@@ -13,18 +13,17 @@ const UserData = () => {
 
 const fetchUsers = async () => {
   try {
-    // Adjust the endpoint as needed
+   
     const response = await fetch('http://localhost:3000/api/users', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // Include authorization if your route is protected
-        // 'Authorization': `Bearer ${yourAuthTokenHere}`,
+     
       },
     });
     if (response.ok) {
       const data = await response.json();
-      setUsers(data.users); // Make sure the API returns an object with a users property containing an array of users
+      setUsers(data.users); 
     } else {
       console.error("Error fetching users: ", response.statusText);
     }
