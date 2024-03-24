@@ -1,38 +1,64 @@
 .Seed-Conatiner {
     display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .left-div {
+    padding: 20px;
+    text-align: center;
     
-    
-}
+  }
+  
+  .pic {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+  
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .quantity {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .right-div {
+    display: none; /* Hide the right-div by default */
+  }
 
-.pic {
-    width: 20vw;
-
-}
-
-.left-div {
-    background-color: aquamarine;
-    flex-direction: row;
-    max-width: 50vw;
-    box-sizing: border-box;
-    
-
-}
-
-.right-div {
-    background-color: purple;
-    flex-direction: column;
-    box-sizing: border-box;
-    
-
-}
-
-.instructions {
-    background-color: antiquewhite;
-
-}
-
-
-.requirements {
-    background-color: bisque;
-
-}
+  .headers {
+    border-bottom: black solid;
+  }
+  
+  .summary {
+    padding: 20px;
+    text-align: center;
+    border: black solid;
+  }
+  
+  .instructions,
+  .requirements {
+    border: black solid;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  @media (min-width: 768px) {
+    .Seed-Conatiner {
+      flex-direction: row; /* Switch back to horizontal alignment */
+      justify-content: space-between;
+    }
+  
+    .right-div {
+      display: block; /* Display the right-div when the screen width is equal or greater than 768px */
+      flex: 1;
+      padding: 20px;
+    }
+  }
+  
