@@ -35,12 +35,39 @@ const getSingleProduct = async (productId) => {
 // AddProduct
 const addProduct = async (productData) => {
     try {
-        const { planttype, plantvariety, producetype, matureheight, maturewidth, plantspacing, plantingdepth, maturationtime, lightrequirements, imgurl, seedcount, price, plantdescription, plantinginstructions } = productData;
+        const { plantType,
+        plantVariety,
+        produceType,
+        matureHeight,
+        matureWidth,
+        plantSpacing,
+        plantingDepth,
+        maturationTime,
+        lightRequirements,
+        imgUrl,
+        seedCount,
+        price,
+        plantDescription ,
+        plantingInstructions  } = productData;
 
+console.log('data', productData)
         await db.query(`
-            INSERT INTO products (planttype, plantvariety, producetype, matureheight, maturewidth, plantspacing, plantingdepth, maturationtime, lightrequirements, imgurl, seedcount, price, plantdescription, plantinginstructions)
+            INSERT INTO products (plantType, plantVariety, produceType, matureHeight, matureWidth, plantSpacing, plantingDepth, maturationTime, lightRequirements, imgUrl, seedCount, price, plantDescription, plantingInstructions)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);
-        `, [planttype, plantvariety, producetype, matureheight, maturewidth, plantspacing, plantingdepth, maturationtime, lightrequirements, imgurl, seedcount, price, plantdescription, plantinginstructions]);
+        `, [plantType,
+            plantVariety,
+            produceType,
+            matureHeight,
+            matureWidth,
+            plantSpacing,
+            plantingDepth,
+            maturationTime,
+            lightRequirements,
+            imgUrl,
+            seedCount,
+            price,
+            plantDescription ,
+            plantingInstructions]);
     } catch (err) {
         throw err;
     }

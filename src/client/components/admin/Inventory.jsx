@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Inventory.css";
 
-const DEFAULT_IMAGE_URL = "/client/assets/plants/placeholder.jpg";
+const DEFAULT_IMAGE_URL = "src/client/assets/plants/placeholder.jpg";
 
 const Row = ({ product, onEdit }) => (
   <tr className="row">
@@ -151,6 +151,8 @@ const Inventory = () => {
       plantingInstructions: newPlantingInstructions,
     };
 
+    
+    console.log('Test stuff', handleAddNewProduct)
     try {
       const response = await fetch(
         "http://localhost:3000/api/products/addproduct",
@@ -161,7 +163,7 @@ const Inventory = () => {
           },
           body: JSON.stringify(newProductData),
         }
-      );
+        );
 
       if (!response.ok) {
         throw new Error("Failed to add new product");
@@ -410,6 +412,7 @@ const Inventory = () => {
             <div className="input-change">
               <label>Seed Count:</label>
               <select
+                type="text"
                 value={newSeedCount}
                 onChange={(e) => setNewSeedCount(e.target.value)}
               >
