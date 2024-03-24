@@ -1,59 +1,88 @@
 /* SingleProduct.css */
 .Seed-Container {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns */
-  grid-template-rows: auto 1fr 1fr; /* Three rows, the first row size according to the content */
-  gap: 20px; /* Space between grid items */
-  margin: 20px;
-}
-
-.left-div {
-  grid-column: 1 / 2; /* Takes up the first column */
-  grid-row: 1 / -1; /* Spans from the first to the last row */
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  border: 1px solid #ccc; /* Just to show the division */
-  border-radius: 10px;
-}
-
-.left-div > img {
-  width:  30rem;
-  height: auto;
-}
-
-.summary {
-  grid-column: 2 / 3; /* Takes up the second column */
-  grid-row: 1 / 2; /* Takes up the first row */
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-.requirements, .instructions {
-  grid-column: 2 / 3; /* Both take up the second column */
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-.requirements {
-  grid-row: 2 / 3; /* Takes up the second row */
-}
-
-.instructions {
-  grid-row: 3 / 4; /* Takes up the third row */
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .Seed-Container {
-    grid-template-columns: 1fr; /* One column */
-    grid-template-rows: auto; /* Auto rows */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-rows: auto 1fr 1fr; /* Three rows, the first row size according to the content */
+    gap: 20px; /* Space between grid items */
+    margin: 20px;
+  }
+  
+  .left-div {
+    grid-column: 1 / 2; /* Takes up the first column */
+    grid-row: 1 / -1; /* Spans from the first to the last row */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ccc; /* Just to show the division */
+    border-radius: 10px;
+    text-align: center;
   }
 
-  .left-div, .summary, .requirements, .instructions {
-    grid-column: 1;
-    grid-row: auto; /* Each item takes its own row */
+  .add-to-cart {
+    background-color: #D25B35;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px auto; /* Updated margin for horizontal centering */
+    cursor: pointer;
+    border-radius: 4px;
+    width: 6.25rem; 
+    height: 2.5rem;
+    margin-top: 4rem;
   }
-}
+  
+  .left-div > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:  30rem;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  
+  .summary {
+    grid-column: 2 / 3; /* Takes up the second column */
+    grid-row: 1 / 2; /* Takes up the first row */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    
+  }
+  
+  .requirements, .instructions {
+    grid-column: 2 / 3; /* Both take up the second column */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    margin: 1rem;
+    margin-top: 4rem;
+  }
+  
+  .requirements {
+    grid-row: 2 / 3; /* Takes up the second row */
+  }
+  
+  .instructions {
+    grid-row: 3 / 4; /* Takes up the third row */
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .Seed-Container {
+      grid-template-columns: 1fr; /* One column */
+      grid-template-rows: auto; /* Auto rows */
+    }
+  
+    .left-div, .summary, .requirements, .instructions {
+      grid-column: 1;
+      grid-row: auto; /* Each item takes its own row */
+    }
+  }
