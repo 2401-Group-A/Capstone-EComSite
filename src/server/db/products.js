@@ -73,8 +73,36 @@ console.log('data', productData)
     }
 }
 
+// Delete Product SQL
+const deleteProduct = async (productId) => {
+  try {
+    await db.query('DELETE FROM products WHERE id = $1', [productId]);
+  } catch (err) {
+    throw err;
+  }
+};
+
+//Edit Product Price 
+const updateProductPrice = async (productId, newPrice) => {
+    try {
+      const { rows } = await db.query(
+        `UPDATE products SET price = $1 WHERE id = $2 RETURNING *;`,
+        [newPrice, productId]
+      );
+      return rows[0];
+    } catch (err) {
+      throw err;
+    }
+  };
+
+
+
+
+
 module.exports = {
     getAllProducts,
     addProduct,
     getSingleProduct,
+    deleteProduct,
+    updateProductPrice,
 };
