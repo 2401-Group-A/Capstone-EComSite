@@ -9,6 +9,7 @@ export default function Cart({ cartItems, setCartItems }) {
 
   const [price, setPrice] = useState(0);
 
+  // NEED TO UPDATE TO INCLUDE API CALL TO REMOVE FROM SERVER
   // ------ remove item from cart -------
   const handleRemove = (id) => {
     const updatedCart = cartItems.filter((product) => product.id !== id);
@@ -41,6 +42,14 @@ export default function Cart({ cartItems, setCartItems }) {
     });
     setCartItems(updatedCart);
   };
+
+  // fetchCartItems-- useEffect hook to fetch cart items when username changes GET
+
+  // handleRemove - sends delete request to remove an item from cart on server DELETE
+
+  // handleQtyChange - updating the quantity on the cart locally and server PATCH
+
+  
 
   return (
     <aside className="cart-container">
