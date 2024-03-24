@@ -70,13 +70,16 @@
   text-decoration: none;
   color: var(--almostBlack);
 }
+.single-link{
+
+  cursor: pointer;
+}
 .seed-card > button {
   width: 100%;
   border-radius: var(--radiusStandard);
 }
 
 .seed-card:hover {
-  cursor: pointer;
   box-shadow: var(--brightGreen) 0px 0px 25px;
 }
 

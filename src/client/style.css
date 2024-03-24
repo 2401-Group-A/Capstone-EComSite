@@ -53,3 +53,7 @@ h3 {
 body {
   background-color: var(--almostWhite);
 }
+
+button{
+  cursor: pointer;
+}
