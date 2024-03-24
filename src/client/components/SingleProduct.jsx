@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "./styles/SingleProduct.css";
 
 
-export default function SingleProduct() {
+export default function SingleProduct({handleAddToCart}) {
     const [product, setProduct] = useState(null);
     const { id } = useParams()
     
@@ -44,22 +44,22 @@ export default function SingleProduct() {
                             <img className='pic'src={"/" + product.imgurl}/>
                             <p className="price">{product.price}</p>
                             <p className="quantity">Seeds per pack: {product.seedcount}</p>
-                            {/* <button>Add to Cart</button> */}
+                            <button className='add to cart' onClick={() => handleAddToCart(product)}>Add to Cart</button>
                         </div>
 
                         <div className='right-div'>
 
                             <div className='summary'>
 
-                            <h1>{product.planttype}</h1>
-                            <h2>{product.plantvariety}</h2>
+                            <h1 className='headers'>{product.planttype}</h1>
+                            <p>{product.plantvariety}</p>
                             <p>{product.producetype}</p>
                             <p>{product.plantdescription}</p>
 
                             </div>
 
                             <div className='instructions'>
-                                <h2>Planting Instuctions</h2>
+                                <h1 className='headers'>Planting Instuctions</h1>
                                 <p>{product.plantinginstructions}</p>
                                 <p>Spacing: {product.plantspacing}</p>
                                 <p>Depth: {product.plantingdepth}</p>
@@ -68,7 +68,7 @@ export default function SingleProduct() {
 
                             </div>
                             <div className='requirements'>
-                            <h2>Planting Requirements</h2>
+                            <h1 className='headers'>Planting Requirements</h1>
                             <p>Maturation Time: {product.maturationtime}</p>
                             <p>Light: {product.lightrequirements}</p>
                             <p>Mature Height: {product.matureheight}</p>

@@ -46,7 +46,7 @@ function App() {
       <NavBar size={cartItems.length} setToken={setToken} cookies={cookies}/>
       <Routes>
         <Route path='/' element={<Home handleAddToCart={handleAddToCart} cartItems={cartItems} />} />
-        <Route path='/products/:id' element={<SingleProduct />} />
+        <Route path='/products/:id' element={<SingleProduct handleAddToCart={handleAddToCart}/>} />
         <Route path='/account' element={<Accounts token={token} />} />
         <Route path='/cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems} token={token} />} />
         <Route path='/checkout' element={<Checkout token={token} />} />
