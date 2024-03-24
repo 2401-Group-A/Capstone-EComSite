@@ -2,8 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './styles/Home.css';
 import { Link } from 'react-router-dom';
 
-const Home = ({handleAddToCart}) => {
+const Home = ({handleAddToCart, addToCart}) => {
   const [products, setProducts] = useState([]);
+  
+  
+  const handleBothClicks = () => {
+    handleAddToCart();
+    addToCart();
+  }
+
+
+
 
   // Const for Search Bar
   const [searchQuery, setSearchQuery] = useState('');

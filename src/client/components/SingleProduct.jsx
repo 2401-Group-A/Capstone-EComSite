@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./styles/SingleProduct.css";
 
-export default function SingleProduct({ handleAddToCart, cart }) {
+export default function SingleProduct({ handleAddToCart, cart, token }) {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const [isProductInCart, setIsProductInCart] = useState(false);
