@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import "../styles/UserData.css";
+
+
 
 const UserData = () => {
   const [users, setUsers] = useState([]);
@@ -48,11 +51,15 @@ const fetchUsers = async () => {
       <table>
         <thead>
           <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Email</th>
             <th>Address</th>
-            {/* Add more headers as needed */}
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Admin</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -62,7 +69,10 @@ const fetchUsers = async () => {
               <td>{user.lastname}</td>
               <td>{user.email}</td>
               <td>{user.address}</td>
-              {/* Fill in more data as needed */}
+              <td>{user.city}</td>
+              <td>{user.state}</td>
+              <td>{user.zipcode}</td>
+              <td>{user.admin ? "Yes" : "No"}</td>
             </tr>
           ))}
         </tbody>
