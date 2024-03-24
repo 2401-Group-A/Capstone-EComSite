@@ -3,7 +3,7 @@ import "../styles/Inventory.css";
 
 const DEFAULT_IMAGE_URL = "src/client/assets/plants/placeholder.jpg";
 
-const Row = ({ product, onEdit }) => (
+const Row = ({ product, onEdit, onDelete }) => (
   <tr className="row">
     <td className="cell">{`${product.plantvariety}, ${product.planttype}`}</td>
     <td className="cell">{product.seedcount}</td>
@@ -13,7 +13,9 @@ const Row = ({ product, onEdit }) => (
       </button>
     </td>
     <td className="cell cell-center">
-      <button className="delete-button">Delete</button>
+      <button className="delete-button" onClick={() => onDelete(product.id)}>
+        Delete
+      </button>
     </td>
   </tr>
 );
@@ -123,15 +125,74 @@ const Inventory = () => {
     setSelectedProduct(product);
   };
 
-  const handleSaveChanges = (id, price) => {
-    console.log("Saving changes for product", id, "with new price", price);
-    // API call to save changes here
+  const handleSaveChanges = async (productId, newPrice) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/${productId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ price: newPrice }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update product price");
+      }
+      const updatedProducts = products.map((product) => {
+        if (product.id === productId) {
+          return { ...product, price: newPrice };
+        }
+        return product;
+      });
+      setProducts(updatedProducts);
+
+      // Close the edit view
+      setSelectedProduct(null);
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
   };
 
   const handleClose = () => {
     setSelectedProduct(null); // Close the product edit view
   };
 
+  // Delete a Product
+  const handleDeleteProduct = async (productId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this product?"
+    );
+    if (!confirmDelete) {
+      return; // Early return if the user cancels the confirmation
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/${productId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // Authorization header might be required if your API is protected
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete product");
+      }
+
+      // Refresh the products list after deletion
+      fetchProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
+  // Add New Product
   const handleAddNewProduct = async () => {
     // New Product data
     const newProductData = {
@@ -151,8 +212,7 @@ const Inventory = () => {
       plantingInstructions: newPlantingInstructions,
     };
 
-    
-    console.log('Test stuff', handleAddNewProduct)
+    console.log("Test stuff", handleAddNewProduct);
     try {
       const response = await fetch(
         "http://localhost:3000/api/products/addproduct",
@@ -163,7 +223,7 @@ const Inventory = () => {
           },
           body: JSON.stringify(newProductData),
         }
-        );
+      );
 
       if (!response.ok) {
         throw new Error("Failed to add new product");
@@ -190,7 +250,12 @@ const Inventory = () => {
           </thead>
           <tbody>
             {products.map((product) => (
-              <Row key={product.id} product={product} onEdit={handleEdit} />
+              <Row
+                key={product.id}
+                product={product}
+                onEdit={handleEdit}
+                onDelete={handleDeleteProduct}
+              />
             ))}
           </tbody>
         </table>
