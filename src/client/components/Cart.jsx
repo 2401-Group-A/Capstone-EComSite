@@ -59,8 +59,7 @@ export default function Cart({ cartItems, setCartItems }) {
             <div className="button-box">
               <button
                 onClick={() => handleQtyChange(product, -1)}
-                className="remove"
-              >
+                className="remove">
                 -
               </button>
               <button>{product.amount}</button>
