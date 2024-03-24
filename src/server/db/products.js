@@ -73,8 +73,25 @@ console.log('data', productData)
     }
 }
 
+// Delete Product SQL
+const deleteProduct = async (productId) => {
+  try {
+    await db.query('DELETE FROM products WHERE id = $1', [productId]);
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
+
+
+
+
+
 module.exports = {
     getAllProducts,
     addProduct,
     getSingleProduct,
+    deleteProduct,
 };

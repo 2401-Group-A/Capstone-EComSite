@@ -1,7 +1,7 @@
 // API Products
 const express = require('express');
 const productRouter = express.Router();
-const {getAllProducts, getSingleProduct, addProduct} = require('../db/products');
+const {getAllProducts, getSingleProduct, addProduct, deleteProduct} = require('../db/products');
 
 // GET all products
 productRouter.get('/', async (req, res, next) => {
@@ -36,5 +36,23 @@ productRouter.post('/addproduct', async (req, res, next) => {
         next(err);
     }
 });
+
+
+// DELETE a new product 
+productRouter.delete('/:productId', async (req, res, next) => {
+    try {
+      const { productId } = req.params;
+      await deleteProduct(productId);
+      res.status(204).send();
+    } catch (err) {
+      next(err);
+    }
+  });
+
+
+
+
+
+
 
 module.exports = productRouter;
