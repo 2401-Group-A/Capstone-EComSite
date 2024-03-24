@@ -177,7 +177,6 @@ const Inventory = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          // Authorization header might be required if your API is protected
         }
       );
 
