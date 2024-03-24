@@ -37,7 +37,11 @@ const fetchUsers = async () => {
   const filteredUsers = users.filter((user) =>
     user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.zipcode.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
