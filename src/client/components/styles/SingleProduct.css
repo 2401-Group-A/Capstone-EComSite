@@ -13,7 +13,6 @@
     margin: auto;
     text-align: center;
     /* justify-content: space-around; */
-  ;
   }
   .full-product-name{
     margin-top: none;
@@ -21,31 +20,41 @@
     color: var(--forrestGreen);
   }
   .left-seed-card {
-    padding: 1.25rem;
-    border: 1px solid #ccc; /* Just to show the division */
+    /* padding: 1.25rem; */
+    /* border: 1px solid #ccc; Just to show the division */
     border-radius: var(--radiusStandard);
     text-align: center;
-    margin: auto;
     margin-left: 1rem;
-    background-color: var(--soil);
+    /* background-color: var(--soil); */
   }
-
-  .add-to-cart {
-    background-color: #D25B35;
-    border: none;
-    color: white;
+  .price-button-div{
+    padding: 1.25rem;
+    place-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 30rem;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px auto; /* Updated margin for horizontal centering */
-    cursor: pointer;
-    border-radius: 4px;
-    width: 6.25rem; 
-    height: 2.5rem;
-    margin-top: 4rem;
+    display: flex;
+    background-color: var(--soil);
+    width: 20rem;
+    border-radius: var(--radiusStandard);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
   }
-  
+  .add-to-cart {
+    background-color: var(--terracotta);
+    color: var(--almostBlack);
+    border: none;
+    width: 6.25rem;
+    height: 2.5rem;
+    border-radius: var(--radiusStandard);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .add-to-cart:hover{
+    background-color: var(--paleGreen);
+    color: var(--terracotta);
+  }
   .left-seed-card > img {
     display: block;
     margin-left: auto;
@@ -54,11 +63,15 @@
     height: auto;
     margin-bottom: 1.5rem;
     padding: 1.25rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: var(--radiusStandard);
   }
 
   .price{
     font-size: 1.5rem;
     margin: none;
+    padding: none;
+    
   }
   .summary {
     grid-column: 2 / 3; /* Takes up the second column */
@@ -70,6 +83,8 @@
     margin: 1rem;
     margin-top: 3.25rem;
     background-color: var(--soil);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
     
   }
   
@@ -82,6 +97,8 @@
     margin: 1rem;
     margin-top: 4rem;
     background-color: var(--soil);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
   }
   
   .requirements {

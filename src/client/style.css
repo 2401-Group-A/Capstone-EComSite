@@ -8,9 +8,10 @@
 
   /* Colors */
   --forrestGreen: #3d6a30;
-  --soil: #bc8b6d;
+  --soil: #bc8b6d6d;
   --paleGreen: #dcf1d6;
-  --terracotta: #d25b35;
+  --terracotta: #d25c35c1;
+  --terracottaDark: #d25c35;
   --brightGreen: #81d144;
   --almostWhite: rgb(247, 247, 247);
   --almostBlack: rgb(17, 17, 17);

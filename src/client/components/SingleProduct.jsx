@@ -68,6 +68,7 @@ export default function SingleProduct({ handleAddToCart, cart }) {
             src={'/' + product.imgurl}
             alt={product.planttype}
           />
+          <div className='price-button-div'>
           <p className='price'>
             {product.seedcount} for ${product.price}
           </p>
@@ -77,7 +78,7 @@ export default function SingleProduct({ handleAddToCart, cart }) {
             disabled={isButtonDisabled}
           >
             {addToCartText}
-          </button>
+          </button></div>
         </div>
       </div>
 
@@ -90,17 +91,14 @@ export default function SingleProduct({ handleAddToCart, cart }) {
 
         <div className='requirements'>
           <h1 className='headers'>Planting Requirements</h1>
-          <p>Maturation Time: {product.maturationtime}</p>
-          <p>Light: {product.lightrequirements}</p>
-          <p>Mature Height: {product.matureheight}</p>
-          <p>Mature Width: {product.maturewidth}</p>
+          <p>{product.plantvariety} {product.planttype} matures in {product.maturationtime} and prefers {product.lightrequirements}.</p>
+          <p>When mature each plant can be {product.matureheight} tall and {product.maturewidth} wide.</p>
         </div>
 
         <div className='instructions'>
           <h1 className='headers'>Planting Instructions</h1>
           <p>{product.plantinginstructions}</p>
-          <p>Spacing: {product.plantspacing}</p>
-          <p>Depth: {product.plantingdepth}</p>
+          <p>Each seed should be planted at a {product.plantingdepth} depth, spaced {product.plantspacing} apart.</p>
         </div>
       </div>
     </main>
