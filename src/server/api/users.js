@@ -1,7 +1,7 @@
 const express = require('express');
 const usersRouter = express.Router();
 const requireToken = require('./requireToken');
-const { createUser, getUser, getUserByEmail, getUserById } = require('../db');
+const { createUser, getUser, getUserByEmail, getUserById, getCartByUserId } = require('../db');
 
 const jwt = require('jsonwebtoken');
 
@@ -33,6 +33,15 @@ usersRouter.get('/me', requireToken, async (req, res, next) => {
     next(err);
   }
 });
+
+usersRouter.get('/orders', requireToken, async (req, res, next) => {
+  const userOrder = await getCartByUserId(req.user.id);
+  try{
+
+  }catch (err){
+  next(err)
+  }
+})
 
 // -----POST Login-----
 usersRouter.post('/login', async (req, res, next) => {
@@ -125,5 +134,6 @@ usersRouter.post('/register', async (req, res, next) => {
     next({ name, message });
   }
 });
+
 
 module.exports = usersRouter;

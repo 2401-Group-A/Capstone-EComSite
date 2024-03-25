@@ -210,7 +210,7 @@ async function testOrders(){
     VALUES (1, '2024-03-15', '123 Easy St', true),
     (2, '2024-03-15', '456 Easy St', true),
     (3, '2024-03-15', '789 Easy St', true),
-    (3, '2024-03-15', '789 Easy St', true)
+    (3, '2024-03-15', '789 Easy St', false)
     `);
   }
   
