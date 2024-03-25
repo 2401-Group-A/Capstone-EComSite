@@ -25,6 +25,11 @@
 
 .reset-container > button {
   border-radius: var(--radiusStandard);
+  color: var(--almostBlack);
+  background-color: var(--terracotta);
+  border: none;
+  padding: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* Styles for the main content area (Seed Cards Area) */
@@ -77,6 +82,7 @@
 .seed-card > button {
   width: 100%;
   border-radius: var(--radiusStandard);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .seed-card:hover {

@@ -54,6 +54,7 @@
     height: 2.5rem;
     box-sizing: border-box; 
     border-radius: var(--radiusStandard);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   
   /* Set up the link to not affect the button size */

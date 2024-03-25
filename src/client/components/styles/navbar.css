@@ -42,7 +42,7 @@ header nav > a {
 .burger-container {
   display: flex;
   align-items: center;
-  margin-left: 12px;
+  margin-left: .75rem;
 }
 
 .burger-menu {
@@ -66,7 +66,7 @@ header nav > a {
 .menu {
   display: none;
   background-color: var(--paleGreen);
-  margin-top: 32px;
+  margin-top: -3.75rem;
   margin-left: 7.8px;
   margin-right: -10.5rem;
   position: relative;
