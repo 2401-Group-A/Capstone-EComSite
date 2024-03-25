@@ -161,6 +161,7 @@ const insertUsers = async () => {
   }
 };
 
+
 async function addSeeds() {
   await db.query(`
   INSERT INTO products (plantType,
@@ -203,6 +204,28 @@ async function addSeeds() {
   ;`);
 }
 
+async function testOrders(){
+  await db.query(`
+    INSERT INTO orders (user_id, orderdate, shippingaddress, cart)
+    VALUES (1, '2024-03-15', '123 Easy St', true),
+    (2, '2024-03-15', '456 Easy St', true),
+    (3, '2024-03-15', '789 Easy St', true),
+    (3, '2024-03-15', '789 Easy St', true)
+    `);
+  }
+  
+  async function testOrdersProducts() {
+    await db.query(`
+    INSERT INTO order_products (order_id, product_id, quantity)
+    VALUES (1, 1, 2),
+    (2, 2, 1),
+    (2, 1, 1),
+    (3, 3, 3)
+    `);
+  }
+
+  
+  
 const seedDatabse = async () => {
   try {
     db.connect();
@@ -215,6 +238,10 @@ const seedDatabse = async () => {
     console.log('Added Users');
     await addSeeds();
     console.log('Added Seeds');
+    await testOrders();
+    console.log('Added test orders')
+    await testOrdersProducts()
+    console.log('Added test orders products')
   } catch (err) {
     throw err;
   } finally {
