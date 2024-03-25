@@ -25,6 +25,11 @@
 
 .reset-container > button {
   border-radius: var(--radiusStandard);
+  color: var(--almostBlack);
+  background-color: var(--terracotta);
+  border: none;
+  padding: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* Styles for the main content area (Seed Cards Area) */
@@ -49,7 +54,7 @@
 
 /* Styles for individual seed cards */
 .seed-card {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   background-color: var(--soil);
   border-radius: var(--radiusStandard);
   padding: 10px;
@@ -70,14 +75,18 @@
   text-decoration: none;
   color: var(--almostBlack);
 }
+.single-link{
+
+  cursor: pointer;
+}
 .seed-card > button {
   width: 100%;
   border-radius: var(--radiusStandard);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .seed-card:hover {
-  cursor: pointer;
-  box-shadow: var(--brightGreen) 0px 0px 25px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .plant-variety {
@@ -102,6 +111,8 @@
   border: none;
   width: 6.25rem;
   height: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: var(--radiusStandard);
 }
 .add-cart-button:hover {
   background-color: var(--paleGreen);
