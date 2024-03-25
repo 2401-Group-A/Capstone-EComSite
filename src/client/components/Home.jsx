@@ -193,8 +193,8 @@ const Home = ({handleAddToCart, addToCart}) => {
                 product // Renders filtered products by name only
               ) => (
                 <article key={product.id}>
-                  <Link className='single-link' to={`/products/${product.id}`}>
                     <div className='seed-card'>
+                  <Link className='single-link' to={`/products/${product.id}`}>
                       <img
                         className='product-img'
                         src={product.imgurl}
@@ -204,11 +204,11 @@ const Home = ({handleAddToCart, addToCart}) => {
                       <h1 className='plant-type'>{product.planttype}</h1>
                       {/* <p className='produce-type'>{product.producetype}</p> */}
                       <p>{product.seedcount} for ${product.price}</p>
+                  </Link>
                       <button className='add-cart-button' onClick={() => handleAddToCart(product)}>
                         Add to Cart
                       </button>
                     </div>
-                  </Link>
                 </article>
               )
             )}

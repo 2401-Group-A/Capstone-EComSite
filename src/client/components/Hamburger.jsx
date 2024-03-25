@@ -56,6 +56,7 @@ const Hamburger = ({ cookies, setToken }) => {
           <button className='menu-button' onClick={routeRegister}>
             Register
           </button>
+          <button className='menu-button'>Calendar, Coming Soon!</button>
         </>
       );
     }

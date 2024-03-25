@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "./styles/SingleProduct.css";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './styles/SingleProduct.css';
 
 export default function SingleProduct({ handleAddToCart, cart, token }) {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const [isProductInCart, setIsProductInCart] = useState(false);
-  const [addToCartText, setAddToCartText] = useState("Add to Cart");
+  const [addToCartText, setAddToCartText] = useState('Add to Cart');
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await fetch(`http://localhost:3000/api/products/${id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `http://localhost:3000/api/products/${id}`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error('Failed to fetch product');
@@ -38,16 +41,16 @@ export default function SingleProduct({ handleAddToCart, cart, token }) {
   }, [product, cart]);
 
   const checkProductInCart = (productId) => {
-    return cart.some(item => item.id === productId);
+    return cart.some((item) => item.id === productId);
   };
 
   const handleAddToCartClicked = () => {
     if (!isProductInCart) {
       handleAddToCart(product);
-      setAddToCartText("Successfully added to cart");
+      setAddToCartText('Successfully added to cart');
       setIsButtonDisabled(true);
     } else {
-      alert("This product is already in your cart.");
+      alert('This product is already in your cart.');
     }
   };
 
@@ -56,37 +59,46 @@ export default function SingleProduct({ handleAddToCart, cart, token }) {
   }
 
   return (
-    <main className="Seed-Container">
-      <div className="left-div">
-        <img className="pic" src={"/" + product.imgurl} alt={product.planttype} />
-        <p className="price">{product.price}</p>
-        <p className="quantity">Seeds per pack: {product.seedcount}</p>
-        <button className="add-to-cart" onClick={handleAddToCartClicked} disabled={isButtonDisabled}>
-          {addToCartText}
-        </button>
+    <main className='Single-Seed-Container'>
+      <div className='left-div'>
+      <div className='full-product-name'><h1>{product.plantvariety} {product.planttype}</h1></div>
+        <div className='left-seed-card'>
+          <img
+            className='pic'
+            src={'/' + product.imgurl}
+            alt={product.planttype}
+          />
+          <div className='price-button-div'>
+          <p className='price'>
+            {product.seedcount} for ${product.price}
+          </p>
+          <button
+            className='add-to-cart'
+            onClick={handleAddToCartClicked}
+            disabled={isButtonDisabled}
+          >
+            {addToCartText}
+          </button></div>
+        </div>
       </div>
 
-      <div className="right-div">
-        <div className="summary">
-          <h1 className="headers">{product.planttype}</h1>
-          <p>{product.plantvariety}</p>
-          <p>{product.producetype}</p>
+      <div className='right-div'>
+        <div className='summary'>
+          <h1 className='headers'>Did you know?</h1>
+          
           <p>{product.plantdescription}</p>
         </div>
 
-        <div className="requirements">
-          <h1 className="headers">Planting Requirements</h1>
-          <p>Maturation Time: {product.maturationtime}</p>
-          <p>Light: {product.lightrequirements}</p>
-          <p>Mature Height: {product.matureheight}</p>
-          <p>Mature Width: {product.maturewidth}</p>
+        <div className='requirements'>
+          <h1 className='headers'>Planting Requirements</h1>
+          <p>{product.plantvariety} {product.planttype} matures in {product.maturationtime} and prefers {product.lightrequirements}.</p>
+          <p>When mature each plant can be {product.matureheight} tall and {product.maturewidth} wide.</p>
         </div>
 
-        <div className="instructions">
-          <h1 className="headers">Planting Instructions</h1>
+        <div className='instructions'>
+          <h1 className='headers'>Planting Instructions</h1>
           <p>{product.plantinginstructions}</p>
-          <p>Spacing: {product.plantspacing}</p>
-          <p>Depth: {product.plantingdepth}</p>
+          <p>Each seed should be planted at a {product.plantingdepth} depth, spaced {product.plantspacing} apart.</p>
         </div>
       </div>
     </main>
