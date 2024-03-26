@@ -132,11 +132,11 @@ async function createCart(user_id) {
 }
 
 
-const checkout = async (order_id, cart) => {
-  const {rows} = await db.query(
+const checkout = async (id) => {
+  await db.query(
     `UPDATE orders
     SET cart = false 
-    WHERE order_id = $1 `, [order_id, cart]
+    WHERE id = $1 `, [id]
     );
 }
 
