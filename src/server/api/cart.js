@@ -107,9 +107,9 @@ cartRouter.patch('/checkout', requireToken, async (req, res, next) => {
   try {
     console.log('this is the body', req.user.id)
     console.log('this is the order id', req.body)
-    const {order_id } = req.body;
-    const {user_id} = req.user.id;
-    await checkout(order_id)
+    const {id } = req.body;
+    const user_id = req.user.id;
+    await checkout(id)
     await createCart(user_id)
     res.status(201).send('This order has be checked out.')
   } catch (err) {
