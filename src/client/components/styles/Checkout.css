@@ -1,0 +1,109 @@
+.profile-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  li {
+    list-style: none;
+  }
+  
+  .account-greeting {
+    color: var(--forrestGreen);
+  }
+  .shipping-orders-container {
+    display: flex;
+    justify-content: space-around;
+  }
+  .shipping-container {
+    margin: 2rem;
+    background-color: var(--soil);
+    border-radius: var(--radiusStandard);
+    width: 40vw;
+    min-width: 22.5rem;
+    padding: 1rem;
+  }
+  .user-address {
+    text-align: left;
+    font-size: 1.5rem;
+    color: var(--almostBlack);
+  }
+  .user-address > li > b {
+    color: var(--terracotta);
+  }
+  .orders-container {
+    margin: 2rem;
+    background-color: var(--soil);
+    border-radius: var(--radiusStandard);
+    width: 40vw;
+    min-width: 22.5rem;
+    min-height: 20rem;
+    padding: 1rem;
+  }
+  .shipping-container > h2 {
+    font-size: 2rem;
+    color: var(--almostBlack);
+  }
+  .orders-container > h2 {
+    font-size: 2rem;
+    color: var(--almostBlack);
+  }
+  
+  .not-logged-container {
+    text-align: center;
+  }
+  .not-logged-container > h1 {
+    color: var(--forrestGreen);
+  }
+
+ /* Button */
+  .place-order-bttn {
+    background-color: var(--terracotta);
+    color: var(--almostBlack);
+    border: none;
+    width: 6.25rem;
+    height: 2.5rem;
+    border-radius: var(--radiusStandard);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  /* margin for the order summary */
+
+  
+  /* Responsive Design */
+  @media (max-width: 768px), (max-width: 375px) {
+    .profile-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .shipping-orders-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .shipping-container,
+    .orders-container {
+      width: auto;
+      min-width: unset;
+      margin: 1rem;
+    }
+  
+    .shipping-container > h2,
+    .orders-container > h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 940px) {
+    .user-address {
+      max-width: 100%;
+    }
+    @media (max-width: 940px) {
+      .user-address {
+        max-width: 100%;
+        word-wrap: break-word; /* Breaks long words (i.e. mj's last name email :D */
+      }
+    }
+    
+  }
+  
+  
