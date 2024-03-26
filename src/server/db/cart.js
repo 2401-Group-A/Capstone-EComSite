@@ -74,8 +74,18 @@ async function updateCart (order_id, product_id, quantity){
 }
 
 
+// delete items from cart 
 
+const deleteCartItem = async (order_id, product_id) => {
+  try{
+    await db.query(`
+    DELETE FROM order_products 
+    WHERE order_id = $1 AND product_id = $2`, [order_id, product_id]);
 
+  }catch(err){
+    throw err;
+  }
+}
 
 
 
@@ -137,5 +147,6 @@ module.exports = {
   getCartItems,
   getPastOrders,
   addToCart,
-  updateCart
+  updateCart,
+  deleteCartItem
 };
