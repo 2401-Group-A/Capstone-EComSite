@@ -11,6 +11,7 @@ const {
   addToCart,
   updateCart,
   deleteCartItem,
+  checkout
 } = require('../db/cart');
 
 // getting cart api endpoint
@@ -103,8 +104,8 @@ cartRouter.post('/', async (req, res, next) => {
 // to checkout we will PATCH the order
 cartRouter.patch('/checkout', async (req, res, next) => {
   try {
-    const {order_id, cart} = req.body;
-    await checkout(order_id, cart)
+    const {order_id} = req.body;
+    await checkout(order_id)
     res.status(201).send('This order has be checked out.')
   } catch (err) {
     next(err)
