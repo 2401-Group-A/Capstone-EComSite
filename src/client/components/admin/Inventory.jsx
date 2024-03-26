@@ -62,7 +62,7 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
 };
 
 // Full Inventory Function
-const Inventory = () => {
+const Inventory = ({token}) => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -120,6 +120,38 @@ const Inventory = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+// Admin Check
+const adminCheck = async () => {
+  console.log(token);
+  try {
+    const isAdmin = await fetch('http://localhost:3000/api/users/admin', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    if (isAdmin.ok) {
+      const admin = await isAdmin.json();
+      console.log(admin);
+      if (admin.admin != true ) {
+        navigate("/login");
+      }
+    } else {
+      console.error("Error fetching products: ", response.statusText);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+useEffect(() => {
+  if (token) {
+    adminCheck();
+}
+
+fetchProducts();
+}, [token]);
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
@@ -233,7 +265,11 @@ const Inventory = () => {
       console.error("Error adding new product:", error);
     }
   };
-
+// Conditional Redendering
+if (!token) {
+  console.log("here");
+  return <div>Please log in</div>
+}
   // Inventory Container
   return (
     <div className="inventory-layout">
