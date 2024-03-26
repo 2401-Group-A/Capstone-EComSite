@@ -31,6 +31,7 @@ async function getCartItems(cartId) {
   }
 }
 
+// past orders
 async function getPastOrders(userId) {
   try{
     const {rows} = await db.query(
@@ -59,7 +60,17 @@ async function getPastOrders(userId) {
   }
  }
 
-
+ // Update cart quantity
+async function updateCart (order_id, product_id, quantity){ 
+  try{
+    const {rows} = await db.query(
+      `UPDATE order_products SET quantity = $1 WHERE id = $2 RETURNING *`, [order_id, product_id, quantity]
+    );
+    return rows[0]
+  }catch (err){
+    throw err;
+  }
+}
 
 
 
@@ -124,5 +135,6 @@ module.exports = {
   getCart,
   getCartItems,
   getPastOrders,
-  addToCart
+  addToCart,
+  updateCart
 };
