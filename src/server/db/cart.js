@@ -45,7 +45,28 @@ async function getPastOrders(userId) {
   }
   }
 
- 
+ // add item to cart 
+
+ async function addToCart (order_id, product_id, quantity) {
+  try{
+    await db.query(
+      `INSERT INTO order_products(order_id, product_id, quantity)
+      VALUES ($1, $2, $3)`, [order_id, product_id, quantity]
+    );
+
+  }catch (err){
+    throw err;
+  }
+ }
+
+
+
+
+
+
+
+
+
 
 // get users cart and past orders --- MAY NOT NEED ----
 async function getOrderItems(order_id) {
@@ -102,5 +123,6 @@ module.exports = {
   createCart,
   getCart,
   getCartItems,
-  getPastOrders
+  getPastOrders,
+  addToCart
 };

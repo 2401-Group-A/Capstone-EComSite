@@ -7,7 +7,8 @@ const {
   createOrder,
   getOrderItems,
   getCart,
-  getPastOrders
+  getPastOrders,
+  addToCart
 } = require('../db/cart')
 
 
@@ -48,6 +49,29 @@ cartRouter.get('/orders', requireToken, async (req, res, next) => {
     next(err); 
   }
 } )
+
+// add item to cart 
+
+cartRouter.post('/addproduct', async (req, res, next) => {
+  try{
+    const { order_id, product_id, quantity} = req.body
+    console.log('this is req.body',req.body)
+    await addToCart(order_id, product_id, quantity)
+    
+    res.status(201).send('This item has been added successfully')
+  }catch (err){
+    next(err)
+  }
+})
+
+
+
+
+
+
+
+
+
 
 
 // create order endpoint
