@@ -128,14 +128,14 @@ async function createCart(user_id) {
   createOrder(user_id, null, null, true);
 }
 
+
 const checkout = async (id) => {
   await db.query(
     `UPDATE orders
     SET cart = false 
-    WHERE id = $1 `,
-    [id]
-  );
-};
+    WHERE id = $1 `, [id]
+    );
+}
 
 module.exports = {
   getOrderItems,
