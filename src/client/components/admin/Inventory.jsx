@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Inventory.css";
+import { useNavigate } from 'react-router-dom';
 
 const DEFAULT_IMAGE_URL = "src/client/assets/plants/placeholder.jpg";
 
@@ -66,6 +67,7 @@ const Inventory = ({token}) => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const navigate = useNavigate();
 
   // States for new product attributes
   const [newPlantType, setNewPlantType] = useState("");
