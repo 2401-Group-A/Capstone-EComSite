@@ -37,9 +37,21 @@ apiRouter.use('/users', usersRouter);
 const productRouter = require('./products');
 apiRouter.use('/products', productRouter);
 
+// Cart
+const cartRouter = require('./cart');
+apiRouter.use('/cart', cartRouter )
+
+apiRouter.get('/', (req,res)=>{
+  res.send('/api routes')
+})
+
 apiRouter.use((err, req, res, next) => {
   console.error(err); // please do log errors!
   res.status(500).send(err);
 });
+
+
+
+
 
 module.exports = apiRouter;

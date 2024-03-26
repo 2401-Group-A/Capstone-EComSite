@@ -1,3 +1,4 @@
+const { createCart } = require('./cart');
 const db = require('./client');
 const bcrypt = require('bcrypt');
 const SALT_COUNT = 10;
@@ -35,7 +36,7 @@ const createUser = async ({
         admin
       ]
     );
-
+      createCart(user.id)
     return user;
   } catch (err) {
     throw err;
@@ -94,6 +95,43 @@ const getUserById = async (id) => {
   }
 };
 
+const getUserInfoById = async (id) => {
+  try {
+    // Query to fetch user information
+    const userResult = await db.query ({
+      text: `SELECT id as user_id , firstname, lastname, email
+      FROM users
+      WHERE id = $1`,
+      values: [id],
+    });
+
+    // Query to fetch order information
+    const orderResult = await db.query({
+      text: ` SELECT id as order_id
+        FROM orders
+        WHERE user_id = $1`,
+      values: [id],
+    });
+
+    const [user] = userResult.rows;
+    const [order] = orderResult.rows; 
+
+    if (!user) {
+      return;
+    }
+
+    return{
+      id: user.user_id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email, 
+      order: order ? { id: order.order_id } : null,
+    }
+  }catch (err){
+  throw err;
+  }
+}
+
 // is Admin
 const isAdminById = async (id) => {
   try {
@@ -133,6 +171,7 @@ module.exports = {
   getUser,
   getUserByEmail,
   getUserById,
+  getUserInfoById,
   getAllUsers,
   isAdminById,
 };
