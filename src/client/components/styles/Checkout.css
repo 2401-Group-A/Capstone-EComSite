@@ -54,6 +54,13 @@
   .not-logged-container > h1 {
     color: var(--forrestGreen);
   }
+
+  /* Order Summary Styling */
+  .summary-column > div {
+    color: red;
+  
+
+  }
   
   /* Responsive Design */
   @media (max-width: 768px), (max-width: 375px) {

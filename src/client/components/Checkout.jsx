@@ -82,28 +82,30 @@ const Checkout = ({ token }) => {
         </div>
         <div className='orders-container'>
           <h2>Your order summary:</h2>
-          <div className='order-summary'>
+          <div className='user-address'>
             <div className='summary-column'>
-              <div>
-                <strong>Subtotal:</strong>
+            <ul className='user-address summary-column'>
+              <li>
+                <b>Subtotal:</b>
                 <span>{orderSummaryData.subtotal}</span>
-              </div>
-              <div>
-                <strong>Shipping:</strong>
+              </li>
+              <li>
+                <b>Shipping:</b>
                 <span>{orderSummaryData.shipping}</span>
-              </div>
-              <div>
-                <strong>Estimated Tax:</strong>
+              </li>
+              <li>
+                <b>Estimated Tax:</b>
                 <span>{orderSummaryData.estimatedTax}</span>
-              </div>
-              <div>
-                <strong>Total:</strong>
+              </li>
+              <li>
+                <b>Total:</b>
                 <span>{orderSummaryData.total}</span>
-              </div>
-              <div>
-                <strong>You Save:</strong>
+              </li>
+              <li>
+                <b>You Save:</b>
                 <span>{orderSummaryData.youSave}</span>
-              </div>
+              </li>
+            </ul>
                 <button className="place-order-bttn">Place Order</button>
             </div>
           </div>
