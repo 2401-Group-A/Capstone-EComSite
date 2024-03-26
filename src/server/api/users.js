@@ -1,9 +1,25 @@
 const express = require('express');
 const usersRouter = express.Router();
 const requireToken = require('./requireToken');
-const { createUser, getUser, getUserByEmail, getUserById, getAllUsers, getCartByUserId } = require('../db');
+const { createUser, getUser, getUserByEmail, getUserById, getAllUsers, getUserInfoById } = require('../db');
 
 const jwt = require('jsonwebtoken');
+
+// Get cart items 
+
+usersRouter.get('/userinfo', requireToken, async (req, res, next) => {
+  const userId = req.user.id;
+  
+  try {
+    const userInfo = await getUserInfoById(userId);
+    if (!userInfo){
+      return res.status(404).json({error: 'Internal server error'});
+    }
+    res.send(userInfo)
+  }catch (err){
+    next(err)
+  }
+})
 
 // -----GET All Users-----
 usersRouter.get('/', async (req, res, next) => {
@@ -34,14 +50,14 @@ usersRouter.get('/me', requireToken, async (req, res, next) => {
   }
 });
 
-usersRouter.get('/orders', requireToken, async (req, res, next) => {
-  const userOrder = await getCartByUserId(req.user.id);
-  try{
+// usersRouter.get('/orders', requireToken, async (req, res, next) => {
+//   const userOrder = await getCartByUserId(req.user.id);
+//   try{
 
-  }catch (err){
-  next(err)
-  }
-})
+//   }catch (err){
+//   next(err)
+//   }
+// })
 
 // -----POST Login-----
 usersRouter.post('/login', async (req, res, next) => {

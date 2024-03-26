@@ -11,6 +11,7 @@ export default function Cart({ cartItems, setCartItems }) {
 
   // NEED TO UPDATE TO INCLUDE API CALL TO REMOVE FROM SERVER
   // ------ remove item from cart -------
+  
   const handleRemove = (id) => {
     const updatedCart = cartItems.filter((product) => product.id !== id);
     setCartItems(updatedCart);

@@ -94,7 +94,7 @@ const getUserById = async (id) => {
   }
 };
 
-const getCartByUserId = async (id) => {
+const getUserInfoById = async (id) => {
   try {
     // Query to fetch user information
     const userResult = await db.query ({
@@ -147,6 +147,6 @@ module.exports = {
   getUser,
   getUserByEmail,
   getUserById,
-  getCartByUserId,
+  getUserInfoById,
   getAllUsers,
 };

@@ -33,13 +33,12 @@ function App() {
   const handleAddToCart = async (product) => {
     const updatedCart = [...cartItems, {...product, amount: 1}];
     setCartItems(updatedCart)
+    
     try{
       if (!token){
         throw new Error ('User is not logged in');
       } 
       
-      
-
       await fetch('/cart', {
           method: 'POST',
           headers: {
