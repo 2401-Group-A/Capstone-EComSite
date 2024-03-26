@@ -18,7 +18,7 @@ const Account = ({ token }) => {
           }, 3000);
         } else {
           const accountResponse = await fetch(
-            `http://localhost:3000/api/users/userinfo`,
+            `http://localhost:3000/api/users/me`,
             {
               method: 'GET',
               headers: {

@@ -39,7 +39,7 @@ apiRouter.use('/products', productRouter);
 
 // Cart
 const cartRouter = require('./cart');
-cartRouter.use('/cart', cartRouter )
+apiRouter.use('/cart', cartRouter )
 
 apiRouter.get('/', (req,res)=>{
   res.send('/api routes')

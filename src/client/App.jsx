@@ -34,6 +34,7 @@ function App() {
     const updatedCart = [...cartItems, {...product, amount: 1}];
     setCartItems(updatedCart)
     
+  
     try{
       if (!token){
         throw new Error ('User is not logged in');

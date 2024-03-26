@@ -1,12 +1,12 @@
 const db = require("./client");
 
-// get items from users cart 
-async function getCartItems(order_Id, product_Id, quantity) {
+// get users cart and past orders 
+async function getOrderItems(order_id) {
   try {
     const { rows } = await db.query(` 
-    INSERT INTO order_products (order_id, product_id, quantity)
-    VALUES ($1, $2, $3)
-    RETURNING *`, [order_Id, product_Id, quantity]);
+    SELECT *
+    FROM order_products
+    WHERE order_id = $1 `, [order_id]);
 
     return rows[0];
   } catch (err) {
@@ -40,24 +40,15 @@ async function createOrder (user_id, orderdate, shippingaddress, cart) {
 
 }
 
-async function createCart(order_id, product_id, quantity){
-  try{
-    const { rows } = await db.query(
-      `INSERT INTO order_products (order_id, product_id, quantity)
-      VALUES ($1, $2, $3)
-      RETURNING *`, 
-      [order_id, product_id, quantity]
-    );
-    return rows[0]
-  }catch(error){
-    throw error;
-  }
+async function createCart(user_id){
+  createOrder(user_id, null, null, true)
 }
 
 
 
+
 module.exports = {
-  getCartItems,
+  getOrderItems,
   getAllOrders,
   createOrder,
   createCart

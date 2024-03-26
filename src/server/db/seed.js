@@ -207,9 +207,9 @@ async function addSeeds() {
 async function testOrders(){
   await db.query(`
     INSERT INTO orders (user_id, orderdate, shippingaddress, cart)
-    VALUES (1, '2024-03-15', '123 Easy St', true),
-    (2, '2024-03-15', '456 Easy St', true),
-    (3, '2024-03-15', '789 Easy St', true),
+    VALUES (1, '2024-03-15', '123 Easy St', false),
+    (2, '2024-03-15', '456 Easy St', false),
+    (3, '2024-03-15', '789 Easy St', false),
     (3, '2024-03-15', '789 Easy St', false)
     `);
   }

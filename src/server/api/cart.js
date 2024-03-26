@@ -4,18 +4,22 @@ const requireToken = require("./requireToken");
 const {
   getCartItems,
   createCart,
-  createOrder
+  createOrder,
+  getOrderItems
   
 } = require('../db/cart')
 
-// add to cart 
-cartRouter.post('/add', async (req, res, next) => {
-  const {product_id, order_id, quantity} = req.body;
+
+
+cartRouter.get('/', requireToken, async (req, res, next) => {
+  const user_id = req.user.id
   try{
-    const cartItem = await createCart(order_id, product_id, quantity);
-    res.status(201).json(cartItem);
-  }catch (error){
-    next(error);
+    
+    const orderItems = await getOrderItems(order_id);
+    res.json(orderItems);
+
+  }catch (err){
+    next(err)
   }
 })
 
@@ -32,16 +36,6 @@ console.log('recieved user_id', user_id)
   }
 })
 
-// create cart endpoint
-cartRouter.post('/createcart', async (req, res, next) => {
-  const { order_id, product_id, quantity } = req.body;
-  try{
-    const cartItem = await createCart(order_id, product_id, quantity);
-    res.status(201).json(cartItem)
-  }catch (err){
-    next(err)
-  }
-})
 
 
 
