@@ -64,7 +64,17 @@ cartRouter.post('/addproduct', async (req, res, next) => {
   }
 })
 
-
+// Change an items qty in the cart
+cartRouter.patch('/editcart', async (req, res, next) => {
+try {
+  // We need three pieces of info, the cart #, prduct # & qty
+  const { order_id, product_id, quantity} = req.body
+  await updateCart (order_id, product_id, quantity)
+  res.status(201).send('The quantity has been updated for this item.')
+} catch (err) {
+  next(err)
+}
+})
 
 
 
