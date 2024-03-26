@@ -92,7 +92,6 @@ const deleteCartItem = async (order_id, product_id) => {
 
 
 
-
 // get users cart and past orders --- MAY NOT NEED ----
 async function getOrderItems(order_id) {
   try {
@@ -110,15 +109,7 @@ async function getOrderItems(order_id) {
   }
 }
 
-// get all orders from orders table
-async function getAllOrders() {
-  try {
-    const { rows } = await db.query('SELECT * FROM orders');
-    return rows;
-  } catch (error) {
-    throw error;
-  }
-}
+
 
 // creates new orders
 async function createOrder(user_id, orderdate, shippingaddress, cart) {
@@ -140,9 +131,17 @@ async function createCart(user_id) {
   createOrder(user_id, null, null, true);
 }
 
+
+const checkout = async (order_id, cart) => {
+  const {rows} = await db.query(
+    `UPDATE orders
+    SET cart = false 
+    WHERE order_id = $1 `, [order_id, cart]
+    );
+}
+
 module.exports = {
   getOrderItems,
-  getAllOrders,
   createOrder,
   createCart,
   getCart,
@@ -150,5 +149,6 @@ module.exports = {
   getPastOrders,
   addToCart,
   updateCart,
-  deleteCartItem
+  deleteCartItem,
+  checkout
 };
