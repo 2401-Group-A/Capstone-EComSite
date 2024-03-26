@@ -32,3 +32,22 @@ input[type="text"] {
   tbody tr:hover {
     background-color: #d5d1d1;
   }
+
+  /* Responsive Design */
+@media (max-width: 375px) {
+  input[type="text"] {
+    width: 100%;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 820px) {
+  input[type="text"] {
+    width: 80%; 
+  }
+}
+
+@media (min-width: 821px) {
+  input[type="text"] {
+    width: 50%; 
+  }
+}
