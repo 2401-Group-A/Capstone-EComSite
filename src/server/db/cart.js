@@ -63,18 +63,35 @@ async function addToCart(order_id, product_id, quantity) {
   }
 }
 
-// Update cart quantity
-async function updateCart(order_id, product_id, quantity) {
-  try {
-    const { rows } = await db.query(
-      `UPDATE order_products SET quantity = $1 WHERE id = $2 RETURNING *`,
-      [order_id, product_id, quantity]
+ // Update cart quantity
+async function updateCart (order_id, product_id, quantity){ 
+  try{
+      await db.query(
+      `UPDATE order_products 
+      SET quantity = $3 WHERE order_id = $1 AND product_id = $2`, [order_id, product_id, quantity]
     );
-    return rows[0];
-  } catch (err) {
+    
+  }catch (err){
     throw err;
   }
 }
+
+
+// delete items from cart 
+
+const deleteCartItem = async (order_id, product_id) => {
+  try{
+    await db.query(`
+    DELETE FROM order_products 
+    WHERE order_id = $1 AND product_id = $2`, [order_id, product_id]);
+
+  }catch(err){
+    throw err;
+  }
+}
+
+
+
 
 // get users cart and past orders --- MAY NOT NEED ----
 async function getOrderItems(order_id) {
