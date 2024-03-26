@@ -8,7 +8,8 @@ const {
   getOrderItems,
   getCart,
   getPastOrders,
-  addToCart
+  addToCart,
+  updateCart
 } = require('../db/cart')
 
 

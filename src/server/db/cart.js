@@ -63,10 +63,11 @@ async function getPastOrders(userId) {
  // Update cart quantity
 async function updateCart (order_id, product_id, quantity){ 
   try{
-    const {rows} = await db.query(
-      `UPDATE order_products SET quantity = $1 WHERE id = $2 RETURNING *`, [order_id, product_id, quantity]
+      await db.query(
+      `UPDATE order_products 
+      SET quantity = $3 WHERE order_id = $1 AND product_id = $2`, [order_id, product_id, quantity]
     );
-    return rows[0]
+    
   }catch (err){
     throw err;
   }
