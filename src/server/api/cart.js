@@ -4,8 +4,6 @@ const requireToken = require('./requireToken');
 const {
   getCartItems,
   createCart,
-  createOrder,
-  getOrderItems,
   getCart,
   getPastOrders,
   addToCart,
@@ -13,6 +11,19 @@ const {
   deleteCartItem,
   checkout
 } = require('../db/cart');
+
+// create cart 
+cartRouter.post('/', async (req, res, next) => {
+  const { user_id } = req.body;
+  console.log('recieved user_id', user_id);
+  try {
+    const order = await createCart(user_id);
+    res.status(201).json(order);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 // getting cart api endpoint
 cartRouter.get('/', requireToken, async (req, res, next) => {
@@ -89,23 +100,17 @@ cartRouter.delete('/removeitem', async (req, res, next) => {
   }
 });
 
-// create order endpoint
-cartRouter.post('/', async (req, res, next) => {
-  const { user_id } = req.body;
-  console.log('recieved user_id', user_id);
-  try {
-    const order = await createOrder(user_id);
-    res.status(201).json(order);
-  } catch (err) {
-    next(err);
-  }
-});
+
 
 // to checkout we will PATCH the order
-cartRouter.patch('/checkout', async (req, res, next) => {
+cartRouter.patch('/checkout', requireToken, async (req, res, next) => {
   try {
-    const {order_id} = req.body;
+    console.log('this is the body', req.user.id)
+    console.log('this is the order id', req.body)
+    const {order_id } = req.body;
+    const {user_id} = req.user.id;
     await checkout(order_id)
+    await createCart(user_id)
     res.status(201).send('This order has be checked out.')
   } catch (err) {
     next(err)

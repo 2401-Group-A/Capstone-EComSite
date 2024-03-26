@@ -1,5 +1,26 @@
 const db = require('./client');
 
+// creates new orders --- does not need api endpoint
+async function createOrder(user_id, orderdate, shippingaddress, cart) {
+  try {
+    const { rows } = await db.query(
+      `INSERT INTO orders (user_id, orderdate, shippingaddress, cart)
+      VALUES ($1, $2, $3, $4)
+      RETURNING *`,
+      [user_id, orderdate, shippingaddress, cart]
+    );
+    return rows[0];
+  } catch (error) {
+    throw error;
+  }
+}
+
+// creates the cart when you create a user -- 
+async function createCart(user_id) {
+  createOrder(user_id, null, null, true);
+}
+
+
 // get cart
 async function getCart(userId) {
   try {
@@ -111,25 +132,6 @@ async function getOrderItems(order_id) {
 
 
 
-// creates new orders
-async function createOrder(user_id, orderdate, shippingaddress, cart) {
-  try {
-    const { rows } = await db.query(
-      `INSERT INTO orders (user_id, orderdate, shippingaddress, cart)
-      VALUES ($1, $2, $3, $4)
-      RETURNING *`,
-      [user_id, orderdate, shippingaddress, cart]
-    );
-    return rows[0];
-  } catch (error) {
-    throw error;
-  }
-}
-
-// creates the cart when you create a user -- does not need api endpoint
-async function createCart(user_id) {
-  createOrder(user_id, null, null, true);
-}
 
 
 const checkout = async (id) => {
