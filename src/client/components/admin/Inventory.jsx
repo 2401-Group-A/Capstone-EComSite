@@ -312,32 +312,11 @@ if (!token) {
           <div className="product-add-list">
             <div className="input-change">
               <label>Plant Type:</label>
-              <select
+              <input
+                type="text"
                 value={newPlantType}
                 onChange={(e) => setNewPlantType(e.target.value)}
-              >
-                <option value="" disabled>
-                  Plant Type
-                </option>
-                <option value="Basil">Basil</option>
-                <option value="Cilantro">Cilantro</option>
-                <option value="Mint">Mint</option>
-                <option value="Oregano">Oregano</option>
-                <option value="Parsley">Parsley</option>
-                <option value="Spinach">Spinach</option>
-                <option value="Arugula">Arugula</option>
-                <option value="Pea">Pea</option>
-                <option value="Lettuce">Lettuce</option>
-                <option value="Cabbage">Cabbage</option>
-                <option value="Radish">Radish</option>
-                <option value="Tomato">Tomato</option>
-                <option value="Pepper">Pepper</option>
-                <option value="Cucumber">Cucumber</option>
-                <option value="Onion">Onion</option>
-                <option value="Zucchini">Zucchini</option>
-                <option value="Bean">Bean</option>
-                <option value="Carrot">Carrot</option>
-              </select>
+              />
             </div>
             <div className="input-change">
               <label>Plant Variety:</label>
