@@ -23,7 +23,7 @@ cartRouter.get('/', requireToken, async (req, res, next) => {
 })
 
 // getting cart items 
-cartRouter.get('/:cartId', requireToken, async (req, res, next) => {
+cartRouter.get('/cartId/:cartId', requireToken, async (req, res, next) => {
   const user_id = req.user.id;
   console.log(user_id)
 
@@ -40,6 +40,7 @@ cartRouter.get('/:cartId', requireToken, async (req, res, next) => {
 // getting past orders 
 cartRouter.get('/orders', requireToken, async (req, res, next) => {
   const user_id = req.user.id
+  console.log('user Id', req.user.id)
   try{
    const pastOrders = await getPastOrders(user_id);
    res.json(pastOrders);
