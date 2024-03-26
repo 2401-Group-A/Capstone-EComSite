@@ -27,6 +27,7 @@ const Home = ({handleAddToCart}) => {
     setFilterFullSun(false);
     setFilterFullToPartSun(false);
     setFilterFullSunToPartShade(false);
+    setMaxPrice(100);
   };
 
   // Use Effect Start
@@ -104,8 +105,8 @@ const Home = ({handleAddToCart}) => {
           <span className='price-label'> $ </span>
           <input
             type='range'
-            min='0'
-            max='8'
+            min='1'
+            max='10'
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           />
