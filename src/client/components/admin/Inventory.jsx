@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Inventory.css";
+import { useNavigate } from 'react-router-dom';
 
 const DEFAULT_IMAGE_URL = "src/client/assets/plants/placeholder.jpg";
 
@@ -62,10 +63,11 @@ const SingleProductView = ({ product, onSaveChanges, onClose }) => {
 };
 
 // Full Inventory Function
-const Inventory = () => {
+const Inventory = ({token}) => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const navigate = useNavigate();
 
   // States for new product attributes
   const [newPlantType, setNewPlantType] = useState("");
@@ -120,6 +122,38 @@ const Inventory = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+// Admin Check
+const adminCheck = async () => {
+  console.log(token);
+  try {
+    const isAdmin = await fetch('http://localhost:3000/api/users/admin', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    if (isAdmin.ok) {
+      const admin = await isAdmin.json();
+      console.log(admin);
+      if (admin.admin != true ) {
+        navigate("/login");
+      }
+    } else {
+      console.error("Error fetching products: ", response.statusText);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+useEffect(() => {
+  if (token) {
+    adminCheck();
+}
+
+fetchProducts();
+}, [token]);
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
@@ -233,7 +267,11 @@ const Inventory = () => {
       console.error("Error adding new product:", error);
     }
   };
-
+// Conditional Redendering
+if (!token) {
+  console.log("here");
+  return <div>Please log in</div>
+}
   // Inventory Container
   return (
     <div className="inventory-layout">
@@ -274,32 +312,11 @@ const Inventory = () => {
           <div className="product-add-list">
             <div className="input-change">
               <label>Plant Type:</label>
-              <select
+              <input
+                type="text"
                 value={newPlantType}
                 onChange={(e) => setNewPlantType(e.target.value)}
-              >
-                <option value="" disabled>
-                  Plant Type
-                </option>
-                <option value="Basil">Basil</option>
-                <option value="Cilantro">Cilantro</option>
-                <option value="Mint">Mint</option>
-                <option value="Oregano">Oregano</option>
-                <option value="Parsley">Parsley</option>
-                <option value="Spinach">Spinach</option>
-                <option value="Arugula">Arugula</option>
-                <option value="Pea">Pea</option>
-                <option value="Lettuce">Lettuce</option>
-                <option value="Cabbage">Cabbage</option>
-                <option value="Radish">Radish</option>
-                <option value="Tomato">Tomato</option>
-                <option value="Pepper">Pepper</option>
-                <option value="Cucumber">Cucumber</option>
-                <option value="Onion">Onion</option>
-                <option value="Zucchini">Zucchini</option>
-                <option value="Bean">Bean</option>
-                <option value="Carrot">Carrot</option>
-              </select>
+              />
             </div>
             <div className="input-change">
               <label>Plant Variety:</label>

@@ -1,7 +1,7 @@
 const express = require('express');
 const usersRouter = express.Router();
 const requireToken = require('./requireToken');
-const { createUser, getUser, getUserByEmail, getUserById, getAllUsers, getUserInfoById } = require('../db');
+const { createUser, getUser, getUserByEmail, getUserById, getAllUsers, getUserInfoById, isAdminById } = require('../db');
 
 const jwt = require('jsonwebtoken');
 
@@ -48,6 +48,21 @@ usersRouter.get('/me', requireToken, async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+usersRouter.get("/admin", requireToken, async (req, res, next) => {
+  console.log("user", req.user);
+  const admin = await isAdminById(req.user.id);
+  console.log(admin);
+  try {
+    if (!admin) {
+      res.send({admin: false});
+    }else {
+      res.send({admin: admin});
+    }
+    } catch (err) {
+      next(err);
+    }
 });
 
 // usersRouter.get('/orders', requireToken, async (req, res, next) => {

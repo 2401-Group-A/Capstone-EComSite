@@ -132,6 +132,29 @@ const getUserInfoById = async (id) => {
   }
 }
 
+// is Admin
+const isAdminById = async (id) => {
+  try {
+    const {
+      rows: [user],
+    } = await db.query(
+      `
+      SELECT * 
+      FROM users
+      WHERE id = $1;`,
+      [id]
+    );
+    if (user.admin) {
+      return true;
+    }
+    return false;
+  }catch (err) {
+    throw err;
+  }
+};
+
+
+
 
 // GET all users
 const getAllUsers = async () => {
@@ -150,4 +173,5 @@ module.exports = {
   getUserById,
   getUserInfoById,
   getAllUsers,
+  isAdminById,
 };

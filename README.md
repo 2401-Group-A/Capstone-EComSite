@@ -1,6 +1,6 @@
-#  🚀 Capstone Boilerplate
+#  🌱 Little Seed, BIG Garden capstone project
 
-A template for building web applications using the PERN (PostgreSQL, Express.js, React, Node.js) stack. 
+A web application for selling herb and vegetable seeds using the PERN (PostgreSQL, Express.js, React, Node.js) stack. 
 
 ##  🏁 Getting Started
 
@@ -9,7 +9,7 @@ A template for building web applications using the PERN (PostgreSQL, Express.js,
 2. Add this template as a remote and merge it into your own repository
 
 ```bash
-git remote add boilermaker git@github.com:FullstackAcademy/capstone-app-template.git
+git remote add boilermaker git@github.com:2401-Group-A/Capstone-EComSite.git
 git fetch boilermaker
 git merge boilermaker/main
 ```
