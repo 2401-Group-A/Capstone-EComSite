@@ -82,7 +82,7 @@ const Checkout = ({ token }) => {
         </div>
         <div className='orders-container'>
           <h2>Your order summary:</h2>
-          <div className='user-address'>
+          {/* <div className='user-address'> */}
             <div className='summary-column'>
             <ul className='user-address summary-column'>
               <li>
@@ -110,7 +110,7 @@ const Checkout = ({ token }) => {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </main>
   );
 };

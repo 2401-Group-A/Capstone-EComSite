@@ -55,12 +55,18 @@
     color: var(--forrestGreen);
   }
 
-  /* Order Summary Styling */
-  .summary-column > div {
-    color: red;
-  
-
+ /* Button */
+  .place-order-bttn {
+    background-color: var(--terracotta);
+    color: var(--almostBlack);
+    border: none;
+    width: 6.25rem;
+    height: 2.5rem;
+    border-radius: var(--radiusStandard);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+  /* margin for the order summary */
+
   
   /* Responsive Design */
   @media (max-width: 768px), (max-width: 375px) {
