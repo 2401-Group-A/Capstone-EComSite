@@ -5,23 +5,48 @@ const {
   getCartItems,
   createCart,
   createOrder,
-  getOrderItems
-  
+  getOrderItems,
+  getCart,
+  getPastOrders
 } = require('../db/cart')
 
 
-
+// getting cart api endpoint
 cartRouter.get('/', requireToken, async (req, res, next) => {
   const user_id = req.user.id
   try{
-    
-    const orderItems = await getOrderItems(order_id);
-    res.json(orderItems);
-
+   const cart = await getCart(user_id);
+   res.json(cart);
   }catch (err){
     next(err)
   }
 })
+
+// getting cart items 
+cartRouter.get('/:cartId', requireToken, async (req, res, next) => {
+  const user_id = req.user.id;
+  console.log(user_id)
+
+  try{
+    const cartId = req.params.cartId;
+    const produce = await getCartItems(cartId);
+    res.json(produce);
+  }catch (err){
+    next (err);
+  }
+})
+
+
+// getting past orders 
+cartRouter.get('/orders', requireToken, async (req, res, next) => {
+  const user_id = req.user.id
+  try{
+   const pastOrders = await getPastOrders(user_id);
+   res.json(pastOrders);
+  }catch (err){
+    next(err); 
+  }
+} )
 
 
 // create order endpoint

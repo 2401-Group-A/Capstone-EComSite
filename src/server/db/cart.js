@@ -1,6 +1,53 @@
 const db = require("./client");
 
-// get users cart and past orders 
+// get cart 
+async function getCart(userId) {
+try{
+  const {rows} = await db.query(
+    `SELECT *
+    FROM orders
+    WHERE user_id = $1 AND cart = true`,[userId]
+  );
+
+  return rows [0];
+}catch (err){
+  throw err;
+}
+}
+ 
+// getting cart items 
+async function getCartItems(cartId) {
+  try{
+    const { rows } = await db.query(
+      `SELECT *
+      FROM order_products 
+      WHERE order_id = $1`, [cartId]
+    );
+    console.log(rows);
+
+    return rows;
+  }catch (err){
+    throw err;
+  }
+}
+
+async function getPastOrders(userId) {
+  try{
+    const {rows} = await db.query(
+      `SELECT *
+      FROM orders
+      WHERE user_id = $1 AND cart = false`,[userId]
+    );
+  
+    return rows;
+  }catch (err){
+    throw err;
+  }
+  }
+
+ 
+
+// get users cart and past orders --- MAY NOT NEED ----
 async function getOrderItems(order_id) {
   try {
     const { rows } = await db.query(` 
@@ -40,6 +87,7 @@ async function createOrder (user_id, orderdate, shippingaddress, cart) {
 
 }
 
+// creates the cart when you create a user -- does not need api endpoint
 async function createCart(user_id){
   createOrder(user_id, null, null, true)
 }
@@ -51,5 +99,8 @@ module.exports = {
   getOrderItems,
   getAllOrders,
   createOrder,
-  createCart
+  createCart,
+  getCart,
+  getCartItems,
+  getPastOrders
 };
