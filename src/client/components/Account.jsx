@@ -4,6 +4,7 @@ import './styles/Account.css';
 
 const Account = ({ token }) => {
   const [profile, setProfile] = useState({});
+  const [userData, setUserData] = useState()
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +40,49 @@ const Account = ({ token }) => {
       }
     };
     loadProfile();
+
+
+    const getPastOrders = async () => {
+      try{
+        const response = await fetch("http://localhost:3000/api/cart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
+
+        if(!response.ok){
+          throw new Error ('Failed to get cart ID')
+        }
+
+        const { id } = await response.json()
+        console.log('this is my id:', id)
+
+        const response2 = await fetch('http://localhost:3000/api/cart/orders/' + id, {
+          
+        method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token,
+          },
+          
+        });
+  
+       if(!response2.ok){
+          throw new Error ('Failed get cart items bro')
+        }
+        
+        const ordersData = await response2.json();
+       
+        setUserData(ordersData)
+        console.log('LOOK HERE ORDERS DATA:',userData)
+      }catch (err){
+        console.error(err)
+      }
+    }
+    getPastOrders()
+
   }, []);
 
   if (!token) {
@@ -52,6 +96,9 @@ const Account = ({ token }) => {
     );
   }
 
+
+       
+
   const handleInventoryClick = () => {
     navigate('/inventory');
   };
@@ -59,6 +106,8 @@ const Account = ({ token }) => {
   const handleUserDataClick = () => {
     navigate('/userdata');
   };
+  if (!userData)
+  return;
 
   return (
     <main className='profile-container'>
@@ -104,6 +153,13 @@ const Account = ({ token }) => {
         </div>
         <div className='orders-container'>
           <h2>Your past orders:</h2>
+          <ul>
+       {userData.map(orders => (
+          <li key={orders.id}>
+            <p>Order ID: {orders.id}</p>
+          </li>
+        ))}
+      </ul>
         </div>
       </div>
     </main>
@@ -111,3 +167,4 @@ const Account = ({ token }) => {
 };
 
 export default Account;
+

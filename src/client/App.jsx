@@ -15,11 +15,13 @@ import NavBar from './components/NavBar';
 import Cookies from 'universal-cookie';
 
 
-// const cartFromLocalStorage = JSON.parse(localStorage.getItem('cartItems') || '[]')
+
 
 function App() {
   const [token, setToken] = useState(null);
   const [cartItems, setCartItems] = useState([])
+ 
+ 
 
   const cookies = new Cookies();
   useEffect(() => {
@@ -39,21 +41,37 @@ function App() {
       if (!token){
         throw new Error ('User is not logged in');
       } 
-      
-      await fetch('/cart', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token,
-          },
-          body: JSON.stringify({
-            order_id: order_id,
-            product_id: product.id,
-            quantity: 1
-          })
+      // getting the cart only to get the order_id from it 
+      const response = await fetch("http://localhost:3000/api/cart", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
       });
-      console.log( 'New order posted:', orderId)
-      
+
+      // this is getting the id out of the response - had to put await in there so that it is called next. 
+      const {id } = await response.json()
+
+      const itemsInCart = {
+        order_id: id,
+        product_id: product.id ,
+        quantity: 1,
+      }
+
+      console.log('this is the order_id', id)
+      const response2 = await fetch('http://localhost:3000/api/cart/addproduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+        body: JSON.stringify(itemsInCart)
+      });
+
+     if(!response2.ok){
+        throw new Error ('Failed to add to cart bro')
+      }
   
     }catch (err) {
       console.error('error adding item to cart:', err)
@@ -62,43 +80,10 @@ function App() {
   }
 
 
-//   // ---------- adding to cart --------
-
-// const addToCart = async (product) => {
-//   const updatedCart = [...cartItems, {...product, amount: 1}];
-//     setCartItems(updatedCart)
-//   try{
-//     if (!token){
-//       throw new Error ('User is not logged in');
-//     } else {
-//       await fetch('/cart', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Authorization: 'Bearer ' + token,
-//         },
-//         body: JSON.stringify({
-//           ordersId: ordersId,
-//           productId: product.id,
-//           quantity: 1
-//         })
-//       });
-//       console.log( 'New order posted:', orderId)
-//     }
-
-//   }catch (err) {
-//     console.error('error adding item to cart:', err)
-//   }
-// }
-  // ------ local storage ---------
-  // useEffect(() =>{
-  //   localStorage.setItem('cartItems', JSON.stringify(cartItems))
-  // }, [cartItems])
-
   
   return (
     <>
-      <NavBar size={cartItems.length} setToken={setToken} cookies={cookies}/>
+      <NavBar setToken={setToken} cookies={cookies}/>
       
       <Routes>
         <Route path='/' element={<Home handleAddToCart={handleAddToCart} cartItems={cartItems} />} />
