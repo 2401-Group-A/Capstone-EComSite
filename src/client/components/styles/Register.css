@@ -8,7 +8,7 @@
   
   .register-container h2 {
     font-size: 3rem;
-    margin-top: -2rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
     color: var(--forrestGreen);
   }
@@ -35,6 +35,7 @@
     box-sizing: border-box;
     border-radius: var(--radiusStandard);
     border-color: var(--forrestGreen);  
+    border: none;
   }
   
   .register-container .form-footer {

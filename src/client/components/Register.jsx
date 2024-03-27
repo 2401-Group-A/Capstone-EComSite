@@ -87,7 +87,7 @@ const Register = ({ token, setToken, cookies }) => {
 
   return (
     <div className='register-container'>
-      <h2>Register</h2>
+      <h2 className='register-header'>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor='email'>Email:</label>
