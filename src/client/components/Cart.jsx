@@ -45,7 +45,7 @@ export default function Cart({token, cartItems, setCartItems }) {
           }
           
           const cartItemsData = await response2.json();
-          console.log (cartItemsData)
+          console.log ('this is my cart items:',cartItemsData)
           setUserCartItems(cartItemsData);
 
       }catch (err){
@@ -79,24 +79,69 @@ export default function Cart({token, cartItems, setCartItems }) {
 
 
   }, [])
-  
-  
-  const cartProducts = products.find((product) => {
-    
+  console.log('products', products)
+  console.log('user cart items:', userCartItems)
+  const cartProducts = products.filter((product) => {
+    userCartItems.some((item) => item.product_id === product.id)
   })
+  // .map((product) => ({
+  //   productId: product.id,
+  //   quantity: userCartItems.find((i) => i.product_id == product.id).quantity,
+  //   info: product,
+  // }));
+console.log('this is cartProducts:',cartProducts)
+  
 
 
 
 
 
-
-
-  // NEED TO UPDATE TO INCLUDE API CALL TO REMOVE FROM SERVER
+  
   // ------ remove item from cart -------
   
-  const handleRemove = (id) => {
+  const handleRemove = async (id, product) => {
     const updatedCart = cartItems.filter((product) => product.id !== id);
     setCartItems(updatedCart);
+
+    try{
+      if (!token){
+        throw new Error ('User is not logged in');
+      } 
+
+      // getting the cart only to get the order_id from it 
+      const response = await fetch("http://localhost:3000/api/cart", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      // this is getting the id out of the response - had to put await in there so that it is called next. 
+      const {id } = await response.json()
+
+      const itemsInCart = {
+        order_id: id,
+        product_id: product.id
+      }
+
+      console.log('this is the order_id', id)
+      const response2 = await fetch('http://localhost:3000/api/cart/removeitem', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+        body: JSON.stringify(itemsInCart)
+      });
+
+     if(!response2.ok){
+        throw new Error ('Failed to add to cart bro')
+      }
+  
+    }catch (err) {
+      console.error('error adding item to cart:', err)
+    }  
   };
 
   // --------- calculates total ---------
@@ -132,52 +177,58 @@ export default function Cart({token, cartItems, setCartItems }) {
   return (
 
     <aside className="cart-container">
-      <h2> Your Cart </h2>
-      <ul>
-        {userCartItems.map(product => (
-          <li key={product.id}>
-            <p>Product ID: {product.product_id}</p>
-            <p>Quantity: {product.quantity}</p>
-          </li>
+      <h2>Your Cart</h2>
+      <div>
+        {cartItems.length === 0 && (
+          <div key="empty-cart-message"> Cart is empty</div>
+        )}
+        {cartProducts.map((product) => (
+          <div className="cart_box" key={product.productId}>
+            <div className="cart_img">
+              <img src={product.info.imgurl} />
+              <h1 className="plant-type">{product.info.planttype}</h1>
+            </div>
+
+            <div className="button-box">
+              <button
+                onClick={() => handleQtyChange(product, -1)}
+                className="remove">
+                -
+              </button>
+              <button>{product.quantity}</button>
+              <button
+                onClick={() => handleQtyChange(product, +1)}
+                className="add"
+              >
+                +
+              </button>
+              <span>{product.price}</span>
+              <button onClick={() => handleRemove(product.id)}> Remove</button>
+            </div>
+          </div>
         ))}
-      </ul>
-
-
-
+      </div>
+      <div> Total: {price} </div>
     </aside>
-    // <aside className="cart-container">
-    //   <h2>Your Cart</h2>
-    //   <div>
-    //     {cartItems.length === 0 && (
-    //       <div key="empty-cart-message"> Cart is empty</div>
-    //     )}
-    //     {cartItems.map((product) => (
-    //       <div className="cart_box" key={product.id}>
-    //         <div className="cart_img">
-    //           <img src={product.imgurl} />
-    //           <h1 className="plant-type">{product.planttype}</h1>
-    //         </div>
-
-    //         <div className="button-box">
-    //           <button
-    //             onClick={() => handleQtyChange(product, -1)}
-    //             className="remove">
-    //             -
-    //           </button>
-    //           <button>{product.amount}</button>
-    //           <button
-    //             onClick={() => handleQtyChange(product, +1)}
-    //             className="add"
-    //           >
-    //             +
-    //           </button>
-    //           <span>{product.price}</span>
-    //           <button onClick={() => handleRemove(product.id)}> Remove</button>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-    //   <div> Total: {price} </div>
-    // </aside>
   );
 }
+
+
+// <aside className="cart-container">
+    //   <h2> Your Cart </h2>
+    //   <ul>
+    //     {cartProducts.map(product => (
+    //       <li key={product.id}>
+            
+    //         <p>Product ID: {product}</p>
+    //         <p>Quantity: {product.quantity}</p>
+    //       </li>
+    //     ))}
+    //   </ul>
+
+
+
+    // </aside>
+
+
+   
