@@ -18,7 +18,7 @@ const Home = ({handleAddToCart, addToCart, cart}) => {
     useState(false);
 
   // Price Const
-  const [maxPrice, setMaxPrice] = useState(100);
+  const [maxPrice, setMaxPrice] = useState(6.99);
 
   // add to cart button Const
   const [isProductInCart, setIsProductInCart] = useState(false)
@@ -34,7 +34,7 @@ const Home = ({handleAddToCart, addToCart, cart}) => {
     setFilterFullSun(false);
     setFilterFullToPartSun(false);
     setFilterFullSunToPartShade(false);
-    setMaxPrice(100);
+    setMaxPrice(6.99);
   };
 
   // switches add to cart button to successfully added
@@ -134,8 +134,8 @@ const Home = ({handleAddToCart, addToCart, cart}) => {
           <span className='price-label'> $ </span>
           <input
             type='range'
-            min='1'
-            max='10'
+            min='3.99'
+            max='7'
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           />
