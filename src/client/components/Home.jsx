@@ -2,17 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './styles/Home.css';
 import { Link } from 'react-router-dom';
 
-const Home = ({handleAddToCart, addToCart}) => {
+const Home = ({handleAddToCart, addToCart, cart}) => {
   const [products, setProducts] = useState([]);
   
-  
-  const handleBothClicks = () => {
-    handleAddToCart();
-    addToCart();
-  }
-
-
-
 
   // Const for Search Bar
   const [searchQuery, setSearchQuery] = useState('');
@@ -28,6 +20,12 @@ const Home = ({handleAddToCart, addToCart}) => {
   // Price Const
   const [maxPrice, setMaxPrice] = useState(100);
 
+  // add to cart button Const
+  const [isProductInCart, setIsProductInCart] = useState(false)
+  const [addToCartText, setAddToCartText] = useState('Add to Cart');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+
   // Reset Filters
   const resetFilters = () => {
     setSearchQuery('');
@@ -38,6 +36,28 @@ const Home = ({handleAddToCart, addToCart}) => {
     setFilterFullSunToPartShade(false);
     setMaxPrice(100);
   };
+
+  // switches add to cart button to successfully added
+  useEffect(() => {
+    if (products && cart) {
+      setIsProductInCart(checkProductInCart(products.id));
+    }
+  }, [products, cart]);
+
+  const checkProductInCart = (productId) => {
+    return cart.some((item) => item.id === productId);
+  };
+
+  const handleAddToCartClicked = () => {
+    if (!isProductInCart) {
+      handleAddToCart(products);
+      setAddToCartText('Successfully added to cart');
+      setIsButtonDisabled(true);
+    } else {
+      alert('This product is already in your cart.');
+    }
+  };
+
 
   // Use Effect Start
   useEffect(() => {
