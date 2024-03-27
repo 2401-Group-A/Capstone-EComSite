@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles/SingleProduct.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function SingleProduct({ handleAddToCart, cart, token }) {
   const [product, setProduct] = useState(null);
@@ -8,7 +9,7 @@ export default function SingleProduct({ handleAddToCart, cart, token }) {
   const [isProductInCart, setIsProductInCart] = useState(false);
   const [addToCartText, setAddToCartText] = useState('Add to Cart');
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
+  const navigate = useNavigate()
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -49,6 +50,9 @@ export default function SingleProduct({ handleAddToCart, cart, token }) {
       handleAddToCart(product);
       setAddToCartText('Successfully added to cart');
       setIsButtonDisabled(true);
+      setTimeout(function () {
+        navigate('/');
+      }, 1000);
     } else {
       alert('This product is already in your cart.');
     }
