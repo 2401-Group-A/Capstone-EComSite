@@ -176,7 +176,7 @@ export default function Cart({token, cartItems, setCartItems }) {
   return (
 
     <aside className="cart-container">
-      <h2>Your Cart</h2>
+      <h1 className="your-cart">Your Cart</h1>
       <div>
         
         {cartProducts.map((product) => (
@@ -189,23 +189,23 @@ export default function Cart({token, cartItems, setCartItems }) {
             <div className="button-box">
               <button
                 onClick={() => handleQtyChange(product, -1)}
-                className="remove">
+                className="qty-buttons">
                 -
               </button>
-              <button>{product.quantity}</button>
+              <button className="qty-buttons">{product.quantity}</button>
               <button
                 onClick={() => handleQtyChange(product, +1)}
-                className="add"
+                className="qty-buttons"
               >
                 +
               </button>
-              <span>{product.info.price}</span>
-              <button onClick={() => handleRemove(product.id)}> Remove</button>
+              <span className="cart-product-price">${product.info.price}</span>
+              <button className="remove-button" onClick={() => handleRemove(product.id)}> Remove</button>
             </div>
           </div>
         ))}
       </div>
-      <div> Total: {price} </div>
+      <div className="total-cart-price"> Your order total comes to: ${price} </div>
     </aside>
   );
 }
