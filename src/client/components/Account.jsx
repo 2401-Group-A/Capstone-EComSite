@@ -4,6 +4,7 @@ import './styles/Account.css';
 
 const Account = ({ token }) => {
   const [profile, setProfile] = useState({});
+  const [userData, setUserData] = useState([])
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +40,49 @@ const Account = ({ token }) => {
       }
     };
     loadProfile();
+
+
+    // const getPastOrders = async () => {
+    //   try{
+    //     const response = await fetch("http://localhost:3000/api/cart", {
+    //       method: "GET",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: "Bearer " + token,
+    //       },
+    //     });
+
+    //     if(!response.ok){
+    //       throw new Error ('Failed to get cart ID')
+    //     }
+
+    //     const { id } = await response.json()
+    //     console.log('this is my id:', id)
+
+    //     const response2 = await fetch('http://localhost:3000/api/cart/orders', {
+          
+    //     method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Authorization: 'Bearer ' + token,
+    //       },
+          
+    //     });
+  
+    //    if(!response2.ok){
+    //       throw new Error ('Failed get cart items bro')
+    //     }
+        
+    //     const ordersData = await response2.json();
+       
+    //     setUserData(ordersData)
+    //     console.log('LOOK HERE ORDERS DATA:',userData)
+    //   }catch (err){
+    //     console.error(err)
+    //   }
+    // }
+    // getPastOrders()
+
   }, []);
 
   if (!token) {
@@ -52,49 +96,8 @@ const Account = ({ token }) => {
     );
   }
 
-// Getting past orders 
-  // const getPastOrders = async () => {
-  //   try{
-  //     // This is getting the order_id from cart
-  //     const response = await fetch("http://localhost:3000/api/cart", {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: "Bearer " + token,
-  //         },
-  //       });
 
-  //       if(!response.ok){
-  //         throw new Error ('Failed to get cart ID')
-  //       }
-
-  //       const { id } = await response.json()
-  //       console.log('this is my id:', id)
-        
-  //       // Fetching past orders using the obtained order_id
-  //       const response2 = await fetch('http://localhost:3000/api/cart/orders/' + id, {
-          
-  //       method: 'GET',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: 'Bearer ' + token,
-  //         },
-          
-  //       });
-  
-  //      if(!response2.ok){
-  //         throw new Error ('Failed get cart items bro')
-  //       }
-        
-  //       const userOrdersData = await response2.json();
-        
-
-  //   }catch (err){
-  //     console.error('Failed to get cart items:', err);
-  //   }
-  // };
-  // getPastOrders();
-
+       
 
   const handleInventoryClick = () => {
     navigate('/inventory');
@@ -148,15 +151,15 @@ const Account = ({ token }) => {
         </div>
         <div className='orders-container'>
           <h2>Your past orders:</h2>
-          <ul>
-       {userOrdersData.map(product => (
+          {/* <ul>
+       {userData.map(product => (
           <li key={product.id}>
             
             <p>Product ID: {product}</p>
             <p>Quantity: {product.quantity}</p>
           </li>
         ))}
-      </ul>
+      </ul> */}
         </div>
       </div>
     </main>

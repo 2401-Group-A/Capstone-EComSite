@@ -79,17 +79,16 @@ export default function Cart({token, cartItems, setCartItems }) {
 
 
   }, [])
-  console.log('products', products)
-  console.log('user cart items:', userCartItems)
-  const cartProducts = products.filter((product) => {
+
+  const cartProducts = products
+  .filter((product) =>
     userCartItems.some((item) => item.product_id === product.id)
-  })
-  // .map((product) => ({
-  //   productId: product.id,
-  //   quantity: userCartItems.find((i) => i.product_id == product.id).quantity,
-  //   info: product,
-  // }));
-console.log('this is cartProducts:',cartProducts)
+  )
+  .map((product) => ({
+    productId: product.id,
+    quantity: userCartItems.find((i) => i.product_id == product.id).quantity,
+    info: product,
+  }));
   
 
 
@@ -99,7 +98,7 @@ console.log('this is cartProducts:',cartProducts)
   
   // ------ remove item from cart -------
   
-  const handleRemove = async (id, product) => {
+  const handleRemove = async (id) => {
     const updatedCart = cartItems.filter((product) => product.id !== id);
     setCartItems(updatedCart);
 
@@ -122,7 +121,7 @@ console.log('this is cartProducts:',cartProducts)
 
       const itemsInCart = {
         order_id: id,
-        product_id: product.id
+        
       }
 
       console.log('this is the order_id', id)
@@ -149,8 +148,8 @@ console.log('this is cartProducts:',cartProducts)
     try {
       const handlePrice = () => {
         let cartTotal = 0;
-        cartItems.forEach(
-          (product) => (cartTotal += product.amount * product.price)
+        cartProducts.forEach(
+          (product) => (cartTotal += product.info.quantity * product.info.price)
         );
         setPrice(cartTotal);
       };
@@ -162,9 +161,9 @@ console.log('this is cartProducts:',cartProducts)
 
   // ------- handles add and minus buttons ----------
   const handleQtyChange = (product, change) => {
-    const updatedCart = cartItems.map((item) => {
-      if (item.id === product.id) {
-        return { ...item, amount: item.amount + change };
+    const updatedCart = cartProducts.map((item) => {
+      if (item.info.id === product.info.id) {
+        return { ...item, amount: item.info.quantity + change };
       }
       return item;
     });
@@ -179,9 +178,7 @@ console.log('this is cartProducts:',cartProducts)
     <aside className="cart-container">
       <h2>Your Cart</h2>
       <div>
-        {cartItems.length === 0 && (
-          <div key="empty-cart-message"> Cart is empty</div>
-        )}
+        
         {cartProducts.map((product) => (
           <div className="cart_box" key={product.productId}>
             <div className="cart_img">
@@ -202,7 +199,7 @@ console.log('this is cartProducts:',cartProducts)
               >
                 +
               </button>
-              <span>{product.price}</span>
+              <span>{product.info.price}</span>
               <button onClick={() => handleRemove(product.id)}> Remove</button>
             </div>
           </div>
