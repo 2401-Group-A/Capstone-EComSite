@@ -1,60 +1,71 @@
 import { useState, useEffect } from "react";
 import "./styles/cart.css";
 
-export default function Cart({token, cartItems, setCartItems }) {
+export default function Cart({ token, cartItems, setCartItems }) {
 
   const [price, setPrice] = useState(0);
-  const [userCartItems, setUserCartItems ] = useState([])
+  const [userCartItems, setUserCartItems ] = useState([]);
   const [products, setProducts] = useState([])
 
+  // Function to place the order
+  const placeOrder = async () => {
+    try {
+      // Call getCartItems to refresh the cart
+      await getCartItems();
+      // Reset the cart items after placing the order
+      setUserCartItems([]);
+      // Show order successful popup
+      alert("Order successful!");
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert("Order failed. Please try again later.");
+    }
+  };
 
-  // getting cart items from the back end 
+  // Function to get cart items from the backend
   const getCartItems = async () => {
-    try{
+    try {
       // This is getting the order_id from cart
       const response = await fetch("http://localhost:3000/api/cart", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-        });
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
 
-        if(!response.ok){
-          throw new Error ('Failed to get cart ID')
-        }
+      if (!response.ok) {
+        throw new Error('Failed to get cart ID');
+      }
 
-        const { id } = await response.json()
-        console.log('this is my id:', id)
-        
-        // Fetching cart items using the obtained order_id
-        const response2 = await fetch('http://localhost:3000/api/cart/cartId/' + id, {
-          
+      const { id } = await response.json();
+      console.log('this is my id:', id);
+
+      // Fetching cart items using the obtained order_id
+      const response2 = await fetch('http://localhost:3000/api/cart/cartId/' + id, {
         method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token,
-          },
-          
-        });
-  
-       if(!response2.ok){
-          throw new Error ('Failed get cart items bro')
-        }
-        
-        const cartItemsData = await response2.json();
-        console.log ('this is my cart items:',cartItemsData)
-        setUserCartItems(cartItemsData);
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      });
 
-    }catch (err){
+      if (!response2.ok) {
+        throw new Error('Failed get cart items bro');
+      }
+
+      const cartItemsData = await response2.json();
+      console.log('this is my cart items:', cartItemsData);
+      setUserCartItems(cartItemsData);
+
+    } catch (err) {
       console.error('Failed to get cart items:', err);
+      throw err;
     }
   };
 
   useEffect(() => {
- 
     getCartItems();
-
 
     const fetchProducts = async () => {
       try {
@@ -66,7 +77,6 @@ export default function Cart({token, cartItems, setCartItems }) {
         });
         if (response.ok) {
           const result = await response.json();
-
           setProducts(result.products);
         } else {
           console.error('Error fetching products: ', response.statusText);
@@ -78,18 +88,18 @@ export default function Cart({token, cartItems, setCartItems }) {
 
     fetchProducts();
 
-
-  }, [])
+  }, []);
 
   const cartProducts = products
-  .filter((product) =>
-    userCartItems.some((item) => item.product_id === product.id)
-  )
-  .map((product) => ({
-    productId: product.id,
-    quantity: userCartItems.find((i) => i.product_id == product.id).quantity,
-    info: product,
-  }));
+    .filter((product) =>
+      userCartItems.some((item) => item.product_id === product.id)
+    )
+    .map((product) => ({
+      productId: product.id,
+      quantity: userCartItems.find((i) => i.product_id == product.id).quantity,
+      info: product,
+    }));
+
   
 
 
@@ -153,17 +163,18 @@ export default function Cart({token, cartItems, setCartItems }) {
       const handlePrice = () => {
         let cartTotal = 0;
         cartProducts.forEach(
-          (product) => (cartTotal += product.info.quantity * product.info.price)
+          (product) => (cartTotal += product.quantity * product.info.price)
         );
-        setPrice(cartTotal);
+        // Round the total price to two decimal places
+        const roundedTotal = cartTotal.toFixed(2);
+        setPrice(roundedTotal);
       };
       handlePrice();
     } catch (err) {
       console.error(err);
     }
-  }, [cartItems]);
+  }, [cartProducts]);
 
-  // ------- handles add and minus buttons ----------
   const handleQtyChange = (product, change) => {
     const updatedCart = cartProducts.map((item) => {
       if (item.info.id === product.info.id) {
@@ -174,19 +185,16 @@ export default function Cart({token, cartItems, setCartItems }) {
     setCartItems(updatedCart);
   };
 
-
-  
-
   return (
 
     <aside className="cart-container">
       <h1 className="your-cart">Your Cart</h1>
       <div>
-        
+
         {cartProducts.map((product) => (
           <div className="cart_box" key={product.productId}>
             <div className="cart_img">
-              <img src={product.info.imgurl} />
+              <img src={product.info.imgurl} alt={product.info.planttype} />
               <h1 className="plant-type">{product.info.planttype}</h1>
             </div>
 
@@ -210,26 +218,8 @@ export default function Cart({token, cartItems, setCartItems }) {
         ))}
       </div>
       <div className="total-cart-price"> Your order total comes to: ${price} </div>
+      {/* Place Order button */}
+      <button onClick={placeOrder} className="place-order-button">Place Order</button>
     </aside>
   );
 }
-
-
-// <aside className="cart-container">
-    //   <h2> Your Cart </h2>
-    //   <ul>
-    //     {cartProducts.map(product => (
-    //       <li key={product.id}>
-            
-    //         <p>Product ID: {product}</p>
-    //         <p>Quantity: {product.quantity}</p>
-    //       </li>
-    //     ))}
-    //   </ul>
-
-
-
-    // </aside>
-
-
-   
