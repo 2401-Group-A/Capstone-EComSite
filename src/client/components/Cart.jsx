@@ -54,7 +54,7 @@ export default function Cart({ cartItems, setCartItems }) {
 
   return (
     <aside className="cart-container">
-      <h2>Your Cart</h2>
+      <h1 className="your-cart">Your Cart</h1>
       <div>
         {cartItems.length === 0 && (
           <div key="empty-cart-message"> Cart is empty</div>
@@ -69,23 +69,23 @@ export default function Cart({ cartItems, setCartItems }) {
             <div className="button-box">
               <button
                 onClick={() => handleQtyChange(product, -1)}
-                className="remove">
+                className="qty-buttons">
                 -
               </button>
-              <button>{product.amount}</button>
+              <button className="qty-buttons">{product.amount}</button>
               <button
                 onClick={() => handleQtyChange(product, +1)}
-                className="add"
+                className="qty-buttons"
               >
                 +
               </button>
-              <span>{product.price}</span>
-              <button onClick={() => handleRemove(product.id)}> Remove</button>
+              <span className="cart-product-price">${product.price}</span>
+              <button className="remove-button" onClick={() => handleRemove(product.id)}> Remove</button>
             </div>
           </div>
         ))}
       </div>
-      <div> Total: {price} </div>
+      <div className="total-cart-price"> Your order total comes to: ${price} </div>
     </aside>
   );
 }
