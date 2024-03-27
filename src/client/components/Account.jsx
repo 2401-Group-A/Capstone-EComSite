@@ -151,15 +151,15 @@ const Account = ({ token }) => {
         </div>
         <div className='orders-container'>
           <h2>Your past orders:</h2>
-          {/* <ul>
-       {userData.map(product => (
-          <li key={product.id}>
+          <ul>
+       {userData.map(orders => (
+          <li key={orders.id}>
             
-            <p>Product ID: {product}</p>
-            <p>Quantity: {product.quantity}</p>
+            <p>Order ID: {orders.id}</p>
+           
           </li>
         ))}
-      </ul> */}
+      </ul>
         </div>
       </div>
     </main>
