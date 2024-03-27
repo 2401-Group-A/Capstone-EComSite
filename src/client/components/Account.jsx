@@ -106,6 +106,8 @@ const Account = ({ token }) => {
   const handleUserDataClick = () => {
     navigate('/userdata');
   };
+  if (!userData)
+  return;
 
   return (
     <main className='profile-container'>
@@ -154,9 +156,7 @@ const Account = ({ token }) => {
           <ul>
        {userData.map(orders => (
           <li key={orders.id}>
-            
             <p>Order ID: {orders.id}</p>
-           
           </li>
         ))}
       </ul>

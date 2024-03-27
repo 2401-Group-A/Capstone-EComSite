@@ -83,7 +83,7 @@ function App() {
   
   return (
     <>
-      <NavBar size={cartItems.length} setToken={setToken} cookies={cookies}/>
+      <NavBar setToken={setToken} cookies={cookies}/>
       
       <Routes>
         <Route path='/' element={<Home handleAddToCart={handleAddToCart} cartItems={cartItems} />} />
