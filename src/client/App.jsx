@@ -20,6 +20,9 @@ import Cookies from 'universal-cookie';
 function App() {
   const [token, setToken] = useState(null);
   const [cartItems, setCartItems] = useState([])
+  const [orderId, setOrderId] = useState([])
+  const [productId, setProductId] = useState([])
+  const [quantity, setQuantity] = useState([])
 
   const cookies = new Cookies();
   useEffect(() => {
@@ -35,25 +38,29 @@ function App() {
     setCartItems(updatedCart)
     
   
+  
     try{
       if (!token){
         throw new Error ('User is not logged in');
       } 
-      
-      await fetch('/cart', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token,
-          },
-          body: JSON.stringify({
-            order_id: order_id,
-            product_id: product.id,
-            quantity: 1
-          })
+
+      const itemsInCart = {
+        order_id: orderId,
+        product_id: productId ,
+        quantity: quantity
+      }
+      const response = await fetch('http://localhost:3000/api/cart/addproduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+        body: JSON.stringify(itemsInCart)
       });
-      console.log( 'New order posted:', orderId)
-      
+
+     if(!response.ok){
+        throw new Error ('Failed to add to cart bro')
+      }
   
     }catch (err) {
       console.error('error adding item to cart:', err)
