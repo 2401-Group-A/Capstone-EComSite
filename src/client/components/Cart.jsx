@@ -9,49 +9,50 @@ export default function Cart({token, cartItems, setCartItems }) {
 
 
   // getting cart items from the back end 
+  const getCartItems = async () => {
+    try{
+      // This is getting the order_id from cart
+      const response = await fetch("http://localhost:3000/api/cart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
+
+        if(!response.ok){
+          throw new Error ('Failed to get cart ID')
+        }
+
+        const { id } = await response.json()
+        console.log('this is my id:', id)
+        
+        // Fetching cart items using the obtained order_id
+        const response2 = await fetch('http://localhost:3000/api/cart/cartId/' + id, {
+          
+        method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token,
+          },
+          
+        });
+  
+       if(!response2.ok){
+          throw new Error ('Failed get cart items bro')
+        }
+        
+        const cartItemsData = await response2.json();
+        console.log ('this is my cart items:',cartItemsData)
+        setUserCartItems(cartItemsData);
+
+    }catch (err){
+      console.error('Failed to get cart items:', err);
+    }
+  };
 
   useEffect(() => {
-    const getCartItems = async () => {
-      try{
-        // This is getting the order_id from cart
-        const response = await fetch("http://localhost:3000/api/cart", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
-            },
-          });
-
-          if(!response.ok){
-            throw new Error ('Failed to get cart ID')
-          }
-
-          const { id } = await response.json()
-          console.log('this is my id:', id)
-          
-          // Fetching cart items using the obtained order_id
-          const response2 = await fetch('http://localhost:3000/api/cart/cartId/' + id, {
-            
-          method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + token,
-            },
-            
-          });
-    
-         if(!response2.ok){
-            throw new Error ('Failed get cart items bro')
-          }
-          
-          const cartItemsData = await response2.json();
-          console.log ('this is my cart items:',cartItemsData)
-          setUserCartItems(cartItemsData);
-
-      }catch (err){
-        console.error('Failed to get cart items:', err);
-      }
-    };
+ 
     getCartItems();
 
 
@@ -143,6 +144,7 @@ export default function Cart({token, cartItems, setCartItems }) {
     }catch (err) {
       console.error('error adding item to cart:', err)
     }  
+    getCartItems()
   };
 
   // --------- calculates total ---------
