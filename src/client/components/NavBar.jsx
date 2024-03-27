@@ -4,7 +4,7 @@ import './styles/navbar.css';
 import Hamburger from './Hamburger';
 import { useState } from 'react';
 
-export default function NavBar({ size, setToken, cookies}) {
+export default function NavBar({ size, setToken, cookies, getCartItems}) {
   return (
     <header className='navbar-container'>
       <section className='burger-container'>

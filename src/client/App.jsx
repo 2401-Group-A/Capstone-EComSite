@@ -15,7 +15,7 @@ import NavBar from './components/NavBar';
 import Cookies from 'universal-cookie';
 
 
-// const cartFromLocalStorage = JSON.parse(localStorage.getItem('cartItems') || '[]')
+
 
 function App() {
   const [token, setToken] = useState(null);
@@ -78,7 +78,6 @@ function App() {
     }
 
   }
-
 
 
   
