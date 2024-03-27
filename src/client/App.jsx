@@ -76,7 +76,7 @@ function App() {
     }catch (err) {
       console.error('error adding item to cart:', err)
     }
-
+    alert('Item added to cart');
   }
 
 
