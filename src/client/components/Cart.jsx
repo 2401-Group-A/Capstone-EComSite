@@ -98,9 +98,9 @@ export default function Cart({token, cartItems, setCartItems }) {
   
   // ------ remove item from cart -------
   
-  const handleRemove = async (id) => {
-    const updatedCart = cartItems.filter((product) => product.id !== id);
-    setCartItems(updatedCart);
+  const handleRemove = async (productId) => {
+    // const updatedCart = cartItems.filter((product) => product.id !== id);
+    // setCartItems(updatedCart);
 
     try{
       if (!token){
@@ -116,15 +116,17 @@ export default function Cart({token, cartItems, setCartItems }) {
         },
       });
 
-      // this is getting the id out of the response - had to put await in there so that it is called next. 
-      const {id } = await response.json()
-
+      // this is getting the order_id out of the response - had to put await in there so that it is called next. 
+      const {id}  = await response.json()
+ console.log('LOOK HERE', id)
+// console.log('PRODUCT ID', product.id)
+// console.log( 'PRODUCT', product)
       const itemsInCart = {
         order_id: id,
-        
+        product_id: productId
       }
 
-      console.log('this is the order_id', id)
+
       const response2 = await fetch('http://localhost:3000/api/cart/removeitem', {
         method: 'DELETE',
         headers: {
@@ -200,7 +202,7 @@ export default function Cart({token, cartItems, setCartItems }) {
                 +
               </button>
               <span className="cart-product-price">${product.info.price}</span>
-              <button className="remove-button" onClick={() => handleRemove(product.id)}> Remove</button>
+              <button className="remove-button" onClick={() => handleRemove(product.productId)}> Remove</button>
             </div>
           </div>
         ))}
