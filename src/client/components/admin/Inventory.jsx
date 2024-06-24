@@ -245,7 +245,6 @@ fetchProducts();
       plantingInstructions: newPlantingInstructions,
     };
 
-    console.log("Test stuff", handleAddNewProduct);
     try {
       const response = await fetch(
         "http://localhost:3000/api/products/addproduct",
@@ -269,7 +268,6 @@ fetchProducts();
   };
 // Conditional Redendering
 if (!token) {
-  console.log("here");
   return <div>Please log in</div>
 }
   // Inventory Container
